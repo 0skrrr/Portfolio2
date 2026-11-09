@@ -21,6 +21,12 @@ const fromHash = (): SectionId => {
   return h in POS ? h : 'home'
 }
 const DIRS: Dir[] = ['up', 'down', 'left', 'right']
+/** True if `el` sits in a panel that can still scroll in that vertical direction (mobile long panels). */
+const canScroll = (el: EventTarget | null, down: boolean) => {
+  const panel = (el as Element | null)?.closest?.('.panel') as HTMLElement | null
+  if (!panel || panel.scrollHeight <= panel.clientHeight + 1) return false
+  return down ? panel.scrollTop + panel.clientHeight < panel.scrollHeight - 1 : panel.scrollTop > 0
+}
 const reduced = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
 export default function App() {
@@ -39,6 +45,7 @@ export default function App() {
       const p = POS[active]
       const panel = world.current!.querySelector<HTMLElement>(`[data-id="${active}"]`)!
       const items = panel.querySelectorAll('[data-anim]')
+      const lines = panel.querySelectorAll('[data-draw]')
       if (window.location.hash.slice(1) !== active) history.replaceState(null, '', `#${active}`)
       document.title = active === 'home' ? 'Oskar — Portfolio' : `${active[0].toUpperCase()}${active.slice(1)} — Oskar`
 
@@ -47,10 +54,12 @@ export default function App() {
         gsap.set(world.current, { xPercent: -p.x * 100, yPercent: -p.y * 100 })
         return
       }
-      const dur = reduced() ? 0 : 1.1
+      const r = reduced()
+      const dur = r ? 0 : 0.7
       gsap.timeline()
-        .to(world.current, { xPercent: -p.x * 100, yPercent: -p.y * 100, duration: dur, ease: 'expo.inOut', overwrite: 'auto' })
-        .fromTo(items, { autoAlpha: 0, y: 40 }, { autoAlpha: 1, y: 0, duration: reduced() ? 0 : 0.8, ease: 'expo.out', stagger: 0.04, clearProps: 'transform' }, dur * 0.55)
+        .to(world.current, { xPercent: -p.x * 100, yPercent: -p.y * 100, duration: dur, ease: 'power3.inOut', overwrite: 'auto' })
+        .fromTo(items, { autoAlpha: 0, y: 24 }, { autoAlpha: 1, y: 0, duration: r ? 0 : 0.45, ease: 'power3.out', stagger: { amount: r ? 0 : 0.25 }, clearProps: 'transform' }, dur * 0.45)
+        .fromTo(lines, { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: r ? 0 : 0.6, ease: 'power2.out', stagger: 0.05 }, dur * 0.5)
     },
     { dependencies: [active], scope: world },
   )
@@ -59,9 +68,9 @@ export default function App() {
   useGSAP(() => {
     if (!introDone || active !== 'home' || reduced()) return
     gsap.timeline()
-      .from('.home__figure', { xPercent: 20, autoAlpha: 0, duration: 1.4, ease: 'expo.out' })
-      .from('.home__char', { yPercent: 100, autoAlpha: 0, stagger: 0.06, duration: 0.9, ease: 'expo.out' }, 0.1)
-      .from('.socials li, .arrow, .minimap', { autoAlpha: 0, y: 10, stagger: 0.04, duration: 0.5 }, 0.6)
+      .from('.home__figure', { xPercent: 12, autoAlpha: 0, duration: 0.9, ease: 'expo.out' })
+      .from('.home__char', { yPercent: 100, autoAlpha: 0, stagger: 0.04, duration: 0.6, ease: 'expo.out' }, 0.05)
+      .from('.socials li, .home__hint, .arrow, .minimap', { autoAlpha: 0, y: 10, stagger: 0.03, duration: 0.35 }, 0.35)
   }, { dependencies: [introDone] })
 
   // Input: keyboard, wheel/trackpad, touch swipe, hash changes.
@@ -71,12 +80,13 @@ export default function App() {
 
     let wheelLock = 0
     const onWheel = (e: WheelEvent) => {
+      if (Math.abs(e.deltaY) > Math.abs(e.deltaX) && canScroll(e.target, e.deltaY > 0)) return
       e.preventDefault()
       const now = Date.now()
       if (now < wheelLock) return
       const { deltaX: dx, deltaY: dy } = e
       if (Math.max(Math.abs(dx), Math.abs(dy)) < 25) return
-      wheelLock = now + 1200
+      wheelLock = now + 750
       move(Math.abs(dx) > Math.abs(dy) ? (dx > 0 ? 'right' : 'left') : dy > 0 ? 'down' : 'up')
     }
 
@@ -87,6 +97,7 @@ export default function App() {
       if (Math.max(Math.abs(dx), Math.abs(dy)) < 50) return
       // Let horizontally scrollable areas (mobile project cards) scroll instead of navigating.
       if (Math.abs(dx) > Math.abs(dy) && (e.target as Element).closest?.('.cards')) return
+      if (Math.abs(dy) > Math.abs(dx) && canScroll(e.target, dy < 0)) return
       // Swipe moves content with the finger: swipe left reveals the panel on the right.
       move(Math.abs(dx) > Math.abs(dy) ? (dx < 0 ? 'right' : 'left') : dy < 0 ? 'down' : 'up')
     }
