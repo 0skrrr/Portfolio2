@@ -1,0 +1,1 @@
+{ "version": "0.0.1", "configurations": [ { "name": "dev", "runtimeExecutable": "npm", "runtimeArgs": ["--prefix", "/Users/oskarkopcil/Desktop/Oskar/Github/Portfolio2", "run", "dev"], "cwd": "/Users/oskarkopcil/Desktop/Oskar/Github/Portfolio2", "port": 5173 } ] }
