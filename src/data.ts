@@ -3,9 +3,17 @@ export const asset = (p: string) => `${import.meta.env.BASE_URL}assets/${p}`
 
 // Edit your content here — the sections read from this file.
 
+
+/** Hero + persistent chrome. Placeholder copy — make it yours. */
+export const profile = {
+  role: 'Designer & developer',
+  status: 'Open to new projects',
+  email: 'kopcil.oskar@gmail.com',
+}
+
 export const socials = [
   { label: 'Discord', href: '#', icon: asset('social1.svg') },
-  { label: 'Email', href: 'mailto:kopcil.oskar@gmail.com', icon: asset('social3.svg') },
+  { label: 'Email', href: `mailto:${profile.email}`, icon: asset('social3.svg') },
   { label: 'LinkedIn', href: '#', icon: asset('social2.svg') },
   { label: 'GitHub', href: 'https://github.com/0skrrr', icon: asset('github.svg') },
 ]
@@ -23,52 +31,78 @@ export const skills: { name: string; side: 'left' | 'right'; top: number; image?
   { name: 'Photography', side: 'right', top: 87, image: undefined },
 ]
 
-export type Project = { title: string; tag: string; description: string; image?: string; href?: string }
+export type Project = {
+  title: string
+  tag: string
+  year: string
+  role: string
+  tools: string[]
+  /** One or two sentences: shown in the hover preview and as the case-study lead. */
+  summary: string
+  /** Extra case-study paragraphs (problem, process, outcome…). */
+  body?: string[]
+  /** Cover image for the preview + case study. */
+  image?: string
+  /** Case-study gallery. Empty slots render as labelled placeholders. */
+  gallery?: string[]
+  /** Live site / repo. */
+  href?: string
+  /** Call-to-action row instead of a project (opens `href`). */
+  cta?: boolean
+}
+
+const BODY = [
+  'The problem — what needed solving, for whom, and why it mattered.',
+  'The process — research, sketches, the decisions you made and the ones you threw away.',
+  'The outcome — what shipped, what changed, and what you would do differently next time.',
+]
 
 export const projects: Project[] = [
-  { title: 'Project Hexe', tag: 'Code Hexe', description: 'Short description of the project — what it is, your role and the tools used.', image: asset('silhouette.png') },
-  { title: 'Project Two', tag: 'Web', description: 'Short description of the project.', image: asset('silhouette.png') },
-  { title: 'Project Three', tag: 'Branding', description: 'Short description of the project.', image: asset('silhouette.png') },
-  { title: 'Project Four', tag: 'Photo', description: 'Short description of the project.', image: asset('silhouette.png') },
-  { title: 'Project Five', tag: 'Video', description: 'Short description of the project.', image: asset('silhouette.png') },
-  { title: 'Your project?', tag: 'Your', description: 'Have an idea? Get in touch and let’s build it together.' },
+  { title: 'Project Hexe', tag: 'Code', year: '2025', role: 'Design & development', tools: ['React', 'GSAP', 'Figma'], summary: 'Short description of the project — what it is, your role and the tools used.', body: BODY, image: asset('silhouette.png'), href: 'https://github.com/0skrrr' },
+  { title: 'Project Two', tag: 'Web', year: '2025', role: 'UI / UX', tools: ['Figma', 'WebStorm'], summary: 'Short description of the project.', body: BODY, image: asset('silhouette.png') },
+  { title: 'Project Three', tag: 'Branding', year: '2024', role: 'Identity', tools: ['Illustrator', 'Photoshop'], summary: 'Short description of the project.', body: BODY, image: asset('silhouette.png') },
+  { title: 'Project Four', tag: 'Photo', year: '2024', role: 'Photography', tools: ['Lightroom'], summary: 'Short description of the project.', body: BODY, image: asset('silhouette.png') },
+  { title: 'Project Five', tag: 'Video', year: '2023', role: 'Edit & grade', tools: ['DaVinci Resolve'], summary: 'Short description of the project.', body: BODY, image: asset('silhouette.png') },
+  { title: 'Your project?', tag: 'Let’s talk', year: 'Now', role: '', tools: [], summary: 'Have an idea? Get in touch and let’s build it together.', href: `mailto:${profile.email}`, cta: true },
 ]
 
 export const education = [
-  { years: '20XX — 20XX', school: 'School name', field: 'Field of study' },
-  { years: '20XX — 20XX', school: 'School name', field: 'Field of study' },
+  { years: '20XX — now', school: 'School name', field: 'Field of study' },
+  { years: '20XX — 20XX', school: 'Previous school', field: 'Field of study' },
 ]
 
-export type Friend = { name: string; role: string; github?: string; portfolio?: string; avatar?: string }
+/** `relation` is what makes the orbit read right: these are the people you study and build with. */
+export type Friend = { name: string; role: string; relation: 'Classmate' | 'Friend'; github?: string; portfolio?: string; avatar?: string }
 
-/** Friends shown around the Education title. Leave `avatar` empty for an initials placeholder. */
+/** Classmates & friends orbiting the Education card. Leave `avatar` empty for an initials placeholder. */
 export const friends: Friend[] = [
-  { name: 'Friend One', role: 'Frontend dev', github: 'https://github.com/', portfolio: 'https://example.com' },
-  { name: 'Friend Two', role: 'Designer', github: 'https://github.com/', portfolio: 'https://example.com' },
-  { name: 'Friend Three', role: 'Backend dev', github: 'https://github.com/', portfolio: 'https://example.com' },
-  { name: 'Friend Four', role: 'Game dev', github: 'https://github.com/', portfolio: 'https://example.com' },
-  { name: 'Friend Five', role: 'Photographer', github: 'https://github.com/', portfolio: 'https://example.com' },
-  { name: 'Friend Six', role: 'Full-stack', github: 'https://github.com/', portfolio: 'https://example.com' },
+  { name: 'Friend One', relation: 'Classmate', role: 'Frontend dev', github: 'https://github.com/', portfolio: 'https://example.com' },
+  { name: 'Friend Two', relation: 'Classmate', role: 'Designer', github: 'https://github.com/', portfolio: 'https://example.com' },
+  { name: 'Friend Three', relation: 'Classmate', role: 'Backend dev', github: 'https://github.com/', portfolio: 'https://example.com' },
+  { name: 'Friend Four', relation: 'Friend', role: 'Game dev', github: 'https://github.com/', portfolio: 'https://example.com' },
+  { name: 'Friend Five', relation: 'Classmate', role: 'Photographer', github: 'https://github.com/', portfolio: 'https://example.com' },
+  { name: 'Friend Six', relation: 'Friend', role: 'Full-stack', github: 'https://github.com/', portfolio: 'https://example.com' },
 ]
 
 export const softwareCategories = ['Languages', 'IDEs', 'Design', 'Media', 'Tools'] as const
 export type SoftwareCategory = (typeof softwareCategories)[number]
 
 const L = (f: string) => asset(`logos/${f}`)
-export const software: { name: string; logo: string; cat: SoftwareCategory }[] = [
-  { name: 'JavaScript', logo: L('javascript.png'), cat: 'Languages' },
-  { name: 'React', logo: L('react.png'), cat: 'Languages' },
+/** `core: true` marks your daily drivers — they get the accent marker. Placeholder picks: adjust. */
+export const software: { name: string; logo: string; cat: SoftwareCategory; core?: boolean }[] = [
+  { name: 'JavaScript', core: true, logo: L('javascript.png'), cat: 'Languages' },
+  { name: 'React', core: true, logo: L('react.png'), cat: 'Languages' },
   { name: 'C#', logo: L('csharp.png'), cat: 'Languages' },
   { name: 'Java', logo: L('java.png'), cat: 'Languages' },
   { name: 'PHP', logo: L('php.png'), cat: 'Languages' },
   { name: 'MySQL', logo: L('mysql.png'), cat: 'Languages' },
-  { name: 'WebStorm', logo: L('webstorm.png'), cat: 'IDEs' },
+  { name: 'WebStorm', core: true, logo: L('webstorm.png'), cat: 'IDEs' },
   { name: 'IntelliJ IDEA', logo: L('intellij.png'), cat: 'IDEs' },
   { name: 'Rider', logo: L('rider.png'), cat: 'IDEs' },
   { name: 'PyCharm', logo: L('pycharm.png'), cat: 'IDEs' },
   { name: 'DataGrip', logo: L('datagrip.png'), cat: 'IDEs' },
-  { name: 'Figma', logo: L('figma.svg'), cat: 'Design' },
-  { name: 'Photoshop', logo: L('photoshop.png'), cat: 'Design' },
+  { name: 'Figma', core: true, logo: L('figma.svg'), cat: 'Design' },
+  { name: 'Photoshop', core: true, logo: L('photoshop.png'), cat: 'Design' },
   { name: 'Illustrator', logo: L('illustrator.png'), cat: 'Design' },
   { name: 'Aseprite', logo: L('aseprite.png'), cat: 'Design' },
   { name: 'Fusion 360', logo: L('fusion.png'), cat: 'Design' },

@@ -52,8 +52,8 @@ export function Skillset() {
         <span className="skill-preview__caption">{skill.name}</span>
       </div>
 
-      <div className="skillset__band" data-anim="band">
-        <h2 className="skillset__title display">SKILLSET</h2>
+      <div className="skillset__band">
+        <h2 className="skillset__title display" data-anim="title">SKILLSET</h2>
       </div>
       <ul className="skillset__list">
         {skills.map((s, i) => (
@@ -61,9 +61,9 @@ export function Skillset() {
             key={s.name}
             className={`skill skill--${s.side} ${hovered === i ? 'is-active' : ''}`}
             style={{ '--top': `${s.top}%` } as React.CSSProperties}
-            data-anim="skill"
           >
             <button
+              data-anim="skill"
               onPointerEnter={(e) => e.pointerType === 'mouse' && show(i)}
               onPointerLeave={(e) => e.pointerType === 'mouse' && hide()}
               onFocus={() => show(i)}

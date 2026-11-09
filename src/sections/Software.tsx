@@ -39,8 +39,11 @@ export function Software() {
 
   return (
     <section className="panel software" aria-label="Software">
+      <div className="software__band">
+        <h2 className="software__title display" data-anim="title">SOFTWARE</h2>
+      </div>
+      <div className="software__body">
       <header className="software__head" data-anim="head">
-        <h2 className="software__title display">SOFTWARE</h2>
         <div className="chips" role="group" aria-label="Filter software">
           {FILTERS.map((f) => (
             <button key={f} className="chip" aria-pressed={filter === f} onClick={() => choose(f)}>
@@ -49,19 +52,20 @@ export function Software() {
             </button>
           ))}
         </div>
+        <p className="software__legend"><span className="dot" aria-hidden /> Daily drivers</p>
       </header>
 
       <ul className="software__grid" ref={grid}>
         {software.map((s) => (
-          <li key={s.name} className="tool" data-flip-id={s.name} hidden={filter !== 'All' && s.cat !== filter} data-anim="tile">
+          <li key={s.name} className={`tool ${s.core ? 'is-core' : ''}`} data-flip-id={s.name} hidden={filter !== 'All' && s.cat !== filter} data-anim="tile">
             <div className="tool__logo">
-              <img src={s.logo} alt="" loading="lazy" className={s.name === 'Unity' ? 'is-left' : ''} />
+              <img src={s.logo} alt="" decoding="async" className={s.name === 'Unity' ? 'is-left' : ''} />
             </div>
-            <span className="tool__name">{s.name}</span>
-            <span className="tool__cat">{s.cat}</span>
+            <span className="tool__name">{s.name}{s.core && <span className="sr-only"> (daily driver)</span>}</span>
           </li>
         ))}
       </ul>
+      </div>
     </section>
   )
 }

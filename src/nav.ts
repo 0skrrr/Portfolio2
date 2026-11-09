@@ -1,13 +1,13 @@
 export type Dir = 'up' | 'down' | 'left' | 'right'
 export type SectionId = 'home' | 'software' | 'skillset' | 'projects' | 'education'
 
-/** Grid position of each screen, matching the Figma layout around the hub. */
+/** Grid position of each screen around the hub. Projects sits to the right: the 'forward' direction, so it's the first place people go. */
 export const POS: Record<SectionId, { x: number; y: number }> = {
   home: { x: 0, y: 0 },
   software: { x: 0, y: -1 },
   skillset: { x: 0, y: 1 },
-  projects: { x: -1, y: 0 },
-  education: { x: 1, y: 0 },
+  projects: { x: 1, y: 0 },
+  education: { x: -1, y: 0 },
 }
 
 const DELTA: Record<Dir, { x: number; y: number }> = {
