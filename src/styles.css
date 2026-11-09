@@ -30,12 +30,13 @@ img { display: block; max-width: 100%; }
 .intro__char { display: inline-block; }
 
 /* ---------- World / panels ---------- */
-.viewport { position: fixed; inset: 0; overflow: hidden; }
+/* Opaque backdrop: the fixed arrows/minimap blend (difference) against this stacking context, so it must never be transparent. */
+.viewport { position: fixed; inset: 0; overflow: hidden; background: var(--cream); }
 .world { position: absolute; inset: 0; will-change: transform; }
 .slot { position: absolute; inset: 0; translate: calc(var(--x) * 100%) calc(var(--y) * 100%); }
 .panel { position: relative; width: 100%; height: 100%; overflow: hidden; background: var(--cream); }
-.panel::after { /* subtle grain like the Figma hub */
-  content: ''; position: absolute; inset: 0; pointer-events: none; opacity: 0.08; mix-blend-mode: multiply;
+.panel::after { /* subtle grain like the Figma hub; z-index keeps it over raised boxes so they don't show as flat patches */
+  content: ''; position: absolute; inset: 0; z-index: 6; pointer-events: none; opacity: 0.08; mix-blend-mode: multiply;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
@@ -66,6 +67,7 @@ img { display: block; max-width: 100%; }
 .minimap__dot.is-hover:not(.is-active) .minimap__scribble path { stroke-dashoffset: 0; opacity: 1; transition: stroke-dashoffset 0.45s cubic-bezier(.3,.7,.3,1), opacity 0s; }
 .minimap__label {
   font-size: 11px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; white-space: nowrap; line-height: 1;
+  margin-right: -0.18em; /* cancel trailing tracking so the label centres under the dots */
 }
 
 /* ---------- Home ---------- */
@@ -77,10 +79,18 @@ img { display: block; max-width: 100%; }
   color: var(--blend); mix-blend-mode: difference; display: flex;
 }
 .home__char { display: inline-block; }
-.socials { position: absolute; right: calc(var(--pad) * 2.2); bottom: var(--pad); display: flex; gap: clamp(10px, 1.2vw, 20px); z-index: 2; }
-.socials { mix-blend-mode: difference; }
-.socials img { height: clamp(18px, 2.6vw, 44px); width: auto; filter: brightness(0) invert(1); transition: translate 0.25s; }
-.socials a:hover img { translate: 0 -4px; }
+.socials {
+  position: absolute; right: calc(var(--pad) * 2.2); bottom: var(--pad); z-index: 2;
+  display: flex; align-items: center; gap: clamp(10px, 1.2vw, 20px); color: var(--blend); mix-blend-mode: difference;
+}
+.socials a { display: block; color: inherit; }
+.socials__icon {
+  display: block; background: currentColor; transition: translate 0.25s;
+  mask-size: contain; mask-repeat: no-repeat; mask-position: center;
+  -webkit-mask-size: contain; -webkit-mask-repeat: no-repeat; -webkit-mask-position: center;
+}
+.socials__icon img { height: clamp(18px, 2.6vw, 44px); width: auto; opacity: 0; }
+.socials a:hover .socials__icon, .socials a:focus-visible .socials__icon { translate: 0 -4px; }
 
 /* ---------- Software ---------- */
 .software {
@@ -124,7 +134,7 @@ img { display: block; max-width: 100%; }
 }
 .skillset__title { writing-mode: vertical-rl; margin: 0 0 -0.4em; }
 .skillset__list { position: absolute; inset: 0; }
-.skill { position: absolute; top: var(--top); display: flex; z-index: 1; }
+.skill { position: absolute; top: var(--top); translate: 0 -50%; display: flex; z-index: 1; }
 .skill::before { content: ''; position: absolute; top: 50%; height: 1px; background: var(--ink); width: 100vw; }
 .skill--left { right: 50%; padding-right: clamp(10px, 4vw, 70px); }
 .skill--left::before { right: 100%; }
@@ -150,7 +160,6 @@ img { display: block; max-width: 100%; }
   background: repeating-linear-gradient(-45deg, var(--ink) 0 14px, #1f1226 14px 28px); color: var(--cream);
 }
 .skill-preview__placeholder span { font-weight: 700; font-size: clamp(22px, 3vw, 52px); letter-spacing: 0.1em; text-transform: uppercase; }
-.skill-preview__placeholder small { font-size: 12px; letter-spacing: 0.15em; text-transform: uppercase; opacity: 0.6; }
 .skill-preview__caption {
   position: absolute; left: -2px; bottom: -2px; translate: 0 100%; background: var(--ink); color: var(--cream);
   font-weight: 700; font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; padding: 0.5em 0.9em;
@@ -167,15 +176,17 @@ img { display: block; max-width: 100%; }
 .project-detail img { flex: 1; min-width: 0; object-fit: cover; object-position: 30% 20%; mix-blend-mode: multiply; transform: scaleX(-1); }
 .projects__title { position: absolute; left: 28%; top: 50%; translate: 0 -50%; z-index: 2; font-size: clamp(28px, 5.6vw, 96px); pointer-events: none; }
 .cards li { position: absolute; left: var(--x); top: var(--y); width: clamp(84px, 11.6vw, 200px); aspect-ratio: 5 / 7; rotate: var(--r); }
+/* `rotate` makes each li its own stacking context, so the lift has to happen on the li, not the button inside. */
+.cards li:hover, .cards li:has(.card.is-active) { z-index: 4; }
 .card {
   width: 100%; height: 100%; position: relative; overflow: hidden; background: var(--cream);
   border: 2px solid var(--ink); box-shadow: 6px 6px 0 var(--ink);
   transition: transform 0.35s cubic-bezier(.2,.9,.3,1.4), box-shadow 0.35s;
 }
-.card img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 35% 15%; mix-blend-mode: multiply; transform: scale(1.6) scaleX(-1); }
+.card img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 40% 0; mix-blend-mode: multiply; transform: scale(1.15) scaleX(-1); }
 .card__q { position: absolute; inset: 0; display: grid; place-items: center; font-size: clamp(40px, 7vw, 120px); font-weight: 400; }
 .card__label { position: absolute; left: 0; right: 0; bottom: 0; background: var(--ink); color: var(--cream); font-weight: 700; font-size: clamp(10px, 1.3vw, 22px); padding: 0.4em; text-transform: uppercase; }
-.card:hover, .card.is-active { transform: translateY(-12px) rotate(calc(var(--r) * -1)); box-shadow: 10px 14px 0 var(--ink); z-index: 4; }
+.card:hover, .card.is-active { transform: translateY(-12px) rotate(calc(var(--r) * -1)); box-shadow: 10px 14px 0 var(--ink); }
 
 /* ---------- Education + friends ---------- */
 .education__lines { position: absolute; inset: 0; width: 100%; height: 100%; }
@@ -208,8 +219,9 @@ img { display: block; max-width: 100%; }
 .friend__role { font-size: 0.85em; opacity: 0.6; }
 .friend__links { display: flex; gap: 0.9em; margin-top: 0.25em; font-size: 0.85em; font-weight: 600; }
 .friend__links a { color: inherit; text-decoration: none; display: inline-flex; align-items: center; gap: 0.3em; border-bottom: 1px solid currentColor; }
-.friend__links img { height: 1em; width: auto; }
-.friend:hover .friend__links img { filter: invert(1) sepia(0.2); }
+/* github.svg is drawn white for the hero; force it to ink here, and back to light when the pill inverts. */
+.friend__links img { height: 1em; width: auto; filter: brightness(0); transition: filter 0.25s; }
+.friend:hover .friend__links img { filter: brightness(0) invert(0.92); }
 
 /* ---------- Small polish ---------- */
 .home__hint {
@@ -219,20 +231,36 @@ img { display: block; max-width: 100%; }
 .home__hint-touch { display: none; }
 @media (hover: none) { .home__hint-keys { display: none; } .home__hint-touch { display: inline; } }
 .project-detail__q { flex: 1; display: grid; place-items: center; font-size: clamp(60px, 9vw, 160px); }
-.card img { transform: scale(1.15) scaleX(-1); object-position: 40% 0; }
+
+/* Portrait tablets: the software grid was sized for landscape and ended up tiny with half the screen empty. */
+@media (orientation: portrait) and (min-width: 761px) {
+  .software__title { font-size: 7vw; }
+  .chip { font-size: 1.5vw; }
+  .tool { width: calc((100% - var(--gap) * 5) / 6); }
+  .tool__name { font-size: 1.5vw; }
+  .tool__cat { font-size: 1.05vw; }
+}
 
 /* ---------- Mobile ---------- */
 @media (max-width: 760px) {
   .home__figure { inset: 18% -40% 0 -10%; }
-  .home__title { top: 22%; left: 50%; translate: -50% 0; font-size: 18vw; letter-spacing: 0.08em; }
+  /* padding-left balances the trailing letter-spacing so the centred word is optically centred */
+  .home__title { top: 22%; left: 50%; translate: -50% 0; font-size: 18vw; letter-spacing: 0.08em; padding-left: 0.08em; }
   .socials { left: 50%; right: auto; translate: -50% 0; bottom: calc(var(--pad) + 68px); }
 
-  .software { justify-content: flex-start; padding: 124px var(--pad) 80px; overflow-y: auto; }
+  .minimap__label { font-size: 10px; justify-self: end; margin-right: 0; }
+
+  /* Long panels scroll under the fixed minimap/arrows: fade content out at both ends instead of hard-clipping it. */
+  .software, .education {
+    --fade: linear-gradient(to bottom, transparent 0, #000 96px, #000 calc(100% - 96px), transparent calc(100% - 8px));
+    -webkit-mask-image: var(--fade); mask-image: var(--fade);
+  }
+  .software { justify-content: flex-start; padding: 124px var(--pad) 96px; overflow-y: auto; }
   .software__title { font-size: 9vw; }
   .tool { width: calc((100% - var(--gap) * 3) / 4); }
   .tool__cat { display: none; }
 
-  .education { overflow-y: auto; padding: 124px var(--pad) 40px; display: grid; gap: 28px; align-content: start; }
+  .education { overflow-y: auto; padding: 124px var(--pad) 96px; display: grid; gap: 28px; align-content: start; }
   .education__lines { display: none; }
   .education__center { position: static; translate: none; padding: 0; }
   .education__title { font-size: 9vw; }
@@ -240,12 +268,22 @@ img { display: block; max-width: 100%; }
   .friends li { position: static; translate: none; }
   .friend { border-radius: 18px; }
   .home__hint { left: 50%; translate: -50% 0; bottom: calc(var(--pad) + 36px); white-space: nowrap; }
-  .skill { top: calc(14% + var(--top) * 0.82); }
-    .arrow--left, .arrow--right { top: auto; bottom: calc(var(--pad) * 0.8); translate: none; }
+  .arrow--left, .arrow--right { top: auto; bottom: calc(var(--pad) * 0.8); translate: none; }
 
   .skillset__band { width: 26vw; }
-  .skill span { font-size: 6vw; }
+  .skillset__title { font-size: 34px; }
+  /* compress the rows a little to clear the minimap at the top, and keep labels clear of the vertical title */
+  .skill { top: calc(10% + var(--top) * 0.9); }
+  .skill--left { padding-right: 7vw; }
+  .skill--right { padding-left: 7vw; }
+}
 
+/* Portrait tablets: the landscape hero buries the name in the silhouette; use the centred phone composition. */
+@media (orientation: portrait) and (min-width: 761px) and (max-width: 1100px) {
+  .home__figure { inset: 16% -30% 0 -6%; }
+  .home__title { top: 18%; left: 50%; translate: -50% 0; font-size: 17vw; padding-left: 0.1em; }
+  .socials { left: 50%; right: auto; translate: -50% 0; bottom: calc(var(--pad) + 72px); }
+  .home__hint { left: 50%; translate: -50% 0; bottom: calc(var(--pad) + 36px); white-space: nowrap; }
 }
 
 /* Projects: scattered layout needs landscape room; phones and portrait tablets get a card rail. */
@@ -253,8 +291,11 @@ img { display: block; max-width: 100%; }
   .project-detail { position: relative; width: 100%; height: auto; min-height: 34%; border-right: 0; padding-top: 112px; }
   .project-detail img, .project-detail__q { flex: 0 0 30%; max-width: 30%; }
   .projects__title { top: auto; bottom: 47%; left: 50%; translate: -50% 0; font-size: clamp(28px, 8vw, 64px); }
-  .cards { position: absolute; inset: 56% 0 70px; display: flex; gap: 16px; overflow-x: auto; padding: 8px 24px 16px; scroll-snap-type: x mandatory; align-items: flex-start; scrollbar-width: none; }
-  .cards li { position: relative; left: auto; top: auto; flex: 0 0 auto; height: calc(100% - 24px); width: auto; max-width: 42vw; rotate: none; scroll-snap-align: center; }
+  .cards { position: absolute; inset: 56% 0 70px; display: flex; gap: 16px; overflow-x: auto; padding: 18px 24px 16px; scroll-snap-type: x mandatory; align-items: flex-start; scrollbar-width: none; }
+  .cards::-webkit-scrollbar { display: none; }
+  /* --r: 0 so the active card doesn't counter-rotate into a tilt; the smaller lift stays inside the rail's clip box. */
+  .cards li { --r: 0deg; position: relative; left: auto; top: auto; flex: 0 0 auto; height: min(calc(100% - 34px), 420px); width: auto; max-width: 42vw; rotate: none; scroll-snap-align: center; }
+  .card:hover, .card.is-active { transform: translateY(-8px); box-shadow: 8px 10px 0 var(--ink); }
 }
 
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition-duration: 0.01ms !important; } }

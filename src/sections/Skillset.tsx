@@ -47,7 +47,6 @@ export function Skillset() {
         ) : (
           <div className="skill-preview__placeholder">
             <span>{skill.name}</span>
-            <small>add image in data.ts</small>
           </div>
         )}
         <span className="skill-preview__caption">{skill.name}</span>

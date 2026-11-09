@@ -18,7 +18,10 @@ export function Home() {
         {socials.map((s) => (
           <li key={s.label}>
             <a href={s.href} target="_blank" rel="noreferrer" aria-label={s.label}>
-              <img src={s.icon} alt="" />
+              {/* The icon is painted through a mask so it takes the exact blend colour (a filtered white <img> came out mint-tinted). The hidden <img> just sizes the box. */}
+              <span className="socials__icon" style={{ maskImage: `url(${s.icon})`, WebkitMaskImage: `url(${s.icon})` }}>
+                <img src={s.icon} alt="" />
+              </span>
             </a>
           </li>
         ))}

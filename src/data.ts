@@ -10,14 +10,17 @@ export const socials = [
   { label: 'GitHub', href: 'https://github.com/0skrrr', icon: asset('github.svg') },
 ]
 
-/** `image` slides in on the opposite side when the skill is hovered. Drop files in public/assets/skills/ and set image: asset('skills/name.jpg'). */
+/**
+ * `image` slides in on the opposite side when the skill is hovered. Drop files in public/assets/skills/ and set image: asset('skills/name.jpg').
+ * `top` is the label's vertical centre in % of the panel. The first row starts on the left so its guide line doesn't run through the minimap.
+ */
 export const skills: { name: string; side: 'left' | 'right'; top: number; image?: string }[] = [
-  { name: 'Video', side: 'right', top: 4, image: undefined },
-  { name: 'Web Design', side: 'left', top: 18, image: undefined },
-  { name: 'Backend', side: 'right', top: 33, image: undefined },
-  { name: 'UI / UX', side: 'left', top: 48, image: undefined },
-  { name: 'Branding', side: 'right', top: 63, image: undefined },
-  { name: 'Photography', side: 'left', top: 78, image: undefined },
+  { name: 'Video', side: 'left', top: 12, image: undefined },
+  { name: 'Web Design', side: 'right', top: 27, image: undefined },
+  { name: 'Backend', side: 'left', top: 42, image: undefined },
+  { name: 'UI / UX', side: 'right', top: 57, image: undefined },
+  { name: 'Branding', side: 'left', top: 72, image: undefined },
+  { name: 'Photography', side: 'right', top: 87, image: undefined },
 ]
 
 export type Project = { title: string; tag: string; description: string; image?: string; href?: string }

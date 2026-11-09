@@ -7,7 +7,7 @@ import { projects } from '../data'
 const SPOTS = [
   // Top row sits right of the detail box, bottom row below the title band — nothing crosses "PROJECTS".
   { x: 46, y: 8, r: -3 }, { x: 61, y: 12, r: 3 }, { x: 76, y: 7, r: -2 },
-  { x: 16, y: 62, r: 2 }, { x: 44, y: 64, r: -4 }, { x: 62, y: 61, r: 4 },
+  { x: 19, y: 61, r: 2 }, { x: 37, y: 64, r: -4 }, { x: 55, y: 60, r: 4 },
 ]
 
 export function Projects() {
