@@ -3,14 +3,16 @@ import gsap from 'gsap'
 import { Flip } from 'gsap/Flip'
 import { useGSAP } from '@gsap/react'
 import { software, softwareCategories, type SoftwareCategory } from '../data'
+import { useT } from '../i18n'
 
 gsap.registerPlugin(Flip)
 
-type Filter = 'All' | SoftwareCategory
-const FILTERS: Filter[] = ['All', ...softwareCategories]
+type Filter = 'all' | SoftwareCategory
+const FILTERS: Filter[] = ['all', ...softwareCategories]
 
 export function Software() {
-  const [filter, setFilter] = useState<Filter>('All')
+  const t = useT()
+  const [filter, setFilter] = useState<Filter>('all')
   const grid = useRef<HTMLUListElement>(null)
   const flipState = useRef<Flip.FlipState | null>(null)
 
@@ -38,33 +40,34 @@ export function Software() {
   )
 
   return (
-    <section className="panel software" aria-label="Software">
+    <section className="panel software" aria-label={t.nav.sections.software}>
       <div className="software__band">
-        <h2 className="software__title display" data-anim="title">SOFTWARE</h2>
+        <p className="software__kicker" data-anim="kicker">{t.software.kicker}</p>
+        <h2 className="software__title display" data-anim="title">{t.nav.sections.software}</h2>
       </div>
       <div className="software__body">
-      <header className="software__head" data-anim="head">
-        <div className="chips" role="group" aria-label="Filter software">
-          {FILTERS.map((f) => (
-            <button key={f} className="chip" aria-pressed={filter === f} onClick={() => choose(f)}>
-              {f}
-              <sup>{f === 'All' ? software.length : software.filter((s) => s.cat === f).length}</sup>
-            </button>
-          ))}
-        </div>
-        <p className="software__legend"><span className="dot" aria-hidden /> Daily drivers</p>
-      </header>
+        <header className="software__head" data-anim="head">
+          <div className="chips" role="group" aria-label={t.software.filterLabel}>
+            {FILTERS.map((f) => (
+              <button key={f} className="chip" aria-pressed={filter === f} onClick={() => choose(f)}>
+                {f === 'all' ? t.software.all : t.software.categories[f]}
+                <sup>{f === 'all' ? software.length : software.filter((s) => s.cat === f).length}</sup>
+              </button>
+            ))}
+          </div>
+          <p className="software__legend"><span className="dot" aria-hidden /> {t.software.legend}</p>
+        </header>
 
-      <ul className="software__grid" ref={grid}>
-        {software.map((s) => (
-          <li key={s.name} className={`tool ${s.core ? 'is-core' : ''}`} data-flip-id={s.name} hidden={filter !== 'All' && s.cat !== filter} data-anim="tile">
-            <div className="tool__logo">
-              <img src={s.logo} alt="" decoding="async" className={s.name === 'Unity' ? 'is-left' : ''} />
-            </div>
-            <span className="tool__name">{s.name}{s.core && <span className="sr-only"> (daily driver)</span>}</span>
-          </li>
-        ))}
-      </ul>
+        <ul className="software__grid" ref={grid}>
+          {software.map((s) => (
+            <li key={s.id} className={`tool ${s.core ? 'is-core' : ''}`} data-flip-id={s.id} hidden={filter !== 'all' && s.cat !== filter} data-anim="tile">
+              <div className="tool__logo">
+                <img src={s.logo} alt="" decoding="async" className={s.id === 'unity' ? 'is-left' : ''} />
+              </div>
+              <span className="tool__name">{t.software.items[s.id]}{s.core && <span className="sr-only"> {t.software.dailyDriver}</span>}</span>
+            </li>
+          ))}
+        </ul>
       </div>
     </section>
   )

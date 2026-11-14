@@ -11,6 +11,7 @@ import { Skillset } from './sections/Skillset'
 import { Projects } from './sections/Projects'
 import { Education } from './sections/Education'
 import { profile } from './data'
+import { fmt, locales, useI18n } from './i18n'
 
 gsap.registerPlugin(useGSAP)
 
@@ -39,8 +40,9 @@ const enter = (panel: Element, at = 0) => {
     .fromTo(panel.querySelectorAll('[data-anim]'), { autoAlpha: 0, y: 24 }, { autoAlpha: 1, y: 0, duration: r ? 0 : 0.5, ease: 'power3.out', stagger: { amount: r ? 0 : 0.25 }, clearProps: 'transform' })
     .fromTo(panel.querySelectorAll('[data-draw]'), { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: r ? 0 : 0.6, ease: 'power2.out', stagger: 0.05 }, 0.05)
 }
-const CHROME = '.arrow, .minimap, .contact'
-const HERO_BITS = '.home__figure, .socials li, .home__hint, .home__role'
+const CHROME = '.arrow, .minimap, .corner'
+/** Everything on the hero except the name, which the intro word has already landed on. */
+const HERO_BITS = '.home [data-anim]:not([data-anim="title"])'
 
 type Stage = 'intro' | 'reveal' | 'done'
 
@@ -49,6 +51,7 @@ export default function App() {
   const [stage, setStage] = useState<Stage>('intro')
   const landing = useRef(active)
   const world = useRef<HTMLDivElement>(null)
+  const { t, code, setCode } = useI18n()
 
   const go = useCallback((id: SectionId) => setActive(id), [])
   // No input lock: a new direction simply retargets the running pan (overwrite: 'auto').
@@ -67,7 +70,6 @@ export default function App() {
       const p = POS[active]
       const panel = world.current!.querySelector<HTMLElement>(`[data-id="${active}"]`)!
       if (window.location.hash.slice(1) !== active) history.replaceState(null, '', `#${active}`)
-      document.title = active === 'home' ? 'Oskar — Portfolio' : `${active[0].toUpperCase()}${active.slice(1)} — Oskar`
 
       const x = -p.x * 100, y = -p.y * 100
       if (gsap.getProperty(world.current, 'xPercent') === x && gsap.getProperty(world.current, 'yPercent') === y) return
@@ -78,6 +80,15 @@ export default function App() {
     { dependencies: [active], scope: world },
   )
 
+  useEffect(() => {
+    document.title = active === 'home' ? t.meta.title : fmt(t.meta.sectionTitle, { section: t.nav.sections[active] })
+  }, [active, t])
+
+  // The hero's pointer lean waits for this, so it can't pull the slab away from under the intro's clip.
+  useEffect(() => {
+    document.documentElement.classList.toggle('is-ready', stage === 'done')
+  }, [stage])
+
   // First load: hold back whatever is about to animate, then play it *during* the intro wipe so
   // nothing is ever shown fully-rendered and then yanked away (the old load flash).
   useGSAP(() => {
@@ -86,16 +97,15 @@ export default function App() {
     const panel = world.current!.querySelector(`[data-id="${id}"]`)!
     if (stage === 'intro') {
       gsap.set(CHROME, { autoAlpha: 0 })
-      if (id === 'home') gsap.set(HERO_BITS, { autoAlpha: 0 })
+      if (id === 'home') gsap.set([HERO_BITS, '.home__hint'], { autoAlpha: 0 })
       else gsap.set(panel.querySelectorAll('[data-anim]'), { autoAlpha: 0 })
       return
     }
     const tl = gsap.timeline()
     if (id === 'home') {
-      // The title is already in place (the intro word landed on it); the portrait slides in under it.
-      tl.fromTo('.home__figure', { autoAlpha: 0, xPercent: 6 }, { autoAlpha: 1, xPercent: 0, duration: 1.4, ease: 'expo.out', clearProps: 'transform' }, 0.1)
-        .fromTo('.socials li', { autoAlpha: 0, y: 10 }, { autoAlpha: 1, y: 0, duration: 0.5, ease: 'power3.out', stagger: 0.05, clearProps: 'transform' }, 0.55)
-        .to('.home__hint, .home__role', { autoAlpha: 1, duration: 0.6, stagger: 0.1 }, 0.6)
+      // The name is already in place (the intro word landed on it) and the ink is shrinking into the slab: the rest rises in as it goes.
+      tl.fromTo(HERO_BITS, { autoAlpha: 0, y: 16 }, { autoAlpha: 1, y: 0, duration: 0.7, ease: 'power3.out', stagger: 0.06, clearProps: 'transform' }, 0.45)
+        .to('.home__hint', { autoAlpha: 1, duration: 0.6 }, 0.9) // centred with CSS translate: fade only
     } else {
       tl.add(enter(panel), 0.25)
     }
@@ -163,10 +173,22 @@ export default function App() {
 
         {DIRS.map((d) => {
           const n = neighbour(active, d)
-          return n ? <Arrow key={d} dir={d} onClick={() => move(d)} name={n} /> : null
+          return n ? <Arrow key={d} dir={d} onClick={() => move(d)} name={t.nav.sections[n]} /> : null
         })}
         <Minimap active={active} go={go} />
-        <a className="contact" href={`mailto:${profile.email}`}>Contact <span aria-hidden>↗</span></a>
+        <div className="corner">
+          <a className="contact" href={`mailto:${profile.email}`}>{t.nav.contact} <span aria-hidden>↗</span></a>
+          {/* Appears by itself once a second dictionary exists in src/i18n/. */}
+          {locales.length > 1 && (
+            <nav className="lang" aria-label={t.nav.language}>
+              {locales.map((l) => (
+                <button key={l.code} lang={l.t.meta.lang} aria-pressed={l.code === code} aria-label={l.t.meta.label} onClick={() => setCode(l.code)}>
+                  {l.t.meta.short}
+                </button>
+              ))}
+            </nav>
+          )}
+        </div>
       </main>
     </>
   )

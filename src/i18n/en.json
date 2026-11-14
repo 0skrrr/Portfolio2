@@ -1,0 +1,282 @@
+{
+  "meta": {
+    "lang": "en",
+    "label": "English",
+    "short": "EN",
+    "title": "Oskar — Portfolio",
+    "sectionTitle": "{section} — Oskar",
+    "description": "Oskar Kopčil — designer and developer. Websites, interfaces, branding, photography and video."
+  },
+  "profile": {
+    "name": "Oskar",
+    "role": "Designer & developer",
+    "status": "Open to new projects"
+  },
+  "nav": {
+    "sections": {
+      "home": "Home",
+      "software": "Software",
+      "skillset": "Skillset",
+      "projects": "Projects",
+      "education": "Education"
+    },
+    "goTo": "Go to {name}",
+    "siteMap": "Site map",
+    "pointing": "→ {name}",
+    "contact": "Contact",
+    "language": "Language"
+  },
+  "home": {
+    "statement": "I design and build things for the screen — websites, interfaces and identities, from the first sketch to the last line of code.",
+    "hint": "Swipe to explore",
+    "socialsLabel": "Elsewhere",
+    "socials": {
+      "discord": "Discord",
+      "email": "Email",
+      "linkedin": "LinkedIn",
+      "github": "GitHub"
+    }
+  },
+  "software": {
+    "kicker": "What I work with",
+    "filterLabel": "Filter software",
+    "all": "All",
+    "legend": "Daily drivers",
+    "dailyDriver": "(daily driver)",
+    "categories": {
+      "languages": "Languages",
+      "ides": "IDEs",
+      "design": "Design",
+      "media": "Media",
+      "tools": "Tools"
+    },
+    "items": {
+      "javascript": "JavaScript",
+      "react": "React",
+      "csharp": "C#",
+      "java": "Java",
+      "php": "PHP",
+      "mysql": "MySQL",
+      "webstorm": "WebStorm",
+      "intellij": "IntelliJ IDEA",
+      "rider": "Rider",
+      "pycharm": "PyCharm",
+      "datagrip": "DataGrip",
+      "figma": "Figma",
+      "photoshop": "Photoshop",
+      "illustrator": "Illustrator",
+      "aseprite": "Aseprite",
+      "fusion": "Fusion 360",
+      "lightroom": "Lightroom",
+      "davinci": "DaVinci Resolve",
+      "unity": "Unity",
+      "github": "GitHub",
+      "notion": "Notion",
+      "discord": "Discord",
+      "vivaldi": "Vivaldi"
+    }
+  },
+  "skillset": {
+    "number": "{n} / {total}",
+    "toolsLabel": "Tools",
+    "items": {
+      "video": {
+        "name": "Video",
+        "blurb": "Editing, pacing and colour grading — short films, reels and promo cuts that hold attention."
+      },
+      "webDesign": {
+        "name": "Web Design",
+        "blurb": "Responsive sites and landing pages, designed in Figma and built by hand."
+      },
+      "backend": {
+        "name": "Backend",
+        "blurb": "APIs, databases and the logic behind the interface — the part nobody sees until it breaks."
+      },
+      "uiux": {
+        "name": "UI / UX",
+        "blurb": "User flows, wireframes and interfaces that feel obvious the first time you use them."
+      },
+      "branding": {
+        "name": "Branding",
+        "blurb": "Logos, type and colour systems that hold together on a screen, a sign or a sticker."
+      },
+      "photography": {
+        "name": "Photography",
+        "blurb": "Portraits, places and products, edited to one consistent look across a whole series."
+      }
+    }
+  },
+  "projects": {
+    "kicker": "Selected work",
+    "count": "{count} projects",
+    "openCase": "Open the case study",
+    "items": {
+      "hexe": {
+        "title": "Project Hexe",
+        "tag": "Code",
+        "year": "2025",
+        "role": "Design & development",
+        "tools": ["React", "GSAP", "Figma"],
+        "summary": "A web app designed and built end to end — wireframed in Figma, then brought to life in React with GSAP-driven motion.",
+        "sections": [
+          {
+            "heading": "The brief",
+            "text": "Turn a rough idea into a product people actually enjoy using: fast, clear, and with enough personality to be remembered."
+          },
+          {
+            "heading": "The process",
+            "text": "Flows and low-fidelity wireframes first, tested on friends, then a small component library in Figma before a single line of React was written."
+          },
+          {
+            "heading": "The outcome",
+            "text": "A responsive app built from a handful of reusable components, with motion that explains what changed instead of decorating it."
+          }
+        ]
+      },
+      "portfolio": {
+        "title": "This portfolio",
+        "tag": "Web",
+        "year": "2026",
+        "role": "Design & development",
+        "tools": ["React", "TypeScript", "GSAP", "Figma"],
+        "summary": "A portfolio you move through like a map — five panels around a hub, one strict visual system, and every word ready for translation.",
+        "sections": [
+          {
+            "heading": "The brief",
+            "text": "Show a wide mix of work — code, design, photo and video — without it turning into one long, generic scroll."
+          },
+          {
+            "heading": "The process",
+            "text": "Designed in Figma first. The panels sit on a grid and are reached with arrows, keys, the wheel or a swipe; GSAP handles the pans, the reveals and the intro. One set of rules — ink bands, hairlines and a single accent colour — keeps every panel related."
+          },
+          {
+            "heading": "The outcome",
+            "text": "A fast static site on GitHub Pages that works with a keyboard, a mouse or a thumb, with all of its text kept in one JSON file so a new language is a single file away."
+          }
+        ]
+      },
+      "northline": {
+        "title": "Northline",
+        "tag": "Branding",
+        "year": "2024",
+        "role": "Identity design",
+        "tools": ["Illustrator", "Photoshop"],
+        "summary": "A visual identity for a small outdoor brand — logo, type, colour and a set of templates that keep it consistent.",
+        "sections": [
+          {
+            "heading": "The brief",
+            "text": "A young brand with a good product and no face. It needed a mark that works as small as a sticker and as large as a banner."
+          },
+          {
+            "heading": "The process",
+            "text": "Dozens of sketches narrowed down to three directions, each tested on real applications — packaging, social posts, a shop sign — before choosing one."
+          },
+          {
+            "heading": "The outcome",
+            "text": "A compact identity system: primary and secondary marks, two typefaces, a four-colour palette and ready-to-use templates for the team."
+          }
+        ]
+      },
+      "fieldNotes": {
+        "title": "Field Notes",
+        "tag": "Photo",
+        "year": "2024",
+        "role": "Photography",
+        "tools": ["Lightroom", "Photoshop"],
+        "summary": "A photo series about ordinary places, shot over a year and edited to one quiet, consistent look.",
+        "sections": [
+          {
+            "heading": "The brief",
+            "text": "A personal project: find something worth looking at in places people walk past every day."
+          },
+          {
+            "heading": "The process",
+            "text": "One camera, one lens and a rule of a single walk per week. The edit was built as a Lightroom preset early on so every frame belongs to the same set."
+          },
+          {
+            "heading": "The outcome",
+            "text": "A tight selection of images out of thousands of frames — and a much better eye for light, timing and what to leave out."
+          }
+        ]
+      },
+      "afterglow": {
+        "title": "Afterglow",
+        "tag": "Video",
+        "year": "2023",
+        "role": "Edit & colour grade",
+        "tools": ["DaVinci Resolve"],
+        "summary": "A short film edit — pacing, sound and a colour grade built around late evening light.",
+        "sections": [
+          {
+            "heading": "The brief",
+            "text": "Turn a few hours of loosely shot footage into a short piece with a clear mood and rhythm."
+          },
+          {
+            "heading": "The process",
+            "text": "A rough cut to music, then a tighter cut to picture. The grade was matched shot by shot in DaVinci Resolve to hold the same warm evening tone."
+          },
+          {
+            "heading": "The outcome",
+            "text": "A short, finished film with consistent colour and pacing — and a reusable grading setup for the next one."
+          }
+        ]
+      }
+    },
+    "cta": {
+      "title": "Your project?",
+      "tag": "Let’s talk",
+      "year": "Now",
+      "summary": "Have an idea? Get in touch and let’s build it together.",
+      "action": "Write to me"
+    }
+  },
+  "caseStudy": {
+    "crumb": "Projects",
+    "navLabel": "Case studies",
+    "prev": "Prev",
+    "prevLabel": "Previous: {title}",
+    "next": "Next",
+    "nextLabel": "Next: {title}",
+    "close": "Close",
+    "role": "Role",
+    "year": "Year",
+    "tools": "Tools",
+    "link": "Link",
+    "visit": "Visit",
+    "nextProject": "Next project"
+  },
+  "education": {
+    "kicker": "Where I study",
+    "label": "Education, classmates and friends",
+    "schools": [
+      {
+        "years": "2022 — now",
+        "school": "Secondary school",
+        "field": "Information technology"
+      },
+      {
+        "years": "2013 — 2022",
+        "school": "Primary school",
+        "field": "Where the drawing started"
+      }
+    ],
+    "caption": "The classmates and friends I study and build things with.",
+    "friendsLabel": "Classmates and friends",
+    "relations": {
+      "classmate": "Classmate",
+      "friend": "Friend"
+    },
+    "github": "GitHub",
+    "portfolio": "Portfolio",
+    "onGithub": "{name} on GitHub",
+    "portfolioOf": "{name}’s portfolio",
+    "friends": {
+      "adam": { "name": "Adam K.", "role": "Frontend developer" },
+      "tereza": { "name": "Tereza M.", "role": "Graphic designer" },
+      "jakub": { "name": "Jakub S.", "role": "Backend developer" },
+      "ema": { "name": "Ema V.", "role": "Game developer" },
+      "matej": { "name": "Matěj R.", "role": "Photographer" },
+      "klara": { "name": "Klára P.", "role": "Full-stack developer" }
+    }
+  }
+}
