@@ -1,14 +1,14 @@
 # Custom cursor
 
-A small, low-contrast **Cursor · <style>** button in the top bar cycles through three cursor styles, so they can be tried out on the live site. The choice is saved in `localStorage` under `cursor`; the default is `dot`.
+A single custom cursor: a small dot drawn with `mix-blend-mode: difference`, so it inverts whatever is under it and needs no dark-mode rules.
 
-| Style | What it does |
-|---|---|
-| `dot` | Small ink dot with `mix-blend-mode: difference`, so it inverts whatever is under it and needs no dark-mode rules. Grows over links and buttons. |
-| `label` | Dot (same `difference` blend as `dot`, so it inverts what's under it) that turns into a pill with a word (Go, Mail, Open, Click) over interactive elements. Skipped on links with `data-preview`, so it doesn't fight the hover preview. |
-| `section` | Shape changes with the active panel: crosshair (software), square (skillset), diamond (projects), pen nib (education), dot (home). |
+## How it reacts
+- **Movement:** stretches along the direction of travel the faster the pointer moves (up to 1.6× long, 0.7× thin), and settles back to round ~80ms after it stops.
+- **Hover:** grows from 10px to 40px over links, buttons and labels, with a slight overshoot.
+- **Press:** shrinks to 60% while the mouse button is down.
+- **Leaving the window:** fades out, and fades back in on the next move.
 
 ## Rules
-- Only on fine pointers with hover, and never when the visitor prefers reduced motion; otherwise the system cursor stays and the switch is hidden.
-- The drawn cursor moves with `gsap.quickTo` on `x`/`y`. Its children are centred with CSS `translate`, never the animated element itself (see the GSAP translate conflict).
+- Only on fine pointers with hover, and never when the visitor prefers reduced motion; otherwise the browser cursor stays.
+- The outer `.cursor` follows the pointer with `gsap.quickTo` on `x`/`y`. The stretch is GSAP `rotation`/`scaleX`/`scaleY` on the inner `.cursor__blob`. It can't go on `.cursor__mark`: GSAP writes inline `translate: none; scale: none` on anything it transforms, which would undo the mark's CSS centring (`translate: -50% -50%`) and its press shrink (`scale`).
 - Text fields keep the text cursor.

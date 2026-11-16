@@ -1,24 +1,15 @@
 import { useEffect, useRef, useState } from 'react'
 import gsap from 'gsap'
-import type { CursorStyle } from '../cursor'
-import type { SectionId } from '../nav'
-import { useT, type Dict } from '../i18n'
 import './Cursor.css'
 
 const FINE_POINTER = '(hover: hover) and (pointer: fine)'
 const REDUCED_MOTION = '(prefers-reduced-motion: reduce)'
-const FOLLOW_SECONDS: Record<CursorStyle, number> = { dot: 0.08, label: 0.12, section: 0.08 }
-
-type LabelKey = keyof Dict['nav']['cursor']['labels']
-
-function labelFor(target: Element | null): LabelKey | null {
-  if (!target || target.closest('[data-preview]')) return null
-  if (target.closest('.arrow')) return 'go'
-  if (target.closest('a[href^="mailto:"], .contact')) return 'mail'
-  if (target.closest('a[target="_blank"]')) return 'open'
-  if (target.closest('a, button')) return 'click'
-  return null
-}
+const INTERACTIVE = 'a, button, [role="button"], label, select'
+const FOLLOW_SECONDS = 0.08
+const STRETCH_SECONDS = 0.25
+const SPEED_PER_STRETCH = 60
+const MAX_STRETCH = 0.6
+const SETTLE_AFTER_MS = 80
 
 function useCanCustomise() {
   const query = () => window.matchMedia(FINE_POINTER).matches && !window.matchMedia(REDUCED_MOTION).matches
@@ -32,39 +23,77 @@ function useCanCustomise() {
   return canCustomise
 }
 
-export function Cursor({ style, section }: { style: CursorStyle; section: SectionId }) {
-  const t = useT()
-  const canCustomise = useCanCustomise()
-  const pointer = useRef<HTMLDivElement>(null)
-  const [label, setLabel] = useState<LabelKey | null>(null)
-  const [isHovering, setIsHovering] = useState(false)
-  const isDrawn = canCustomise
+function followPointer(cursor: HTMLElement, blob: HTMLElement, onTarget: (target: EventTarget | null) => void) {
+  const toX = gsap.quickTo(cursor, 'x', { duration: FOLLOW_SECONDS, ease: 'power3.out' })
+  const toY = gsap.quickTo(cursor, 'y', { duration: FOLLOW_SECONDS, ease: 'power3.out' })
+  const toStretch = gsap.quickTo(blob, 'scaleX', { duration: STRETCH_SECONDS, ease: 'power3.out' })
+  const toSqueeze = gsap.quickTo(blob, 'scaleY', { duration: STRETCH_SECONDS, ease: 'power3.out' })
+  let last: { x: number; y: number } | null = null
+  let settle = 0
 
-  useEffect(() => {
-    document.documentElement.dataset.cursor = isDrawn ? 'custom' : 'system'
-    return () => { delete document.documentElement.dataset.cursor }
-  }, [isDrawn])
-
-  useEffect(() => {
-    if (!isDrawn || !pointer.current) return
-    const duration = FOLLOW_SECONDS[style]
-    const toX = gsap.quickTo(pointer.current, 'x', { duration, ease: 'power3.out' })
-    const toY = gsap.quickTo(pointer.current, 'y', { duration, ease: 'power3.out' })
-    const onMove = (e: PointerEvent) => {
-      toX(e.clientX)
-      toY(e.clientY)
-      const target = e.target instanceof Element ? e.target : null
-      setIsHovering(!!target?.closest('a, button, [role="button"]'))
-      setLabel(style === 'label' ? labelFor(target) : null)
+  const onMove = (e: PointerEvent) => {
+    toX(e.clientX)
+    toY(e.clientY)
+    onTarget(e.target)
+    if (last) {
+      const dx = e.clientX - last.x
+      const dy = e.clientY - last.y
+      const stretch = Math.min(Math.hypot(dx, dy) / SPEED_PER_STRETCH, MAX_STRETCH)
+      gsap.set(blob, { rotation: (Math.atan2(dy, dx) * 180) / Math.PI })
+      toStretch(1 + stretch)
+      toSqueeze(1 - stretch / 2)
     }
-    window.addEventListener('pointermove', onMove)
-    return () => window.removeEventListener('pointermove', onMove)
-  }, [isDrawn, style])
+    last = { x: e.clientX, y: e.clientY }
+    window.clearTimeout(settle)
+    settle = window.setTimeout(() => { toStretch(1); toSqueeze(1) }, SETTLE_AFTER_MS)
+  }
+  window.addEventListener('pointermove', onMove)
+  return () => {
+    window.removeEventListener('pointermove', onMove)
+    window.clearTimeout(settle)
+  }
+}
 
-  if (!isDrawn) return null
+export function Cursor() {
+  const canCustomise = useCanCustomise()
+  const cursor = useRef<HTMLDivElement>(null)
+  const blob = useRef<HTMLSpanElement>(null)
+  const [isHovering, setIsHovering] = useState(false)
+  const [isPressed, setIsPressed] = useState(false)
+  const [isInside, setIsInside] = useState(true)
+
+  useEffect(() => {
+    document.documentElement.dataset.cursor = canCustomise ? 'custom' : 'system'
+    return () => { delete document.documentElement.dataset.cursor }
+  }, [canCustomise])
+
+  useEffect(() => {
+    if (!canCustomise || !cursor.current || !blob.current) return
+    const onTarget = (target: EventTarget | null) => {
+      setIsInside(true)
+      setIsHovering(target instanceof Element && !!target.closest(INTERACTIVE))
+    }
+    const stopFollowing = followPointer(cursor.current, blob.current, onTarget)
+    const onDown = () => setIsPressed(true)
+    const onUp = () => setIsPressed(false)
+    const onLeave = () => setIsInside(false)
+    window.addEventListener('pointerdown', onDown)
+    window.addEventListener('pointerup', onUp)
+    document.documentElement.addEventListener('pointerleave', onLeave)
+    return () => {
+      stopFollowing()
+      window.removeEventListener('pointerdown', onDown)
+      window.removeEventListener('pointerup', onUp)
+      document.documentElement.removeEventListener('pointerleave', onLeave)
+    }
+  }, [canCustomise])
+
+  if (!canCustomise) return null
   return (
-    <div ref={pointer} className={`cursor cursor--${style}`} data-section={section} data-hover={isHovering} aria-hidden>
-      <span className="cursor__mark">{label && <span className="cursor__label">{t.nav.cursor.labels[label]}</span>}</span>
+    <div ref={cursor} className="cursor" data-hover={isHovering} data-pressed={isPressed} data-inside={isInside} aria-hidden>
+      <span className="cursor__mark">
+        <span ref={blob} className="cursor__blob" />
+      </span>
     </div>
   )
 }
