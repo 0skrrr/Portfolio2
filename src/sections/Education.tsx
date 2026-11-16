@@ -24,12 +24,12 @@ function FriendCard({ f }: { f: (typeof friends)[number] }) {
         {(f.github || f.portfolio) && (
           <span className="friend__links">
             {f.github && (
-              <a href={f.github} target="_blank" rel="noreferrer" aria-label={fmt(t.education.onGithub, { name })}>
+              <a href={f.github} target="_blank" rel="noreferrer" data-preview="github" aria-label={fmt(t.education.onGithub, { name })}>
                 <img src={asset('github.svg')} alt="" /> {t.education.github}
               </a>
             )}
             {f.portfolio && (
-              <a href={f.portfolio} target="_blank" rel="noreferrer" aria-label={fmt(t.education.portfolioOf, { name })}>
+              <a href={f.portfolio} target="_blank" rel="noreferrer" data-preview="site" aria-label={fmt(t.education.portfolioOf, { name })}>
                 {t.education.portfolio} <span aria-hidden>↗</span>
               </a>
             )}

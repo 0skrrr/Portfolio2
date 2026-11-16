@@ -24,7 +24,9 @@
     "siteMap": "Site map",
     "pointing": "→ {name}",
     "contact": "Contact",
-    "language": "Language"
+    "language": "Language",
+    "leaving": "Leaving to {host}",
+    "outside": "Outside this site"
   },
   "home": {
     "statement": "I design and build things for the screen — websites, interfaces and identities, from the first sketch to the last line of code.",
@@ -39,16 +41,32 @@
   },
   "software": {
     "kicker": "What I work with",
-    "filterLabel": "Filter software",
-    "all": "All",
     "legend": "Daily drivers",
     "dailyDriver": "(daily driver)",
-    "categories": {
-      "languages": "Languages",
-      "ides": "IDEs",
-      "design": "Design",
-      "media": "Media",
-      "tools": "Tools"
+    "pipelineLabel": "My toolchain, from first note to shipped work",
+    "stages": {
+      "plan": {
+        "name": "Plan",
+        "caption": "Briefs, notes and talking it through"
+      },
+      "create": {
+        "name": "Design & media",
+        "caption": "Interfaces, identities, pixels, photos and film"
+      },
+      "build": {
+        "name": "Build",
+        "caption": "Code, data and game engines"
+      },
+      "ship": {
+        "name": "Ship",
+        "caption": "Versioned, tested, out in the world"
+      }
+    },
+    "trace": {
+      "hint": "Point at a tool to see where it shows up",
+      "skills": "Skills",
+      "projects": "Projects",
+      "none": "—"
     },
     "items": {
       "javascript": "JavaScript",
@@ -80,29 +98,33 @@
     "number": "{n} / {total}",
     "toolsLabel": "Tools",
     "items": {
-      "video": {
-        "name": "Video",
-        "blurb": "Editing, pacing and colour grading — short films, reels and promo cuts that hold attention."
+      "appDesign": {
+        "name": "App Design",
+        "blurb": "Mobile and desktop apps, from the first screen flow to a clickable prototype that feels real."
       },
       "webDesign": {
         "name": "Web Design",
         "blurb": "Responsive sites and landing pages, designed in Figma and built by hand."
       },
-      "backend": {
-        "name": "Backend",
-        "blurb": "APIs, databases and the logic behind the interface — the part nobody sees until it breaks."
+      "gameDesign": {
+        "name": "Game Design",
+        "blurb": "Mechanics, levels and pixel art — small games built to be played, not just shown."
       },
       "uiux": {
         "name": "UI / UX",
         "blurb": "User flows, wireframes and interfaces that feel obvious the first time you use them."
       },
+      "backend": {
+        "name": "Backend",
+        "blurb": "APIs, databases and the logic behind the interface — the part nobody sees until it breaks."
+      },
       "branding": {
         "name": "Branding",
         "blurb": "Logos, type and colour systems that hold together on a screen, a sign or a sticker."
       },
-      "photography": {
-        "name": "Photography",
-        "blurb": "Portraits, places and products, edited to one consistent look across a whole series."
+      "photoVideo": {
+        "name": "Photo & Video",
+        "blurb": "Photos and films edited to one consistent look — portraits, places, reels and promo cuts."
       }
     }
   },
@@ -116,7 +138,11 @@
         "tag": "Code",
         "year": "2025",
         "role": "Design & development",
-        "tools": ["React", "GSAP", "Figma"],
+        "tools": [
+          "React",
+          "GSAP",
+          "Figma"
+        ],
         "summary": "A web app designed and built end to end — wireframed in Figma, then brought to life in React with GSAP-driven motion.",
         "sections": [
           {
@@ -138,7 +164,12 @@
         "tag": "Web",
         "year": "2026",
         "role": "Design & development",
-        "tools": ["React", "TypeScript", "GSAP", "Figma"],
+        "tools": [
+          "React",
+          "TypeScript",
+          "GSAP",
+          "Figma"
+        ],
         "summary": "A portfolio you move through like a map — five panels around a hub, one strict visual system, and every word ready for translation.",
         "sections": [
           {
@@ -160,7 +191,10 @@
         "tag": "Branding",
         "year": "2024",
         "role": "Identity design",
-        "tools": ["Illustrator", "Photoshop"],
+        "tools": [
+          "Illustrator",
+          "Photoshop"
+        ],
         "summary": "A visual identity for a small outdoor brand — logo, type, colour and a set of templates that keep it consistent.",
         "sections": [
           {
@@ -182,7 +216,10 @@
         "tag": "Photo",
         "year": "2024",
         "role": "Photography",
-        "tools": ["Lightroom", "Photoshop"],
+        "tools": [
+          "Lightroom",
+          "Photoshop"
+        ],
         "summary": "A photo series about ordinary places, shot over a year and edited to one quiet, consistent look.",
         "sections": [
           {
@@ -204,7 +241,9 @@
         "tag": "Video",
         "year": "2023",
         "role": "Edit & colour grade",
-        "tools": ["DaVinci Resolve"],
+        "tools": [
+          "DaVinci Resolve"
+        ],
         "summary": "A short film edit — pacing, sound and a colour grade built around late evening light.",
         "sections": [
           {
@@ -271,12 +310,47 @@
     "onGithub": "{name} on GitHub",
     "portfolioOf": "{name}’s portfolio",
     "friends": {
-      "adam": { "name": "Adam K.", "role": "Frontend developer" },
-      "tereza": { "name": "Tereza M.", "role": "Graphic designer" },
-      "jakub": { "name": "Jakub S.", "role": "Backend developer" },
-      "ema": { "name": "Ema V.", "role": "Game developer" },
-      "matej": { "name": "Matěj R.", "role": "Photographer" },
-      "klara": { "name": "Klára P.", "role": "Full-stack developer" }
+      "adam": {
+        "name": "Adam K.",
+        "role": "Frontend developer"
+      },
+      "tereza": {
+        "name": "Tereza M.",
+        "role": "Graphic designer"
+      },
+      "jakub": {
+        "name": "Jakub S.",
+        "role": "Backend developer"
+      },
+      "ema": {
+        "name": "Ema V.",
+        "role": "Game developer"
+      },
+      "matej": {
+        "name": "Matěj R.",
+        "role": "Photographer"
+      },
+      "klara": {
+        "name": "Klára P.",
+        "role": "Full-stack developer"
+      }
     }
+  },
+  "contact": {
+    "title": "Contact",
+    "kicker": "Get in touch",
+    "note": "Copy an address, or open it straight away.",
+    "copy": "Copy",
+    "copied": "Copied",
+    "copyLabel": "Copy {name}",
+    "open": "Open {name}",
+    "close": "Close"
+  },
+  "preview": {
+    "loading": "Loading preview…",
+    "repos": "{count} repositories",
+    "followers": "{count} followers",
+    "recent": "Recently pushed",
+    "unavailable": "Preview unavailable"
   }
 }

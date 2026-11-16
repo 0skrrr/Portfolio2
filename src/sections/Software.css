@@ -1,0 +1,66 @@
+/*
+  Software as a pipeline: stages left to right joined by one hairline, like the Skillset leader lines.
+  A stage's width follows its tool count and its list flows into as many columns as fit, so doubling
+  the tools adds columns instead of breaking the layout.
+*/
+.pipeline {
+  list-style: none; margin: 0; padding: 0; width: min(100%, 1320px);
+  display: flex; align-items: stretch; border-top: 1px solid var(--ink);
+}
+.stage { flex: var(--count) 1 0; min-width: 150px; display: grid; align-content: start; gap: 16px; padding: 0 clamp(10px, 1.2vw, 20px); border-left: 1px solid var(--ink); }
+.stage:first-child { border-left: 0; padding-left: 0; }
+.stage:last-child { padding-right: 0; }
+.stage__head { position: relative; display: grid; gap: 4px; padding-top: 18px; }
+/* The node where the stage meets the pipeline rule. */
+.stage__head::before { content: ''; position: absolute; top: -5px; left: -5px; width: 9px; height: 9px; border-radius: 50%; background: var(--ink); }
+.stage:first-child .stage__head::before { left: 0; }
+.stage__no { font-size: var(--label); font-weight: 700; letter-spacing: 0.18em; color: var(--accent); }
+.stage__name { margin: 0; font-size: clamp(18px, 1.6vw, 26px); font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; line-height: 1; }
+.stage__caption { margin: 0; min-height: 2.6em; font-size: 13px; line-height: 1.3; opacity: 0.65; } /* two lines, so every list starts on the same row */
+.stage__tools { list-style: none; margin: 0; padding: 0; columns: 140px; column-gap: clamp(10px, 1vw, 18px); }
+.stage__tools li { break-inside: avoid; }
+
+.tool {
+  position: relative; display: flex; align-items: center; gap: 10px; width: 100%; padding: 4px 8px 4px 6px; text-align: left;
+  border-bottom: 1px solid rgb(19 9 24 / 0.22); transition: background 0.2s, color 0.2s;
+}
+.tool:hover, .tool:focus-visible, .tool.is-traced { background: var(--ink); color: var(--cream); }
+.tool__logo {
+  flex: none; width: 26px; height: 26px; padding: 2px; object-fit: contain; border-radius: 6px; background: var(--cream);
+  /* Duotone by default — brand colour is the hover reward, so the list doesn't read like a sticker sheet. */
+  filter: grayscale(1) contrast(1.1); transition: filter 0.25s;
+}
+.tool:hover .tool__logo, .tool.is-traced .tool__logo { filter: none; }
+/* Wide wordmark logos (`wordmark` in data.ts): show the mark only. */
+.tool__logo.is-wordmark { object-fit: cover; object-position: left; }
+.tool__name { min-width: 0; font-size: clamp(13px, 0.95vw, 15px); font-weight: 600; line-height: 1.15; }
+.tool.is-core .tool__name { font-weight: 700; }
+.tool.is-core::after { content: ''; flex: none; width: 7px; height: 7px; margin-left: auto; border-radius: 50%; background: var(--accent); }
+
+.software__foot {
+  width: min(100%, 1320px); display: flex; align-items: center; justify-content: space-between; gap: 12px 24px;
+  padding-top: 14px; border-top: 1px solid var(--ink); min-height: 52px;
+}
+.software__legend { display: flex; align-items: center; gap: 0.6em; margin: 0; font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; white-space: nowrap; }
+.trace { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 22px; margin: 0; font-size: 14px; font-weight: 600; }
+.trace--idle { opacity: 0.55; font-weight: 500; }
+.trace__tool { font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; }
+.trace dd { margin: 0; }
+.trace dd span { margin-right: 0.6em; font-size: var(--label); font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; opacity: 0.55; }
+
+/* Portrait screens: stages stack, each one a row of the pipeline; the panel scrolls (see styles.css). */
+@media (orientation: portrait) {
+  .pipeline { flex-direction: column; border-top: 0; border-left: 1px solid var(--ink); }
+  .stage { border-left: 0; padding: 0 0 24px 18px; }
+  .stage:first-child { padding-left: 18px; }
+  .stage__head { padding-top: 0; }
+  .stage__head::before { top: 2px; left: -23px; }
+  .stage:first-child .stage__head::before { left: -23px; }
+  .stage__tools { columns: 140px; }
+  .software__foot { flex-direction: column; align-items: flex-start; }
+  .stage__caption { min-height: 0; }
+}
+
+/* Safety net for a long toolchain on short screens: the panel scrolls, and the wheel scrolls it before
+   moving to the next panel (canScroll in App.tsx). */
+.software { overflow-y: auto; }

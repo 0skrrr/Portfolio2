@@ -10,7 +10,8 @@ import { Software } from './sections/Software'
 import { Skillset } from './sections/Skillset'
 import { Projects } from './sections/Projects'
 import { Education } from './sections/Education'
-import { profile } from './data'
+import { ContactDrawer } from './components/ContactDrawer'
+import { LinkPreview } from './components/LinkPreview'
 import { fmt, locales, useI18n } from './i18n'
 
 gsap.registerPlugin(useGSAP)
@@ -52,6 +53,12 @@ export default function App() {
   const landing = useRef(active)
   const world = useRef<HTMLDivElement>(null)
   const { t, code, setCode } = useI18n()
+  const [contactOpen, setContactOpen] = useState(false)
+  const contactButton = useRef<HTMLButtonElement>(null)
+  const closeContact = useCallback(() => {
+    setContactOpen(false)
+    contactButton.current?.focus()
+  }, [])
 
   const go = useCallback((id: SectionId) => setActive(id), [])
   // No input lock: a new direction simply retargets the running pan (overwrite: 'auto').
@@ -177,7 +184,9 @@ export default function App() {
         })}
         <Minimap active={active} go={go} />
         <div className="corner">
-          <a className="contact" href={`mailto:${profile.email}`}>{t.nav.contact} <span aria-hidden>↗</span></a>
+          <button className="contact" ref={contactButton} aria-expanded={contactOpen} aria-haspopup="dialog" onClick={() => setContactOpen(true)}>
+            {t.nav.contact} <span aria-hidden>↗</span>
+          </button>
           {/* Appears by itself once a second dictionary exists in src/i18n/. */}
           {locales.length > 1 && (
             <nav className="lang" aria-label={t.nav.language}>
@@ -190,6 +199,8 @@ export default function App() {
           )}
         </div>
       </main>
+      <ContactDrawer open={contactOpen} onClose={closeContact} />
+      <LinkPreview />
     </>
   )
 }

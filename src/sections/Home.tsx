@@ -54,7 +54,7 @@ export function Home() {
       <ul className="socials" aria-label={t.home.socialsLabel}>
         {socials.map((s) => (
           <li key={s.id} data-anim="social">
-            <a href={s.href} target="_blank" rel="noreferrer" aria-label={t.home.socials[s.id]}>
+            <a href={s.href} target="_blank" rel="noreferrer" data-preview={s.preview} aria-label={t.home.socials[s.id]}>
               {/* Painted through a mask so the icon takes the exact blend colour (a filtered white <img> came out mint-tinted). The hidden <img> just sizes the box. */}
               <span className="socials__icon" style={{ maskImage: `url(${s.icon})`, WebkitMaskImage: `url(${s.icon})` }}>
                 <img src={s.icon} alt="" />

@@ -1,0 +1,30 @@
+/* Hover preview for outgoing links: floating media, so it gets the hard ink shadow. */
+.lp { position: fixed; z-index: 50; width: 300px; pointer-events: none; }
+.lp__card {
+  display: grid; gap: 12px; padding: 14px; background: var(--cream); color: var(--ink);
+  border: 1px solid var(--ink); box-shadow: 10px 10px 0 var(--ink);
+}
+.lp__host {
+  justify-self: start; background: var(--ink); color: var(--cream); margin: -14px 0 0 -14px; padding: 0.5em 0.75em;
+  font-size: var(--label); font-weight: 700; letter-spacing: 0.14em; text-transform: lowercase;
+}
+.lp__label { font-size: var(--label); font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; opacity: 0.6; }
+.lp__status { margin: 0; padding: 18px 0; font-size: 13px; font-weight: 600; opacity: 0.6; text-align: center; }
+
+.lp-site { position: relative; aspect-ratio: 4 / 5; border: 1px solid var(--ink); overflow: hidden; background: rgb(19 9 24 / 0.06); }
+.lp-site img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: top; transition: opacity 0.3s; }
+.lp-site.is-loading img { opacity: 0; }
+.lp-site .lp__status { position: absolute; inset: 0; display: grid; place-content: center; }
+
+.lp-gh { display: grid; gap: 10px; }
+.lp-gh__head { display: flex; align-items: center; gap: 12px; }
+.lp-gh__head div { display: grid; gap: 2px; min-width: 0; }
+.lp-gh__head strong { font-size: 18px; line-height: 1.1; }
+.lp-gh__head span { font-size: 13px; opacity: 0.65; }
+.lp-gh__avatar { width: 52px; height: 52px; border-radius: 50%; border: 1px solid var(--ink); filter: grayscale(1) contrast(1.1); }
+.lp-gh__bio { margin: 0; font-size: 14px; line-height: 1.35; }
+.lp-gh__stats { display: flex; gap: 14px; margin: 0; font-size: 12px; font-weight: 700; letter-spacing: 0.06em; }
+.lp-gh__repos { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--ink); }
+.lp-gh__repos li { display: flex; justify-content: space-between; gap: 10px; padding: 6px 0; border-bottom: 1px solid rgb(19 9 24 / 0.2); font-size: 13px; font-weight: 600; }
+.lp-gh__repos span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.lp-gh__repos em { flex: none; font-style: normal; font-weight: 500; opacity: 0.6; }
