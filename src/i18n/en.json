@@ -9,7 +9,7 @@
   },
   "profile": {
     "name": "Oskar",
-    "role": "Designer & developer",
+    "role": "Developer, and kinda a designer?",
     "status": "Open to new projects"
   },
   "nav": {
@@ -26,10 +26,16 @@
     "contact": "Contact",
     "language": "Language",
     "leaving": "Leaving to {host}",
-    "outside": "Outside this site"
+    "outside": "Outside this site",
+    "theme": {
+      "toDark": "Switch to dark mode",
+      "toLight": "Switch to light mode",
+      "dark": "Dark",
+      "light": "Light"
+    }
   },
   "home": {
-    "statement": "I design and build things for the screen — websites, interfaces and identities, from the first sketch to the last line of code.",
+    "statement": "I try to make cool digital stuff",
     "hint": "Swipe to explore",
     "socialsLabel": "Elsewhere",
     "socials": {

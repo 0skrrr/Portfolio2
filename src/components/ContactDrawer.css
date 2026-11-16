@@ -1,6 +1,6 @@
 /* Contact drawer: an ink slab sliding in from the right, hairline rows that invert on hover. */
 .drawer { position: fixed; inset: 0; z-index: 35; }
-.drawer__shade { position: absolute; inset: 0; background: rgb(19 9 24 / 0.35); }
+.drawer__shade { position: absolute; inset: 0; background: color-mix(in srgb, var(--ink) 35%, transparent); }
 .drawer__panel {
   position: absolute; top: 0; right: 0; bottom: 0; width: min(520px, 100vw); overflow-y: auto;
   display: flex; flex-direction: column; gap: 28px; padding: calc(var(--pad) * 1.4);
@@ -11,15 +11,15 @@
 .drawer .drawer__title { margin: 0; font-size: min(48px, 8vw); /* beats the global .display size (component CSS loads first); 7 tracked letters fit the panel */ line-height: 0.9; }
 .drawer__close {
   position: absolute; top: 0; right: 0; width: 44px; height: 44px; font-size: 28px; line-height: 1;
-  border: 1px solid rgb(235 227 208 / 0.35); transition: background 0.2s, color 0.2s;
+  border: 1px solid color-mix(in srgb, var(--cream) 35%, transparent); transition: background 0.2s, color 0.2s;
 }
 .drawer__close:hover { background: var(--cream); color: var(--ink); }
 .drawer__note { margin: 0; font-size: 15px; line-height: 1.4; opacity: 0.75; }
 
-.drawer__list { list-style: none; margin: 0; padding: 0; border-top: 1px solid rgb(235 227 208 / 0.35); }
+.drawer__list { list-style: none; margin: 0; padding: 0; border-top: 1px solid color-mix(in srgb, var(--cream) 35%, transparent); }
 .drawer__row {
   display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 4px 16px; padding: 18px 0;
-  border-bottom: 1px solid rgb(235 227 208 / 0.35);
+  border-bottom: 1px solid color-mix(in srgb, var(--cream) 35%, transparent);
 }
 .drawer__name { font-size: var(--label); font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; opacity: 0.6; }
 .drawer__handle { grid-row: 2; font-size: clamp(18px, 1.7vw, 24px); font-weight: 600; overflow-wrap: anywhere; }

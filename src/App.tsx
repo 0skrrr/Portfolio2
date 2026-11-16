@@ -13,6 +13,7 @@ import { Education } from './sections/Education'
 import { ContactDrawer } from './components/ContactDrawer'
 import { LinkPreview } from './components/LinkPreview'
 import { fmt, locales, useI18n } from './i18n'
+import { useTheme } from './theme'
 
 gsap.registerPlugin(useGSAP)
 
@@ -53,6 +54,7 @@ export default function App() {
   const landing = useRef(active)
   const world = useRef<HTMLDivElement>(null)
   const { t, code, setCode } = useI18n()
+  const { theme, toggle: toggleTheme } = useTheme()
   const [contactOpen, setContactOpen] = useState(false)
   const contactButton = useRef<HTMLButtonElement>(null)
   const closeContact = useCallback(() => {
@@ -187,7 +189,9 @@ export default function App() {
           <button className="contact" ref={contactButton} aria-expanded={contactOpen} aria-haspopup="dialog" onClick={() => setContactOpen(true)}>
             {t.nav.contact} <span aria-hidden>↗</span>
           </button>
-          {/* Appears by itself once a second dictionary exists in src/i18n/. */}
+          <button className="theme" aria-pressed={theme === 'dark'} aria-label={theme === 'dark' ? t.nav.theme.toLight : t.nav.theme.toDark} onClick={toggleTheme}>
+            <span aria-hidden className="theme__swatch" /> {theme === 'dark' ? t.nav.theme.light : t.nav.theme.dark}
+          </button>
           {locales.length > 1 && (
             <nav className="lang" aria-label={t.nav.language}>
               {locales.map((l) => (
