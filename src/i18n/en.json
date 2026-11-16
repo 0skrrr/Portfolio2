@@ -39,7 +39,6 @@
       "styles": {
         "dot": "Dot",
         "label": "Label",
-        "ring": "Ring",
         "section": "Section"
       },
       "labels": {
