@@ -10,6 +10,11 @@ const STRETCH_SECONDS = 0.25
 const SPEED_PER_STRETCH = 60
 const MAX_STRETCH = 0.6
 const SETTLE_AFTER_MS = 80
+const TRAIL_SIZE = 10
+const TRAIL_SPACING_PX = 18
+const TRAIL_LIFE_SECONDS = 0.5
+const TRAIL_DRIFT_PX = 6
+const TRAIL_START_OPACITY = 0.5
 
 function useCanCustomise() {
   const query = () => window.matchMedia(FINE_POINTER).matches && !window.matchMedia(REDUCED_MOTION).matches
@@ -23,7 +28,27 @@ function useCanCustomise() {
   return canCustomise
 }
 
-function followPointer(cursor: HTMLElement, blob: HTMLElement, onTarget: (target: EventTarget | null) => void) {
+function trailEmitter(particles: HTMLElement[]) {
+  let next = 0
+  let lastDrop: { x: number; y: number } | null = null
+  gsap.set(particles, { xPercent: -50, yPercent: -50, autoAlpha: 0 })
+  return (x: number, y: number) => {
+    if (lastDrop && Math.hypot(x - lastDrop.x, y - lastDrop.y) < TRAIL_SPACING_PX) return
+    lastDrop = { x, y }
+    const particle = particles[next]
+    next = (next + 1) % particles.length
+    gsap.killTweensOf(particle)
+    gsap.set(particle, { x, y, scale: 1, autoAlpha: TRAIL_START_OPACITY })
+    gsap.to(particle, {
+      x: x + gsap.utils.random(-TRAIL_DRIFT_PX, TRAIL_DRIFT_PX),
+      y: y + gsap.utils.random(-TRAIL_DRIFT_PX, TRAIL_DRIFT_PX),
+      scale: 0, autoAlpha: 0, duration: TRAIL_LIFE_SECONDS, ease: 'power2.out',
+    })
+  }
+}
+
+function followPointer(cursor: HTMLElement, blob: HTMLElement, particles: HTMLElement[], onTarget: (target: EventTarget | null) => void) {
+  const dropTrail = trailEmitter(particles)
   const toX = gsap.quickTo(cursor, 'x', { duration: FOLLOW_SECONDS, ease: 'power3.out' })
   const toY = gsap.quickTo(cursor, 'y', { duration: FOLLOW_SECONDS, ease: 'power3.out' })
   const toStretch = gsap.quickTo(blob, 'scaleX', { duration: STRETCH_SECONDS, ease: 'power3.out' })
@@ -35,6 +60,7 @@ function followPointer(cursor: HTMLElement, blob: HTMLElement, onTarget: (target
     toX(e.clientX)
     toY(e.clientY)
     onTarget(e.target)
+    dropTrail(e.clientX, e.clientY)
     if (last) {
       const dx = e.clientX - last.x
       const dy = e.clientY - last.y
@@ -58,6 +84,7 @@ export function Cursor() {
   const canCustomise = useCanCustomise()
   const cursor = useRef<HTMLDivElement>(null)
   const blob = useRef<HTMLSpanElement>(null)
+  const trail = useRef<HTMLDivElement>(null)
   const [isHovering, setIsHovering] = useState(false)
   const [isPressed, setIsPressed] = useState(false)
   const [isInside, setIsInside] = useState(true)
@@ -68,12 +95,12 @@ export function Cursor() {
   }, [canCustomise])
 
   useEffect(() => {
-    if (!canCustomise || !cursor.current || !blob.current) return
+    if (!canCustomise || !cursor.current || !blob.current || !trail.current) return
     const onTarget = (target: EventTarget | null) => {
       setIsInside(true)
       setIsHovering(target instanceof Element && !!target.closest(INTERACTIVE))
     }
-    const stopFollowing = followPointer(cursor.current, blob.current, onTarget)
+    const stopFollowing = followPointer(cursor.current, blob.current, [...trail.current.children] as HTMLElement[], onTarget)
     const onDown = () => setIsPressed(true)
     const onUp = () => setIsPressed(false)
     const onLeave = () => setIsInside(false)
@@ -90,10 +117,15 @@ export function Cursor() {
 
   if (!canCustomise) return null
   return (
-    <div ref={cursor} className="cursor" data-hover={isHovering} data-pressed={isPressed} data-inside={isInside} aria-hidden>
-      <span className="cursor__mark">
-        <span ref={blob} className="cursor__blob" />
-      </span>
-    </div>
+    <>
+      <div ref={trail} className="cursor-trail" aria-hidden>
+        {Array.from({ length: TRAIL_SIZE }, (_, i) => <span key={i} className="cursor-trail__particle" />)}
+      </div>
+      <div ref={cursor} className="cursor" data-hover={isHovering} data-pressed={isPressed} data-inside={isInside} aria-hidden>
+        <span className="cursor__mark">
+          <span ref={blob} className="cursor__blob" />
+        </span>
+      </div>
+    </>
   )
 }
