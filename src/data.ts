@@ -79,12 +79,12 @@ export const projects: Project[] = [
  * Links are optional: `github` gets a profile card on hover, `linkedin` a plain link, `portfolio` a screenshot of the site.
  */
 export const friends: { id: FriendId; relation: Relation; github?: string; linkedin?: string; portfolio?: string; avatar?: string }[] = [
-  { id: 'adam', relation: 'classmate' },
-  { id: 'tereza', relation: 'classmate' },
-  { id: 'jakub', relation: 'classmate' },
-  { id: 'ema', relation: 'friend' },
-  { id: 'matej', relation: 'classmate' },
-  { id: 'klara', relation: 'friend' },
+  { id: 'adris', relation: 'classmate', github: 'https://github.com/adris-h', portfolio: 'https://adris.dev' },
+  { id: 'izitaooo', relation: 'classmate', github: 'https://github.com/Izitaooo' },
+  { id: 'kriztov', relation: 'classmate', github: 'https://github.com/kriztovv' },
+  { id: 'casualNpc', relation: 'classmate', github: 'https://github.com/the-casual-npc' },
+  { id: 'friend5', relation: 'friend' },
+  { id: 'friend6', relation: 'friend' },
 ]
 
 /** The Software panel reads left to right as the way work moves: plan → design & media → build → ship. */

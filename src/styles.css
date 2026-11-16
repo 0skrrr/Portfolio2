@@ -26,6 +26,9 @@
 /* Dark mode is a straight inversion: cream and ink trade places. --blend is their sum, so it stays valid. */
 :root[data-theme='dark'] { --cream: #130918; --ink: #ebe3d0; color-scheme: dark; }
 :root[data-theme='dark'] .panel::after { mix-blend-mode: screen; }
+:root[data-theme='dark'] .skill-card__tools img { filter: grayscale(1) invert(1) contrast(1.1); mix-blend-mode: screen; }
+:root[data-theme='dark'] .friend__links img { filter: brightness(0) invert(0.92); }
+:root[data-theme='dark'] .friend:hover .friend__links img { filter: brightness(0); }
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html, body, #root { height: 100%; overflow: hidden; overscroll-behavior: none; }
 body { background: var(--cream); }
