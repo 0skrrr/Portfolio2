@@ -32,21 +32,6 @@
       "toLight": "Switch to light mode",
       "dark": "Dark",
       "light": "Light"
-    },
-    "cursor": {
-      "switchLabel": "Cursor style: {style}. Click for the next one.",
-      "name": "Cursor",
-      "styles": {
-        "dot": "Dot",
-        "label": "Label",
-        "section": "Section"
-      },
-      "labels": {
-        "go": "Go",
-        "mail": "Mail",
-        "open": "Open ↗",
-        "click": "Click"
-      }
     }
   },
   "home": {

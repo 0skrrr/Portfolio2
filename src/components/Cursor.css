@@ -3,28 +3,14 @@
 
 .cursor {
   position: fixed; left: 0; top: 0; z-index: 1000; pointer-events: none;
-  color: var(--blend); mix-blend-mode: difference;
+  color: var(--blend); mix-blend-mode: difference; transition: opacity 0.2s;
 }
+.cursor[data-inside='false'] { opacity: 0; }
 .cursor__mark {
   position: absolute; left: 0; top: 0; translate: -50% -50%;
-  display: grid; place-items: center; width: 10px; height: 10px; border-radius: 50%; background: currentColor;
-  transition: width 0.25s, height 0.25s, border-radius 0.25s, rotate 0.25s;
+  display: block; width: 10px; height: 10px;
+  transition: width 0.3s cubic-bezier(0.2, 0.9, 0.3, 1.4), height 0.3s cubic-bezier(0.2, 0.9, 0.3, 1.4), scale 0.15s;
 }
-.cursor[data-hover='true'] .cursor__mark { width: 36px; height: 36px; }
-
-.cursor--label .cursor__mark:has(.cursor__label) { width: auto; height: auto; padding: 0.55em 0.9em; border-radius: 999px; }
-.cursor__label {
-  color: #000; white-space: nowrap;
-  font-size: var(--label); font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; line-height: 1;
-}
-
-.cursor--section[data-section='software'] .cursor__mark { width: 22px; height: 22px; border-radius: 0; background: linear-gradient(currentColor, currentColor) center / 100% 1.5px no-repeat, linear-gradient(currentColor, currentColor) center / 1.5px 100% no-repeat; }
-.cursor--section[data-section='skillset'] .cursor__mark { width: 12px; height: 12px; border-radius: 0; }
-.cursor--section[data-section='projects'] .cursor__mark { width: 14px; height: 14px; border-radius: 0; rotate: 45deg; background: transparent; border: 2px solid currentColor; }
-.cursor--section[data-section='education'] .cursor__mark { width: 10px; height: 18px; border-radius: 50% 50% 50% 50% / 30% 30% 70% 70%; rotate: -35deg; }
-.cursor--section[data-hover='true'] .cursor__mark { scale: 1.6; }
-
-
-.cursor-switch { opacity: 0.4; transition: opacity 0.2s; letter-spacing: inherit; text-transform: inherit; padding-bottom: 3px; }
-.cursor-switch:hover, .cursor-switch:focus-visible { opacity: 1; }
-@media not ((hover: hover) and (pointer: fine)) { .cursor-switch { display: none; } }
+.cursor[data-hover='true'] .cursor__mark { width: 40px; height: 40px; }
+.cursor[data-pressed='true'] .cursor__mark { scale: 0.6; }
+.cursor__blob { display: block; width: 100%; height: 100%; border-radius: 50%; background: currentColor; }
