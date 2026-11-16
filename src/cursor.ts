@@ -1,6 +1,6 @@
 import { useCallback, useState } from 'react'
 
-export const CURSOR_STYLES = ['system', 'dot', 'label', 'ring', 'section', 'magnetic'] as const
+export const CURSOR_STYLES = ['dot', 'label', 'ring', 'section'] as const
 export type CursorStyle = (typeof CURSOR_STYLES)[number]
 
 const STORAGE_KEY = 'cursor'

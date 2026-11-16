@@ -7,10 +7,7 @@ import './Cursor.css'
 
 const FINE_POINTER = '(hover: hover) and (pointer: fine)'
 const REDUCED_MOTION = '(prefers-reduced-motion: reduce)'
-const FOLLOW_SECONDS: Record<CursorStyle, number> = { system: 0, dot: 0.08, label: 0.12, ring: 0.45, section: 0.08, magnetic: 0 }
-const MAGNET_TARGETS = '.arrow, .corner button, .minimap button'
-const MAGNET_RANGE_PX = 80
-const MAGNET_PULL = 0.35
+const FOLLOW_SECONDS: Record<CursorStyle, number> = { dot: 0.08, label: 0.12, ring: 0.45, section: 0.08 }
 
 type LabelKey = keyof Dict['nav']['cursor']['labels']
 
@@ -35,32 +32,13 @@ function useCanCustomise() {
   return canCustomise
 }
 
-function pullMagnets(x: number, y: number) {
-  document.querySelectorAll<HTMLElement>(MAGNET_TARGETS).forEach((el) => {
-    const box = el.getBoundingClientRect()
-    const dx = x - (box.left + box.width / 2)
-    const dy = y - (box.top + box.height / 2)
-    const isNear = Math.hypot(dx, dy) < MAGNET_RANGE_PX
-    el.style.setProperty('--magnet-x', `${isNear ? dx * MAGNET_PULL : 0}px`)
-    el.style.setProperty('--magnet-y', `${isNear ? dy * MAGNET_PULL : 0}px`)
-  })
-}
-
-function releaseMagnets() {
-  document.querySelectorAll<HTMLElement>(MAGNET_TARGETS).forEach((el) => {
-    el.style.removeProperty('--magnet-x')
-    el.style.removeProperty('--magnet-y')
-  })
-}
-
 export function Cursor({ style, section }: { style: CursorStyle; section: SectionId }) {
   const t = useT()
   const canCustomise = useCanCustomise()
   const pointer = useRef<HTMLDivElement>(null)
   const [label, setLabel] = useState<LabelKey | null>(null)
   const [isHovering, setIsHovering] = useState(false)
-  const isDrawn = canCustomise && style !== 'system' && style !== 'magnetic'
-  const isMagnetic = canCustomise && style === 'magnetic'
+  const isDrawn = canCustomise
 
   useEffect(() => {
     document.documentElement.dataset.cursor = isDrawn ? 'custom' : 'system'
@@ -82,16 +60,6 @@ export function Cursor({ style, section }: { style: CursorStyle; section: Sectio
     window.addEventListener('pointermove', onMove)
     return () => window.removeEventListener('pointermove', onMove)
   }, [isDrawn, style])
-
-  useEffect(() => {
-    if (!isMagnetic) return
-    const onMove = (e: PointerEvent) => pullMagnets(e.clientX, e.clientY)
-    window.addEventListener('pointermove', onMove)
-    return () => {
-      window.removeEventListener('pointermove', onMove)
-      releaseMagnets()
-    }
-  }, [isMagnetic])
 
   if (!isDrawn) return null
   return (
