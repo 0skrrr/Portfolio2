@@ -46,7 +46,7 @@ function FriendCard({ f }: { f: (typeof friends)[number] }) {
               </a>
             )}
             {f.portfolio && (
-              <a href={f.portfolio} target="_blank" rel="noreferrer" data-preview="site" aria-label={fmt(t.education.portfolioOf, { name })}>
+              <a href={f.portfolio} target="_blank" rel="noreferrer" data-preview="site" data-shot={f.portfolioShot} aria-label={fmt(t.education.portfolioOf, { name })}>
                 {t.education.portfolio} <span aria-hidden>↗</span>
               </a>
             )}
