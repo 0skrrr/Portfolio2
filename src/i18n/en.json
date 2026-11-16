@@ -37,12 +37,10 @@
       "switchLabel": "Cursor style: {style}. Click for the next one.",
       "name": "Cursor",
       "styles": {
-        "system": "System",
         "dot": "Dot",
         "label": "Label",
         "ring": "Ring",
-        "section": "Section",
-        "magnetic": "Magnetic"
+        "section": "Section"
       },
       "labels": {
         "go": "Go",
