@@ -1,5 +1,6 @@
 /* Hover preview for outgoing links: floating media, so it gets the hard ink shadow. */
 .lp { position: fixed; z-index: 50; width: 300px; pointer-events: none; }
+.lp:has(.lp-gh) { width: 360px; }
 .lp__card {
   display: grid; gap: 12px; padding: 14px; background: var(--cream); color: var(--ink);
   border: 1px solid var(--ink); box-shadow: 10px 10px 0 var(--ink);
