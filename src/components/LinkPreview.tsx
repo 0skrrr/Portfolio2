@@ -64,15 +64,15 @@ function GithubCard({ href }: { href: string }) {
   )
 }
 
-function SiteShot({ href }: { href: string }) {
+function SiteShot({ href, shot }: { href: string; shot?: string }) {
   const t = useT()
   const [state, setState] = useState<'loading' | 'ready' | 'failed'>('loading')
-  useEffect(() => setState('loading'), [href])
+  useEffect(() => setState('loading'), [href, shot])
   if (state === 'failed') return <p className="lp__status">{t.preview.unavailable}</p>
   return (
     <div className={`lp-site is-${state}`}>
       {state === 'loading' && <p className="lp__status">{t.preview.loading}</p>}
-      <img src={SCREENSHOT_SERVICE + href} alt="" onLoad={() => setState('ready')} onError={() => setState('failed')} />
+      <img src={shot ?? SCREENSHOT_SERVICE + href} alt="" onLoad={() => setState('ready')} onError={() => setState('failed')} />
     </div>
   )
 }
@@ -101,7 +101,7 @@ export function LinkPreview() {
     <div className="lp" ref={card} aria-hidden>
       <div className="lp__card">
         <span className="lp__host">{out.host} <span aria-hidden>↗</span></span>
-        {kind === 'github' ? <GithubCard href={out.href} /> : <SiteShot href={out.href} />}
+        {kind === 'github' ? <GithubCard href={out.href} /> : <SiteShot href={out.href} shot={out.anchor.dataset.shot} />}
       </div>
     </div>
   )

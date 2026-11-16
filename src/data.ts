@@ -76,10 +76,10 @@ export const projects: Project[] = [
 
 /**
  * Classmates & friends orbiting the Education card. `avatar` falls back to the GitHub profile picture, then to an initials badge.
- * Links are optional: `github` gets a profile card on hover, `linkedin` a plain link, `portfolio` a screenshot of the site.
+ * Links are optional: `github` gets a profile card on hover, `linkedin` a plain link, `portfolio` a screenshot of the site (`portfolioShot` replaces it with a stored image).
  */
-export const friends: { id: FriendId; relation: Relation; github?: string; linkedin?: string; portfolio?: string; avatar?: string }[] = [
-  { id: 'adris', relation: 'classmate', github: 'https://github.com/adris-h', portfolio: 'https://adris.dev' },
+export const friends: { id: FriendId; relation: Relation; github?: string; linkedin?: string; portfolio?: string; portfolioShot?: string; avatar?: string }[] = [
+  { id: 'adris', relation: 'classmate', github: 'https://github.com/adris-h', portfolio: 'https://adris.dev', portfolioShot: asset('shots/adris.jpg') },
   { id: 'izitaooo', relation: 'classmate', github: 'https://github.com/Izitaooo' },
   { id: 'kriztov', relation: 'classmate', github: 'https://github.com/kriztovv' },
   { id: 'casualNpc', relation: 'classmate', github: 'https://github.com/the-casual-npc' },
