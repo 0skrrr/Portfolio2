@@ -6,6 +6,7 @@ A single custom cursor: a small dot drawn with `mix-blend-mode: difference`, so 
 - **Movement:** stretches along the direction of travel the faster the pointer moves (up to 1.6× long, 0.7× thin), and settles back to round ~80ms after it stops.
 - **Hover:** grows from 10px to 40px over links, buttons and labels, with a slight overshoot.
 - **Press:** shrinks to 60% while the mouse button is down.
+- **Trail:** every 18px of travel it drops a 3px particle at 50% opacity (from a pool of 10) that drifts up to 6px, shrinks and fades out over 0.5s. Same `difference` blend as the dot. Nothing is created or removed while moving; the pool is reused.
 - **Leaving the window:** fades out, and fades back in on the next move.
 
 ## Rules
