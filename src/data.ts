@@ -31,12 +31,13 @@ export const socials: { id: SocialId; href: string; icon: string }[] = [
  * asset('skills/video.jpg')) to show a photo in the card instead.
  */
 export const skills: { id: SkillId; side: 'left' | 'right'; top: number; tools: SoftwareId[]; image?: string }[] = [
-  { id: 'video', side: 'left', top: 12, tools: ['davinci', 'photoshop'] },
-  { id: 'webDesign', side: 'right', top: 27, tools: ['figma', 'react', 'javascript', 'webstorm'] },
-  { id: 'backend', side: 'left', top: 42, tools: ['php', 'mysql', 'java', 'csharp', 'datagrip'] },
-  { id: 'uiux', side: 'right', top: 57, tools: ['figma', 'illustrator'] },
-  { id: 'branding', side: 'left', top: 72, tools: ['illustrator', 'photoshop'] },
-  { id: 'photography', side: 'right', top: 87, tools: ['lightroom', 'photoshop'] },
+  { id: 'appDesign', side: 'left', top: 10, tools: ['figma', 'illustrator'] },
+  { id: 'webDesign', side: 'right', top: 23, tools: ['figma', 'react', 'javascript', 'webstorm'] },
+  { id: 'gameDesign', side: 'left', top: 36, tools: ['unity', 'csharp', 'aseprite'] },
+  { id: 'uiux', side: 'right', top: 49, tools: ['figma', 'illustrator'] },
+  { id: 'backend', side: 'left', top: 62, tools: ['php', 'mysql', 'java', 'csharp', 'datagrip'] },
+  { id: 'branding', side: 'right', top: 75, tools: ['illustrator', 'photoshop'] },
+  { id: 'photoVideo', side: 'left', top: 88, tools: ['lightroom', 'davinci', 'photoshop'] },
 ]
 
 /** Cover compositions (see components/Cover.tsx). Projects pick one by position unless `cover` is set. */

@@ -476,8 +476,10 @@ img { display: block; max-width: 100%; }
   .skillset__title { font-size: 34px; }
   /* compress the rows a little to clear the minimap at the top, and keep labels clear of the vertical title */
   .skill { top: calc(10% + var(--top) * 0.9); }
-  .skill--left { padding-right: 7vw; }
-  .skill--right { padding-left: 7vw; }
+  .skill--left { padding-right: 4vw; }
+  .skill--right { padding-left: 4vw; }
+  /* seven rows with two-word names: tighter labels so "Photo & Video" fits a 360px half */
+  .skill button { font-size: 18px; letter-spacing: 0.04em; }
   /* Full-width card on the half of the screen away from the tapped label. */
   .skill-preview { left: var(--pad); right: var(--pad); width: auto; translate: none; }
   .skill-preview--below { top: auto; bottom: calc(var(--pad) * 0.8 + var(--arrow) + 18px); }
