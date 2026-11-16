@@ -14,6 +14,8 @@ import { ContactDrawer } from './components/ContactDrawer'
 import { LinkPreview } from './components/LinkPreview'
 import { fmt, locales, useI18n } from './i18n'
 import { useTheme } from './theme'
+import { useCursorStyle } from './cursor'
+import { Cursor } from './components/Cursor'
 
 gsap.registerPlugin(useGSAP)
 
@@ -55,6 +57,7 @@ export default function App() {
   const world = useRef<HTMLDivElement>(null)
   const { t, code, setCode } = useI18n()
   const { theme, toggle: toggleTheme } = useTheme()
+  const { style: cursorStyle, cycle: cycleCursor } = useCursorStyle()
   const [contactOpen, setContactOpen] = useState(false)
   const contactButton = useRef<HTMLButtonElement>(null)
   const closeContact = useCallback(() => {
@@ -192,6 +195,9 @@ export default function App() {
           <button className="theme" aria-pressed={theme === 'dark'} aria-label={theme === 'dark' ? t.nav.theme.toLight : t.nav.theme.toDark} onClick={toggleTheme}>
             <span aria-hidden className="theme__swatch" /> {theme === 'dark' ? t.nav.theme.light : t.nav.theme.dark}
           </button>
+          <button className="cursor-switch" aria-label={fmt(t.nav.cursor.switchLabel, { style: t.nav.cursor.styles[cursorStyle] })} onClick={cycleCursor}>
+            {t.nav.cursor.name} · {t.nav.cursor.styles[cursorStyle]}
+          </button>
           {locales.length > 1 && (
             <nav className="lang" aria-label={t.nav.language}>
               {locales.map((l) => (
@@ -205,6 +211,7 @@ export default function App() {
       </main>
       <ContactDrawer open={contactOpen} onClose={closeContact} />
       <LinkPreview />
+      <Cursor style={cursorStyle} section={active} />
     </>
   )
 }
