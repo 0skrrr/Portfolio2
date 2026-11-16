@@ -318,29 +318,29 @@
     "onLinkedin": "{name} on LinkedIn",
     "portfolioOf": "{name}’s portfolio",
     "friends": {
-      "adam": {
-        "name": "Adam K.",
-        "role": "Frontend developer"
+      "adris": {
+        "name": "adris",
+        "role": "Web app & game development student"
       },
-      "tereza": {
-        "name": "Tereza M.",
-        "role": "Graphic designer"
+      "izitaooo": {
+        "name": "Izitaooo",
+        "role": "To be filled out"
       },
-      "jakub": {
-        "name": "Jakub S.",
-        "role": "Backend developer"
+      "kriztov": {
+        "name": "kriztov",
+        "role": "To be filled out"
       },
-      "ema": {
-        "name": "Ema V.",
-        "role": "Game developer"
+      "casualNpc": {
+        "name": "the-casual-npc",
+        "role": "To be filled out"
       },
-      "matej": {
-        "name": "Matěj R.",
-        "role": "Photographer"
+      "friend5": {
+        "name": "To be filled out",
+        "role": "To be filled out"
       },
-      "klara": {
-        "name": "Klára P.",
-        "role": "Full-stack developer"
+      "friend6": {
+        "name": "To be filled out",
+        "role": "To be filled out"
       }
     }
   },
