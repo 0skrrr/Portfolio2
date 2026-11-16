@@ -7,7 +7,7 @@ import './Cursor.css'
 
 const FINE_POINTER = '(hover: hover) and (pointer: fine)'
 const REDUCED_MOTION = '(prefers-reduced-motion: reduce)'
-const FOLLOW_SECONDS: Record<CursorStyle, number> = { dot: 0.08, label: 0.12, ring: 0.45, section: 0.08 }
+const FOLLOW_SECONDS: Record<CursorStyle, number> = { dot: 0.08, label: 0.12, section: 0.08 }
 
 type LabelKey = keyof Dict['nav']['cursor']['labels']
 
@@ -65,7 +65,6 @@ export function Cursor({ style, section }: { style: CursorStyle; section: Sectio
   return (
     <div ref={pointer} className={`cursor cursor--${style}`} data-section={section} data-hover={isHovering} aria-hidden>
       <span className="cursor__mark">{label && <span className="cursor__label">{t.nav.cursor.labels[label]}</span>}</span>
-      {style === 'ring' && <span className="cursor__ring" />}
     </div>
   )
 }

@@ -1,12 +1,11 @@
 # Custom cursor
 
-A small, low-contrast **Cursor · <style>** button in the top bar cycles through four cursor styles, so they can be tried out on the live site. The choice is saved in `localStorage` under `cursor`; the default is `dot`.
+A small, low-contrast **Cursor · <style>** button in the top bar cycles through three cursor styles, so they can be tried out on the live site. The choice is saved in `localStorage` under `cursor`; the default is `dot`.
 
 | Style | What it does |
 |---|---|
 | `dot` | Small ink dot with `mix-blend-mode: difference`, so it inverts whatever is under it and needs no dark-mode rules. Grows over links and buttons. |
 | `label` | Dot (same `difference` blend as `dot`, so it inverts what's under it) that turns into a pill with a word (Go, Mail, Open, Click) over interactive elements. Skipped on links with `data-preview`, so it doesn't fight the hover preview. |
-| `ring` | Accent dot with a trailing ring (longer follow time); the ring shrinks and fills over links. |
 | `section` | Shape changes with the active panel: crosshair (software), square (skillset), diamond (projects), pen nib (education), dot (home). |
 
 ## Rules
