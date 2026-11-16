@@ -1,7 +1,17 @@
 import { friends, asset } from '../data'
+import { useState } from 'react'
 import { fmt, useT } from '../i18n'
+import { githubUser } from '../components/github'
 
 const initials = (n: string) => n.split(/\s+/).map((w) => w[0]).join('').slice(0, 2).toUpperCase()
+
+const AVATAR_SIZE = 96
+
+function avatarSrc(f: (typeof friends)[number]): string | null {
+  if (f.avatar) return f.avatar
+  const user = f.github ? githubUser(f.github) : null
+  return user ? `https://github.com/${user}.png?size=${AVATAR_SIZE}` : null
+}
 
 /** Classmates sit on an ellipse around the card; at 60° steps none lands on the side arrow at 50% height. */
 const spot = (i: number, n: number) => {
@@ -12,20 +22,27 @@ const spot = (i: number, n: number) => {
 function FriendCard({ f }: { f: (typeof friends)[number] }) {
   const t = useT()
   const { name, role } = t.education.friends[f.id]
+  const [hasAvatarFailed, setHasAvatarFailed] = useState(false)
+  const src = hasAvatarFailed ? null : avatarSrc(f)
   return (
     <div className="friend" data-anim="friend">
       <div className="friend__avatar">
-        {f.avatar ? <img src={f.avatar} alt="" /> : <span aria-hidden>{initials(name)}</span>}
+        {src ? <img src={src} alt="" loading="lazy" onError={() => setHasAvatarFailed(true)} /> : <span aria-hidden>{initials(name)}</span>}
       </div>
       <div className="friend__body">
         <span className="friend__relation">{t.education.relations[f.relation]}</span>
         <strong>{name}</strong>
         <span className="friend__role">{role}</span>
-        {(f.github || f.portfolio) && (
+        {(f.github || f.linkedin || f.portfolio) && (
           <span className="friend__links">
             {f.github && (
               <a href={f.github} target="_blank" rel="noreferrer" data-preview="github" aria-label={fmt(t.education.onGithub, { name })}>
                 <img src={asset('github.svg')} alt="" /> {t.education.github}
+              </a>
+            )}
+            {f.linkedin && (
+              <a href={f.linkedin} target="_blank" rel="noreferrer" aria-label={fmt(t.education.onLinkedin, { name })}>
+                <img src={asset('social2.svg')} alt="" /> {t.education.linkedin}
               </a>
             )}
             {f.portfolio && (

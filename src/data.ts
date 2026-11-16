@@ -23,9 +23,9 @@ export const profile = { email: 'kopcil.oskar@gmail.com' }
  * (set it once the link is real). `preview: 'github'` shows a GitHub card on hover.
  */
 export const socials: { id: SocialId; href: string; icon: string; handle?: string; preview?: Preview }[] = [
-  { id: 'discord', href: '#', icon: asset('social1.svg') },
+  { id: 'discord', href: 'https://discord.com/users/783236003066019882', icon: asset('social1.svg') },
   { id: 'email', href: `mailto:${profile.email}`, icon: asset('social3.svg'), handle: profile.email },
-  { id: 'linkedin', href: '#', icon: asset('social2.svg') },
+  { id: 'linkedin', href: 'www.linkedin.com/in/oskar-kopčil-b68aa0368', icon: asset('social2.svg') },
   { id: 'github', href: 'https://github.com/0skrrr', icon: asset('github.svg'), handle: 'github.com/0skrrr', preview: 'github' },
 ]
 
@@ -75,10 +75,10 @@ export const projects: Project[] = [
 ]
 
 /**
- * Classmates & friends orbiting the Education card. Leave `avatar` empty for an initials badge.
- * Links are optional: `github` gets a profile card on hover, `portfolio` a screenshot of the site.
+ * Classmates & friends orbiting the Education card. `avatar` falls back to the GitHub profile picture, then to an initials badge.
+ * Links are optional: `github` gets a profile card on hover, `linkedin` a plain link, `portfolio` a screenshot of the site.
  */
-export const friends: { id: FriendId; relation: Relation; github?: string; portfolio?: string; avatar?: string }[] = [
+export const friends: { id: FriendId; relation: Relation; github?: string; linkedin?: string; portfolio?: string; avatar?: string }[] = [
   { id: 'adam', relation: 'classmate' },
   { id: 'tereza', relation: 'classmate' },
   { id: 'jakub', relation: 'classmate' },

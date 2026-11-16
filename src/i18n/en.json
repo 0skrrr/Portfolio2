@@ -106,7 +106,7 @@
     "items": {
       "appDesign": {
         "name": "App Design",
-        "blurb": "Mobile and desktop apps, from the first screen flow to a clickable prototype that feels real."
+        "blurb": "Mobile and desktop apps, from the first screen flow to a interactive prototype."
       },
       "webDesign": {
         "name": "Web Design",
@@ -314,6 +314,8 @@
     "github": "GitHub",
     "portfolio": "Portfolio",
     "onGithub": "{name} on GitHub",
+    "linkedin": "LinkedIn",
+    "onLinkedin": "{name} on LinkedIn",
     "portfolioOf": "{name}’s portfolio",
     "friends": {
       "adam": {

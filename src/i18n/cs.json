@@ -314,6 +314,8 @@
     "github": "GitHub",
     "portfolio": "Portfolio",
     "onGithub": "{name} on GitHub",
+    "linkedin": "LinkedIn",
+    "onLinkedin": "{name} on LinkedIn",
     "portfolioOf": "{name}’s portfolio",
     "friends": {
       "adam": {
