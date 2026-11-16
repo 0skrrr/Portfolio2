@@ -10,7 +10,7 @@ export const asset = (p: string) => `${import.meta.env.BASE_URL}assets/${p}`
 */
 export type SocialId = keyof Dict['home']['socials']
 export type SoftwareId = keyof Dict['software']['items']
-export type SoftwareCategory = keyof Dict['software']['categories']
+export type SoftwareStage = keyof Dict['software']['stages']
 export type SkillId = keyof Dict['skillset']['items']
 export type ProjectId = keyof Dict['projects']['items']
 export type FriendId = keyof Dict['education']['friends']
@@ -18,12 +18,21 @@ export type Relation = keyof Dict['education']['relations']
 
 export const profile = { email: 'kopcil.oskar@gmail.com' }
 
-export const socials: { id: SocialId; href: string; icon: string }[] = [
+/**
+ * `handle` is what the contact drawer shows and copies; a social without one stays out of the drawer
+ * (set it once the link is real). `preview: 'github'` shows a GitHub card on hover.
+ */
+export const socials: { id: SocialId; href: string; icon: string; handle?: string; preview?: Preview }[] = [
   { id: 'discord', href: '#', icon: asset('social1.svg') },
-  { id: 'email', href: `mailto:${profile.email}`, icon: asset('social3.svg') },
+  { id: 'email', href: `mailto:${profile.email}`, icon: asset('social3.svg'), handle: profile.email },
   { id: 'linkedin', href: '#', icon: asset('social2.svg') },
-  { id: 'github', href: 'https://github.com/0skrrr', icon: asset('github.svg') },
+  { id: 'github', href: 'https://github.com/0skrrr', icon: asset('github.svg'), handle: 'github.com/0skrrr', preview: 'github' },
 ]
+
+/** Hover previews for outgoing links: a GitHub profile card, or a screenshot of any other site. */
+export type Preview = 'github' | 'site'
+/** Screenshot service for `site` previews; the page URL is appended. */
+export const SCREENSHOT_SERVICE = 'https://image.thum.io/get/width/720/crop/900/noanimate/'
 
 /**
  * `top` is the label's vertical centre in % of the panel; the first row starts on the left so its guide
@@ -53,17 +62,22 @@ export type Project = {
   gallery?: string[]
   /** Force a cover composition (0–4). */
   cover?: number
+  /** Software used, linked from the Software panel's trace. */
+  tools?: SoftwareId[]
 }
 
 export const projects: Project[] = [
-  { id: 'hexe', href: 'https://github.com/0skrrr' },
-  { id: 'portfolio', href: 'https://github.com/0skrrr' },
-  { id: 'northline' },
-  { id: 'fieldNotes' },
-  { id: 'afterglow' },
+  { id: 'hexe', href: 'https://github.com/0skrrr', tools: ['unity', 'csharp', 'aseprite', 'rider'] },
+  { id: 'portfolio', href: 'https://github.com/0skrrr', tools: ['react', 'javascript', 'figma', 'webstorm', 'github'] },
+  { id: 'northline', tools: ['figma', 'illustrator', 'notion'] },
+  { id: 'fieldNotes', tools: ['react', 'php', 'mysql', 'datagrip', 'figma'] },
+  { id: 'afterglow', tools: ['lightroom', 'davinci', 'photoshop'] },
 ]
 
-/** Classmates & friends orbiting the Education card. Leave `avatar` empty for an initials badge; links are optional. */
+/**
+ * Classmates & friends orbiting the Education card. Leave `avatar` empty for an initials badge.
+ * Links are optional: `github` gets a profile card on hover, `portfolio` a screenshot of the site.
+ */
 export const friends: { id: FriendId; relation: Relation; github?: string; portfolio?: string; avatar?: string }[] = [
   { id: 'adam', relation: 'classmate' },
   { id: 'tereza', relation: 'classmate' },
@@ -73,33 +87,34 @@ export const friends: { id: FriendId; relation: Relation; github?: string; portf
   { id: 'klara', relation: 'friend' },
 ]
 
-export const softwareCategories: SoftwareCategory[] = ['languages', 'ides', 'design', 'media', 'tools']
+/** The Software panel reads left to right as the way work moves: plan → design & media → build → ship. */
+export const softwareStages: SoftwareStage[] = ['plan', 'create', 'build', 'ship']
 
 const L = (f: string) => asset(`logos/${f}`)
-/** `core: true` marks your daily drivers — they get the accent marker. */
-export const software: { id: SoftwareId; logo: string; cat: SoftwareCategory; core?: boolean }[] = [
-  { id: 'javascript', core: true, logo: L('javascript.png'), cat: 'languages' },
-  { id: 'react', core: true, logo: L('react.png'), cat: 'languages' },
-  { id: 'csharp', logo: L('csharp.png'), cat: 'languages' },
-  { id: 'java', logo: L('java.png'), cat: 'languages' },
-  { id: 'php', logo: L('php.png'), cat: 'languages' },
-  { id: 'mysql', logo: L('mysql.png'), cat: 'languages' },
-  { id: 'webstorm', core: true, logo: L('webstorm.png'), cat: 'ides' },
-  { id: 'intellij', logo: L('intellij.png'), cat: 'ides' },
-  { id: 'rider', logo: L('rider.png'), cat: 'ides' },
-  { id: 'pycharm', logo: L('pycharm.png'), cat: 'ides' },
-  { id: 'datagrip', logo: L('datagrip.png'), cat: 'ides' },
-  { id: 'figma', core: true, logo: L('figma.svg'), cat: 'design' },
-  { id: 'photoshop', core: true, logo: L('photoshop.png'), cat: 'design' },
-  { id: 'illustrator', logo: L('illustrator.png'), cat: 'design' },
-  { id: 'aseprite', logo: L('aseprite.png'), cat: 'design' },
-  { id: 'fusion', logo: L('fusion.png'), cat: 'design' },
-  { id: 'lightroom', logo: L('lightroom.png'), cat: 'media' },
-  { id: 'davinci', logo: L('davinci.png'), cat: 'media' },
-  { id: 'unity', logo: L('unity.png'), cat: 'tools' },
-  { id: 'github', logo: L('github.png'), cat: 'tools' },
-  { id: 'notion', logo: L('notion.png'), cat: 'tools' },
-  { id: 'discord', logo: L('discord.png'), cat: 'tools' },
-  { id: 'vivaldi', logo: L('vivaldi.png'), cat: 'tools' },
+/** `stage` places a tool in the pipeline; order within a stage = order here. `core: true` marks daily drivers (accent dot); `wordmark: true` crops a wide logo to its mark. */
+export const software: { id: SoftwareId; logo: string; stage: SoftwareStage; core?: boolean; wordmark?: boolean }[] = [
+  { id: 'javascript', core: true, logo: L('javascript.png'), stage: 'build' },
+  { id: 'react', core: true, logo: L('react.png'), stage: 'build' },
+  { id: 'csharp', logo: L('csharp.png'), stage: 'build' },
+  { id: 'java', logo: L('java.png'), stage: 'build' },
+  { id: 'php', logo: L('php.png'), stage: 'build' },
+  { id: 'mysql', logo: L('mysql.png'), stage: 'build' },
+  { id: 'webstorm', core: true, logo: L('webstorm.png'), stage: 'build' },
+  { id: 'intellij', logo: L('intellij.png'), stage: 'build' },
+  { id: 'rider', logo: L('rider.png'), stage: 'build' },
+  { id: 'pycharm', logo: L('pycharm.png'), stage: 'build' },
+  { id: 'datagrip', logo: L('datagrip.png'), stage: 'build' },
+  { id: 'figma', core: true, logo: L('figma.svg'), stage: 'create' },
+  { id: 'photoshop', core: true, logo: L('photoshop.png'), stage: 'create' },
+  { id: 'illustrator', logo: L('illustrator.png'), stage: 'create' },
+  { id: 'aseprite', logo: L('aseprite.png'), stage: 'create' },
+  { id: 'fusion', logo: L('fusion.png'), stage: 'create' },
+  { id: 'lightroom', logo: L('lightroom.png'), stage: 'create' },
+  { id: 'davinci', logo: L('davinci.png'), stage: 'create' },
+  { id: 'unity', logo: L('unity.png'), stage: 'build', wordmark: true },
+  { id: 'github', logo: L('github.png'), stage: 'ship' },
+  { id: 'notion', logo: L('notion.png'), stage: 'plan' },
+  { id: 'discord', logo: L('discord.png'), stage: 'plan' },
+  { id: 'vivaldi', logo: L('vivaldi.png'), stage: 'ship' },
 ]
 export const logoOf = Object.fromEntries(software.map((s) => [s.id, s.logo])) as Record<SoftwareId, string>

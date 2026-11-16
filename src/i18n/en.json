@@ -24,7 +24,9 @@
     "siteMap": "Site map",
     "pointing": "→ {name}",
     "contact": "Contact",
-    "language": "Language"
+    "language": "Language",
+    "leaving": "Leaving to {host}",
+    "outside": "Outside this site"
   },
   "home": {
     "statement": "I design and build things for the screen — websites, interfaces and identities, from the first sketch to the last line of code.",
@@ -39,16 +41,32 @@
   },
   "software": {
     "kicker": "What I work with",
-    "filterLabel": "Filter software",
-    "all": "All",
     "legend": "Daily drivers",
     "dailyDriver": "(daily driver)",
-    "categories": {
-      "languages": "Languages",
-      "ides": "IDEs",
-      "design": "Design",
-      "media": "Media",
-      "tools": "Tools"
+    "pipelineLabel": "My toolchain, from first note to shipped work",
+    "stages": {
+      "plan": {
+        "name": "Plan",
+        "caption": "Briefs, notes and talking it through"
+      },
+      "create": {
+        "name": "Design & media",
+        "caption": "Interfaces, identities, pixels, photos and film"
+      },
+      "build": {
+        "name": "Build",
+        "caption": "Code, data and game engines"
+      },
+      "ship": {
+        "name": "Ship",
+        "caption": "Versioned, tested, out in the world"
+      }
+    },
+    "trace": {
+      "hint": "Point at a tool to see where it shows up",
+      "skills": "Skills",
+      "projects": "Projects",
+      "none": "—"
     },
     "items": {
       "javascript": "JavaScript",
@@ -317,5 +335,22 @@
         "role": "Full-stack developer"
       }
     }
+  },
+  "contact": {
+    "title": "Contact",
+    "kicker": "Get in touch",
+    "note": "Copy an address, or open it straight away.",
+    "copy": "Copy",
+    "copied": "Copied",
+    "copyLabel": "Copy {name}",
+    "open": "Open {name}",
+    "close": "Close"
+  },
+  "preview": {
+    "loading": "Loading preview…",
+    "repos": "{count} repositories",
+    "followers": "{count} followers",
+    "recent": "Recently pushed",
+    "unavailable": "Preview unavailable"
   }
 }

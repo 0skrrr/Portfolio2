@@ -1,43 +1,38 @@
-import { useRef, useState } from 'react'
-import gsap from 'gsap'
-import { Flip } from 'gsap/Flip'
-import { useGSAP } from '@gsap/react'
-import { software, softwareCategories, type SoftwareCategory } from '../data'
+import { useState } from 'react'
+import { projects, skills, software, softwareStages, type SoftwareId } from '../data'
 import { useT } from '../i18n'
+import './Software.css'
 
-gsap.registerPlugin(Flip)
+const pad = (n: number) => String(n).padStart(2, '0')
 
-type Filter = 'all' | SoftwareCategory
-const FILTERS: Filter[] = ['all', ...softwareCategories]
+/** Where a tool shows up: the skills that list it and the projects built with it. */
+function useTrace(id: SoftwareId | null) {
+  const t = useT()
+  if (!id) return null
+  return {
+    skills: skills.filter((s) => s.tools.includes(id)).map((s) => t.skillset.items[s.id].name),
+    projects: projects.filter((p) => p.tools?.includes(id)).map((p) => t.projects.items[p.id].title),
+  }
+}
 
+function Trace({ id }: { id: SoftwareId | null }) {
+  const t = useT()
+  const trace = useTrace(id)
+  if (!id || !trace) return <p className="trace trace--idle">{t.software.trace.hint}</p>
+  const list = (items: string[]) => (items.length ? items.join(' · ') : t.software.trace.none)
+  return (
+    <dl className="trace" aria-live="polite">
+      <dt className="trace__tool">{t.software.items[id]}</dt>
+      <dd><span>{t.software.trace.skills}</span>{list(trace.skills)}</dd>
+      <dd><span>{t.software.trace.projects}</span>{list(trace.projects)}</dd>
+    </dl>
+  )
+}
+
+/** The toolchain read as the way work moves: plan → design & media → build → ship. Built to take many more tools per stage. */
 export function Software() {
   const t = useT()
-  const [filter, setFilter] = useState<Filter>('all')
-  const grid = useRef<HTMLUListElement>(null)
-  const flipState = useRef<Flip.FlipState | null>(null)
-
-  const choose = (f: Filter) => {
-    if (f === filter) return
-    // Record positions before React re-renders, then animate from them (FLIP).
-    flipState.current = Flip.getState(grid.current!.children)
-    setFilter(f)
-  }
-
-  useGSAP(
-    () => {
-      if (!flipState.current) return
-      Flip.from(flipState.current, {
-        duration: 0.45,
-        ease: 'power3.inOut',
-        absolute: true,
-        stagger: 0.01,
-        onEnter: (els) => gsap.fromTo(els, { autoAlpha: 0, scale: 0.6 }, { autoAlpha: 1, scale: 1, duration: 0.35, delay: 0.1 }),
-        onLeave: (els) => gsap.to(els, { autoAlpha: 0, scale: 0.6, duration: 0.25 }),
-      })
-      flipState.current = null
-    },
-    { dependencies: [filter], scope: grid },
-  )
+  const [traced, setTraced] = useState<SoftwareId | null>(null)
 
   return (
     <section className="panel software" aria-label={t.nav.sections.software}>
@@ -46,28 +41,40 @@ export function Software() {
         <h2 className="software__title display" data-anim="title">{t.nav.sections.software}</h2>
       </div>
       <div className="software__body">
-        <header className="software__head" data-anim="head">
-          <div className="chips" role="group" aria-label={t.software.filterLabel}>
-            {FILTERS.map((f) => (
-              <button key={f} className="chip" aria-pressed={filter === f} onClick={() => choose(f)}>
-                {f === 'all' ? t.software.all : t.software.categories[f]}
-                <sup>{f === 'all' ? software.length : software.filter((s) => s.cat === f).length}</sup>
-              </button>
-            ))}
-          </div>
+        <ol className="pipeline" aria-label={t.software.pipelineLabel} onPointerLeave={() => setTraced(null)}>
+          {softwareStages.map((stage, i) => {
+            const tools = software.filter((s) => s.stage === stage)
+            return (
+              <li key={stage} className="stage" style={{ '--count': tools.length } as React.CSSProperties} data-anim="stage">
+                <header className="stage__head">
+                  <span className="stage__no">{pad(i + 1)}</span>
+                  <h3 className="stage__name">{t.software.stages[stage].name}</h3>
+                  <p className="stage__caption">{t.software.stages[stage].caption}</p>
+                </header>
+                <ul className="stage__tools">
+                  {tools.map((s) => (
+                    <li key={s.id}>
+                      <button
+                        className={`tool ${s.core ? 'is-core' : ''} ${traced === s.id ? 'is-traced' : ''}`}
+                        onPointerEnter={() => setTraced(s.id)}
+                        onFocus={() => setTraced(s.id)}
+                        onClick={() => setTraced(s.id)}
+                      >
+                        <img className={`tool__logo ${s.wordmark ? 'is-wordmark' : ''}`} src={s.logo} alt="" decoding="async" />
+                        <span className="tool__name">{t.software.items[s.id]}</span>
+                        {s.core && <span className="sr-only"> {t.software.dailyDriver}</span>}
+                      </button>
+                    </li>
+                  ))}
+                </ul>
+              </li>
+            )
+          })}
+        </ol>
+        <footer className="software__foot" data-anim="foot">
+          <Trace id={traced} />
           <p className="software__legend"><span className="dot" aria-hidden /> {t.software.legend}</p>
-        </header>
-
-        <ul className="software__grid" ref={grid}>
-          {software.map((s) => (
-            <li key={s.id} className={`tool ${s.core ? 'is-core' : ''}`} data-flip-id={s.id} hidden={filter !== 'all' && s.cat !== filter} data-anim="tile">
-              <div className="tool__logo">
-                <img src={s.logo} alt="" decoding="async" className={s.id === 'unity' ? 'is-left' : ''} />
-              </div>
-              <span className="tool__name">{t.software.items[s.id]}{s.core && <span className="sr-only"> {t.software.dailyDriver}</span>}</span>
-            </li>
-          ))}
-        </ul>
+        </footer>
       </div>
     </section>
   )

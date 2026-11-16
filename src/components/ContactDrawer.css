@@ -1,0 +1,34 @@
+/* Contact drawer: an ink slab sliding in from the right, hairline rows that invert on hover. */
+.drawer { position: fixed; inset: 0; z-index: 35; }
+.drawer__shade { position: absolute; inset: 0; background: rgb(19 9 24 / 0.35); }
+.drawer__panel {
+  position: absolute; top: 0; right: 0; bottom: 0; width: min(520px, 100vw); overflow-y: auto;
+  display: flex; flex-direction: column; gap: 28px; padding: calc(var(--pad) * 1.4);
+  background: var(--ink); color: var(--cream);
+}
+.drawer__head { position: relative; display: grid; gap: 10px; padding-top: 48px; }
+.drawer__kicker { margin: 0; font-size: var(--label); font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; opacity: 0.6; }
+.drawer .drawer__title { margin: 0; font-size: min(48px, 8vw); /* beats the global .display size (component CSS loads first); 7 tracked letters fit the panel */ line-height: 0.9; }
+.drawer__close {
+  position: absolute; top: 0; right: 0; width: 44px; height: 44px; font-size: 28px; line-height: 1;
+  border: 1px solid rgb(235 227 208 / 0.35); transition: background 0.2s, color 0.2s;
+}
+.drawer__close:hover { background: var(--cream); color: var(--ink); }
+.drawer__note { margin: 0; font-size: 15px; line-height: 1.4; opacity: 0.75; }
+
+.drawer__list { list-style: none; margin: 0; padding: 0; border-top: 1px solid rgb(235 227 208 / 0.35); }
+.drawer__row {
+  display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 4px 16px; padding: 18px 0;
+  border-bottom: 1px solid rgb(235 227 208 / 0.35);
+}
+.drawer__name { font-size: var(--label); font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; opacity: 0.6; }
+.drawer__handle { grid-row: 2; font-size: clamp(18px, 1.7vw, 24px); font-weight: 600; overflow-wrap: anywhere; }
+.drawer__actions { grid-row: 1 / 3; grid-column: 2; display: flex; gap: 6px; }
+.drawer__actions button, .drawer__actions a {
+  display: grid; place-items: center; min-width: 44px; height: 44px; padding: 0 14px;
+  border: 1px solid var(--cream); color: inherit; text-decoration: none;
+  font-size: var(--label); font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
+  transition: background 0.2s, color 0.2s;
+}
+.drawer__actions a { font-size: 18px; padding: 0; }
+.drawer__actions button:hover, .drawer__actions a:hover { background: var(--cream); color: var(--ink); }

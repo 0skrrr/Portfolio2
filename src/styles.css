@@ -77,7 +77,7 @@ img { display: block; max-width: 100%; }
 
 .minimap {
   position: fixed; z-index: 10; top: var(--pad); right: var(--pad); width: clamp(64px, 6.4vw, 104px);
-  display: grid; gap: 10px; justify-items: center; color: var(--blend); mix-blend-mode: difference;
+  display: grid; grid-template-columns: 100%; gap: 10px; justify-items: center; color: var(--blend); mix-blend-mode: difference; /* fixed track: a long label overflows instead of widening the dial */
 }
 .minimap__grid { display: grid; grid-template: repeat(3, 1fr) / repeat(3, 1fr); gap: 18%; width: 100%; aspect-ratio: 1; }
 .minimap__dot { position: relative; border: 1.5px solid currentColor; border-radius: 50%; background: transparent; transition: background 0.25s; }
@@ -88,6 +88,10 @@ img { display: block; max-width: 100%; }
   stroke-dasharray: 1 2; stroke-dashoffset: 1; opacity: 0; transition: stroke-dashoffset 0.25s ease-in, opacity 0s 0.25s;
 }
 .minimap__dot.is-hover:not(.is-active) .minimap__scribble path { stroke-dashoffset: 0; opacity: 1; transition: stroke-dashoffset 0.45s cubic-bezier(.3,.7,.3,1), opacity 0s; }
+/* "Outside this site": a dashed dot that only appears while an outgoing link is pointed at. */
+.minimap__dot--out { border-style: dashed; opacity: 0; transition: opacity 0.2s; }
+.minimap__dot--out.is-hover { opacity: 1; }
+.minimap__label.is-out { justify-self: unsafe end; /* longer than the dial: overflow leftward, away from the screen edge */ margin-right: 0; text-transform: none; letter-spacing: 0.08em; }
 .minimap__label {
   font-size: var(--label); font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; white-space: nowrap; line-height: 1;
   margin-right: -0.18em; /* cancel trailing tracking so the label centres under the dots */
@@ -99,7 +103,7 @@ img { display: block; max-width: 100%; }
   color: var(--blend); mix-blend-mode: difference;
   font-size: var(--label); font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; line-height: 1;
 }
-.contact { color: inherit; text-decoration: none; padding-bottom: 3px; border-bottom: 1.5px solid currentColor; }
+.contact { color: inherit; text-decoration: none; letter-spacing: inherit; text-transform: inherit; font: inherit; padding-bottom: 3px; border-bottom: 1.5px solid currentColor; }
 .contact span { display: inline-block; transition: translate 0.25s; }
 .contact:hover span { translate: 2px -2px; }
 .lang { display: flex; gap: 4px; }
@@ -213,40 +217,6 @@ img { display: block; max-width: 100%; }
   flex: 1; min-height: 0; display: flex; flex-direction: column; align-items: center; justify-content: center;
   gap: clamp(16px, 3.4vh, 40px); padding: clamp(16px, 3vh, 32px) calc(var(--pad) * 3) calc(var(--pad) * 3.2);
 }
-.software__head { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 12px 24px; }
-.software__legend { display: flex; align-items: center; gap: 0.6em; font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; }
-.chips { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
-.chip {
-  border: 1px solid var(--ink); padding: 0.5em 1.1em; font-weight: 600;
-  font-size: clamp(12px, 0.95vw, 15px); letter-spacing: 0.1em; text-transform: uppercase;
-  transition: background 0.2s, color 0.2s;
-}
-.chip sup { font-size: 0.7em; margin-left: 0.35em; opacity: 0.6; }
-.chip:hover { background: rgb(19 9 24 / 0.08); }
-.chip[aria-pressed='true'] { background: var(--ink); color: var(--cream); }
-.software__grid {
-  position: relative; width: min(100%, 1180px);
-  --gap: clamp(8px, 1vw, 16px);
-  display: flex; flex-wrap: wrap; justify-content: center; gap: var(--gap);
-}
-.tool {
-  position: relative; width: clamp(84px, 8.6vw, 132px); display: grid; justify-items: center; gap: 0.55em;
-  padding: clamp(12px, 1.1vw, 18px) 6px clamp(10px, 0.9vw, 14px);
-  border: 1px solid var(--ink); background: var(--cream);
-  /* Lift with `top`, never `transform`: GSAP drives transform for the entrance + Flip filter, and a CSS transition on the same property makes every GSAP frame re-transition (the jittery grid). */
-  top: 0; transition: background 0.25s, color 0.25s, top 0.25s cubic-bezier(.2,.9,.3,1.4);
-}
-.tool[hidden] { display: none; }
-.tool:hover { background: var(--ink); color: var(--cream); top: -4px; }
-.tool.is-core::after { content: ''; position: absolute; top: 7px; right: 7px; width: 7px; height: 7px; border-radius: 50%; background: var(--accent); }
-.tool__logo { width: 58%; aspect-ratio: 1; border-radius: 10px; background: var(--cream); padding: 6%; transition: scale 0.3s, rotate 0.3s; }
-.tool:hover .tool__logo { scale: 1.08; rotate: -4deg; }
-/* Duotone by default — brand colour is the hover reward, so the grid stops reading like a sticker sheet. */
-.tool__logo img { width: 100%; height: 100%; object-fit: contain; filter: grayscale(1) contrast(1.1); mix-blend-mode: multiply; transition: filter 0.3s; }
-.tool:hover .tool__logo img, .tool:focus-within .tool__logo img { filter: none; }
-.tool__logo img.is-left { object-fit: cover; object-position: left; }
-.tool__name { font-weight: 600; font-size: clamp(11px, 0.9vw, 15px); text-align: center; line-height: 1.15; }
-.tool.is-core .tool__name { font-weight: 700; }
 
 /* ---------- Skillset ---------- */
 .skillset__band {
@@ -429,9 +399,6 @@ img { display: block; max-width: 100%; }
 @media (orientation: portrait) and (min-width: 761px) {
   .software__band { height: 24vw; }
   .software__title { font-size: 7.4vw; }
-  .chip { font-size: 1.5vw; }
-  .tool { width: calc((100% - var(--gap) * 5) / 6); }
-  .tool__name { font-size: 1.5vw; }
 }
 @media (orientation: portrait) and (min-width: 761px) and (max-width: 1100px) {
   /* the side arrows stay mid-screen on tablets: lift the seam (and the name on it) above them */
@@ -460,7 +427,6 @@ img { display: block; max-width: 100%; }
   .software__band { height: 190px; place-content: end center; padding-bottom: 24px; }
   .software__title { font-size: 9vw; }
   .software__body { flex: none; justify-content: flex-start; padding: 22px var(--pad) 96px; }
-  .tool { width: calc((100% - var(--gap) * 3) / 4); }
 
   .education { padding: 124px var(--pad) 96px; display: grid; gap: 28px; align-content: start;
     --fade: linear-gradient(to bottom, transparent 0, #000 96px, #000 calc(100% - 96px), transparent calc(100% - 8px)); }
