@@ -68,8 +68,9 @@ Code is read far more often than it is written. Optimize for the next person (or
 - **Organize by feature, not by file type.** `src/features/billing/{api,components,service,tests}` beats `src/controllers`, `src/models`, `src/views` sprawling across the app. Shared code lives in `src/shared/`.
 - **Small, focused units.** One function does one thing. As a guideline: functions under ~40 lines, files under ~300 lines. If it's longer, it probably wants to be split.
 - **Names say what things are.** `unpaidInvoices`, not `data2`. No cryptic abbreviations. Booleans read as questions: `isActive`, `hasAccess`.
-- **Comments explain *why*, not *what*.** If you need a comment to explain *what* the code does, rename or restructure instead.
-- **Types everywhere.** TypeScript in `strict` mode / Python type hints checked by a type checker / equivalent. No `any` without a comment explaining why.
+- **No comments in code. None.** The code must explain itself through names and structure. If it can't, rename or restructure it. This includes "Added by agent", "Fixed bug X", TODOs and section dividers — history belongs in commits and PRs, tasks belong in issues.
+- **Anything non-obvious goes in Markdown docs**, not in the code: workarounds, security decisions, performance tricks, odd business rules, why an approach was chosen. Put it in `docs/features/<feature>.md` (one file per feature) and keep it up to date in the same PR that changes the code. Big cross-cutting decisions go in `docs/decisions/` (see section 7).
+- **Types everywhere.** TypeScript in `strict` mode / Python type hints checked by a type checker / equivalent. No `any` unless unavoidable, and then the reason is documented in the feature's doc file.
 - **Early returns over deep nesting.** Max ~3 levels of indentation in a function.
 - **No dead code**, no commented-out blocks, no leftover `console.log`/`print` debugging.
 - **No magic values.** Named constants for numbers and strings with meaning.
