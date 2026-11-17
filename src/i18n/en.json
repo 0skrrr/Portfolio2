@@ -10,7 +10,7 @@
   "profile": {
     "name": "Oskar",
     "role": "Developer, and kinda a designer?",
-    "status": "Open to new projects"
+    "status": "Open to new projects!"
   },
   "nav": {
     "sections": {
@@ -297,14 +297,14 @@
       {
         "id": "chc",
         "years": "2024 — now",
-        "school": "Creative Hill College (CHC)",
+        "school": "Creative Hill College",
         "field": "High school"
       },
       {
         "id": "2ika",
         "years": "2019 — 2024",
         "school": "2ika",
-        "field": "Secondary school, 4th to 9th grade"
+        "field": "Secondary school"
       }
     ],
     "caption": "The classmates and friends I study and build things with.",
@@ -322,27 +322,23 @@
     "friends": {
       "adris": {
         "name": "Adris Han",
-        "role": "Web app & game development student"
+        "role": "Web designer"
       },
       "izitaooo": {
-        "name": "Alex Petrůj (izitao)",
-        "role": "To be filled out"
+        "name": "Alex Petrůj",
+        "role": ""
       },
       "kriztov": {
         "name": "Kryštof Rolenc",
-        "role": "To be filled out"
+        "role": ""
       },
       "casualNpc": {
-        "name": "Ondřej Puk (casual npc)",
-        "role": "To be filled out"
+        "name": "",
+        "role": "Crazy backend guy"
       },
       "tomio": {
-        "name": "Matyáš Nagy (tomio)",
-        "role": "To be filled out"
-      },
-      "friend6": {
-        "name": "To be filled out",
-        "role": "To be filled out"
+        "name": "Matyáš Nagy",
+        "role": ""
       }
     },
     "visitSchool": "Visit {name} website"
