@@ -42,7 +42,7 @@ export const SCREENSHOT_SERVICE = 'https://image.thum.io/get/width/720/crop/900/
 export const skills: { id: SkillId; side: 'left' | 'right'; top: number; tools: SoftwareId[]; image?: string }[] = [
   { id: 'appDesign', side: 'left', top: 10, tools: ['figma', 'figjam', 'affinity'] },
   { id: 'webDesign', side: 'right', top: 23, tools: ['figma', 'react', 'typescript', 'scss', 'webstorm'] },
-  { id: 'gameDesign', side: 'left', top: 36, tools: ['unity', 'csharp', 'rider', 'aseprite', 'blender'] },
+  { id: 'gameDesign', side: 'left', top: 36, tools: ['unity', 'csharp', 'rider', 'aseprite', 'blender', 'graphite'] },
   { id: 'uiux', side: 'right', top: 49, tools: ['figma', 'figjam', 'kumu'] },
   { id: 'backend', side: 'left', top: 62, tools: ['php', 'mysql', 'python', 'java', 'phpstorm', 'datagrip'] },
   { id: 'branding', side: 'right', top: 75, tools: ['affinity', 'figma', 'illustrator'] },
