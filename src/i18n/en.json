@@ -207,6 +207,34 @@
           }
         ]
       },
+      "predichess": {
+        "title": "Predichess",
+        "tag": "Web",
+        "year": "2026",
+        "role": "Design & development",
+        "tools": [
+          "React",
+          "TypeScript",
+          "Vite",
+          "Express",
+          "Prisma"
+        ],
+        "summary": "A web app for building and playing interactive chess lessons. Authors put lessons together from board positions, text and questions; players work through them and earn XP and Elo.",
+        "sections": [
+          {
+            "heading": "The brief",
+            "text": "Chess lessons online are mostly videos you watch, not something you do. Predichess makes every lesson a sequence of positions and questions, so the player has to think through each move instead of just following along."
+          },
+          {
+            "heading": "The process",
+            "text": "Three parts: Learn, to browse community lessons and step through them; an Editor, to build lessons from tasks and steps, save drafts and publish them with a difficulty; and Home, with your profile, Elo, XP and where you left off. It first ran on an Express server with Prisma and MariaDB."
+          },
+          {
+            "heading": "The outcome",
+            "text": "A live demo on GitHub Pages that runs entirely in the browser: a small built-in backend answers the same API routes as the original server and keeps accounts, lessons and progress in local storage. Every push is tested, built and published automatically."
+          }
+        ]
+      },
       "portfolio": {
         "title": "This portfolio",
         "tag": "Web",
@@ -231,31 +259,6 @@
           {
             "heading": "The outcome",
             "text": "A fast static site on GitHub Pages that works with a keyboard, a mouse or a thumb, with all of its text kept in one JSON file so a new language is a single file away."
-          }
-        ]
-      },
-      "northline": {
-        "title": "Northline",
-        "tag": "Branding",
-        "year": "2024",
-        "role": "Identity design",
-        "tools": [
-          "Illustrator",
-          "Photoshop"
-        ],
-        "summary": "A visual identity for a small outdoor brand — logo, type, colour and a set of templates that keep it consistent.",
-        "sections": [
-          {
-            "heading": "The brief",
-            "text": "A young brand with a good product and no face. It needed a mark that works as small as a sticker and as large as a banner."
-          },
-          {
-            "heading": "The process",
-            "text": "Dozens of sketches narrowed down to three directions, each tested on real applications — packaging, social posts, a shop sign — before choosing one."
-          },
-          {
-            "heading": "The outcome",
-            "text": "A compact identity system: primary and secondary marks, two typefaces, a four-colour palette and ready-to-use templates for the team."
           }
         ]
       },
