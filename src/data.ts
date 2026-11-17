@@ -64,10 +64,12 @@ export type Project = {
   cover?: number
   /** Software used, linked from the Software panel's trace. */
   tools?: SoftwareId[]
+  /** Collaborators, named from the Education panel's friends. */
+  team?: FriendId[]
 }
 
 export const projects: Project[] = [
-  { id: 'hexe', href: 'https://github.com/0skrrr', tools: ['unity', 'csharp', 'aseprite', 'rider'] },
+  { id: 'hearby', href: 'https://github.com/0skrrr/HearBy', tools: ['typescript', 'tauri', 'figma', 'webstorm', 'github'], team: ['kriztov', 'adris'] },
   { id: 'portfolio', href: 'https://github.com/0skrrr', tools: ['react', 'typescript', 'figma', 'webstorm', 'github'] },
   { id: 'northline', tools: ['figma', 'illustrator', 'notion'] },
   { id: 'fieldNotes', tools: ['react', 'php', 'mysql', 'datagrip', 'figma'] },

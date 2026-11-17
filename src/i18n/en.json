@@ -180,29 +180,30 @@
     "count": "{count} projects",
     "openCase": "Open the case study",
     "items": {
-      "hexe": {
-        "title": "Project Hexe",
-        "tag": "Code",
-        "year": "2025",
+      "hearby": {
+        "title": "HearBy",
+        "tag": "App",
+        "year": "2026",
         "role": "Design & development",
         "tools": [
-          "React",
-          "GSAP",
-          "Figma"
+          "TypeScript",
+          "Tauri",
+          "Capacitor",
+          "Web Audio"
         ],
-        "summary": "A web app designed and built end to end — wireframed in Figma, then brought to life in React with GSAP-driven motion.",
+        "summary": "An app that turns sound into visuals, so deaf and hard-of-hearing people can see what words alone don't carry: tone, emotion, pitch, rhythm and the sound around them. Built by team Detrio at the AT&T Hackathon Junior 2026.",
         "sections": [
           {
             "heading": "The brief",
-            "text": "Turn a rough idea into a product people actually enjoy using: fast, clear, and with enough personality to be remembered."
+            "text": "Subtitles show what was said, not how. We wanted to show the rest — whether a voice rises or falls, speeds up, gets louder or goes quiet — for deaf people, for people who struggle to read tone, and for anyone training their own voice."
           },
           {
             "heading": "The process",
-            "text": "Flows and low-fidelity wireframes first, tested on friends, then a small component library in Figma before a single line of React was written."
+            "text": "We built a sound engine that breaks any audio into the eight elements of music: pitch, rhythm, dynamics, timbre, harmony, articulation, texture and form. It also tells speech from music and noise, and is ready for several microphones to find where a sound comes from. A debug page showing the live numbers came first; the app was designed around it — intro, legend, customisation, a camera overlay and live subtitles."
           },
           {
             "heading": "The outcome",
-            "text": "A responsive app built from a handful of reusable components, with motion that explains what changed instead of decorating it."
+            "text": "HearBy runs as a native macOS app and an Android app from one codebase, analysing 20 seconds of audio in about one second. Voice becomes a live line you can read at a glance, with subtitles underneath and the option to record it."
           }
         ]
       },
@@ -327,6 +328,7 @@
     "role": "Role",
     "year": "Year",
     "tools": "Tools",
+    "team": "Team",
     "link": "Link",
     "visit": "Visit",
     "nextProject": "Next project"
