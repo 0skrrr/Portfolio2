@@ -84,7 +84,6 @@ export const friends: { id: FriendId; relation: Relation; github?: string; linke
   { id: 'kriztov', relation: 'classmate', github: 'https://github.com/kriztovv', portfolio: 'https://kriztovv.github.io/portfolio/', portfolioShot: asset('shots/kriztov.jpg') },
   { id: 'casualNpc', relation: 'classmate', github: 'https://github.com/the-casual-npc', portfolio: 'https://the-casual-npc.github.io/Portfolio/', portfolioShot: asset('shots/casualNpc.jpg') },
   { id: 'tomio', relation: 'classmate', github: 'https://github.com/TomioMan', portfolio: 'https://tomioman.github.io/Portfolio/', portfolioShot: asset('shots/tomio.jpg') },
-  { id: 'friend6', relation: 'friend' },
 ]
 
 /** The Software panel reads left to right as the way work moves: plan → design & media → build → ship. */
