@@ -8,7 +8,7 @@ type Props = {
   meta: string
   /** Real photo: shown instead of the composition, the number badge stays. */
   image?: string
-  /** Screenshot framed as a window inside the composition, cropped by the cover's edge. */
+  /** Screenshot printed into the ink slab as a dim monochrome texture. */
   shot?: string
   className?: string
 }
@@ -29,9 +29,8 @@ export function Cover({ variant, no, title, meta, image, shot, className = '' }:
     )
   }
   return (
-    <div className={`cover cover--${v} ${shot ? 'has-shot' : ''} ${className}`}>
-      <span className="cover__slab" />
-      {shot && <img className="cover__shot" src={shot} alt="" />}
+    <div className={`cover cover--${v} ${className}`}>
+      <span className="cover__slab">{shot && <img className="cover__shot" src={shot} alt="" />}</span>
       <span className="cover__dot" />
       <span className="cover__no">{no}</span>
       <span className="cover__foot">
