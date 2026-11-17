@@ -9,6 +9,7 @@
 */
 :root {
   --cream: #ebe3d0;
+  --tile: #ebe3d0;
   --ink: #130918;
   --accent: #b84a39;
   /* cream + ink per channel: with mix-blend-mode:difference this renders exactly ink on cream and cream on ink */

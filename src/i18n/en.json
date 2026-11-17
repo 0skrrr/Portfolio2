@@ -53,7 +53,7 @@
     "stages": {
       "plan": {
         "name": "Plan",
-        "caption": "Briefs, notes and talking it through"
+        "caption": "Notes, maps, flows and talking it through"
       },
       "create": {
         "name": "Design & media",
@@ -65,7 +65,7 @@
       },
       "ship": {
         "name": "Ship",
-        "caption": "Versioned, tested, out in the world"
+        "caption": "Versioned, packaged and shipped to every platform"
       }
     },
     "trace": {
@@ -97,7 +97,50 @@
       "github": "GitHub",
       "notion": "Notion",
       "discord": "Discord",
-      "vivaldi": "Vivaldi"
+      "vivaldi": "Vivaldi",
+      "typescript": "TypeScript",
+      "scss": "SCSS",
+      "cpp": "C++",
+      "python": "Python",
+      "phpstorm": "PhpStorm",
+      "figjam": "FigJam",
+      "kumu": "Kumu",
+      "graphite": "Graphite",
+      "affinity": "Affinity",
+      "blender": "Blender",
+      "tauri": "Tauri",
+      "prusaslicer": "PrusaSlicer"
+    },
+    "adobeLegend": "Adobe: I can use it, I prefer alternatives",
+    "adobeNote": "(Adobe, I prefer alternatives)",
+    "groups": {
+      "languages": "Languages & frameworks",
+      "apps": "Apps & engines"
+    },
+    "platforms": {
+      "label": "Ships to",
+      "items": {
+        "web": "Web",
+        "windows": "Windows",
+        "macos": "macOS",
+        "linux": "Linux",
+        "android": "Android",
+        "ios": "iOS"
+      }
+    },
+    "hobbies": {
+      "title": "Off-screen",
+      "caption": "What I do when I step away from the desk",
+      "items": {
+        "printing": {
+          "name": "3D printing",
+          "caption": "Modelled in Fusion, sliced in PrusaSlicer"
+        },
+        "fpv": {
+          "name": "FPV drone flying",
+          "caption": "Building and flying first-person-view quads"
+        }
+      }
     }
   },
   "skillset": {
