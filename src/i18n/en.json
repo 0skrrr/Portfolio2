@@ -186,6 +186,7 @@
         "year": "2026",
         "role": "Design & development",
         "tools": [
+          "FigJam",
           "TypeScript",
           "Tauri",
           "Capacitor",
@@ -199,7 +200,7 @@
           },
           {
             "heading": "The process",
-            "text": "We built a sound engine that breaks any audio into the eight elements of music: pitch, rhythm, dynamics, timbre, harmony, articulation, texture and form. It also tells speech from music and noise, and is ready for several microphones to find where a sound comes from. A debug page showing the live numbers came first; the app was designed around it — intro, legend, customisation, a camera overlay and live subtitles."
+            "text": "We brainstormed and mapped the idea out in FigJam, then built a sound engine that breaks any audio into the eight elements of music: pitch, rhythm, dynamics, timbre, harmony, articulation, texture and form. It also tells speech from music and noise, and is ready for several microphones to find where a sound comes from. A debug page showing the live numbers came first; the app was designed around it — intro, legend, customisation, a camera overlay and live subtitles."
           },
           {
             "heading": "The outcome",

@@ -69,8 +69,8 @@ export type Project = {
 }
 
 export const projects: Project[] = [
-  { id: 'hearby', href: 'https://github.com/0skrrr/HearBy', tools: ['typescript', 'tauri', 'figma', 'webstorm', 'github'], team: ['kriztov', 'adris'] },
-  { id: 'predichess', href: 'https://0skrrr.github.io/Predichess/', tools: ['react', 'typescript', 'mysql', 'webstorm', 'github'] },
+  { id: 'hearby', href: 'https://github.com/0skrrr/HearBy', tools: ['figjam', 'typescript', 'tauri', 'figma', 'webstorm', 'github'], gallery: [1, 2, 3].map((n) => asset(`projects/hearby-${n}.jpg`)), team: ['kriztov', 'adris'] },
+  { id: 'predichess', href: 'https://0skrrr.github.io/Predichess/', tools: ['react', 'typescript', 'mysql', 'webstorm', 'github'], gallery: [1, 2, 3].map((n) => asset(`projects/predichess-${n}.jpg`)) },
   { id: 'portfolio', href: 'https://github.com/0skrrr', tools: ['react', 'typescript', 'figma', 'webstorm', 'github'] },
   { id: 'fieldNotes', tools: ['react', 'php', 'mysql', 'datagrip', 'figma'] },
   { id: 'afterglow', tools: ['davinci', 'lightroom', 'affinity', 'photoshop'] },
