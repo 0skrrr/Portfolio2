@@ -39,7 +39,9 @@
 
 .software__foot {
   width: min(100%, 1320px); display: flex; align-items: center; justify-content: space-between; gap: 12px 24px;
-  padding-top: 14px; border-top: 1px solid var(--ink); min-height: 52px;
+  padding-top: 14px; min-height: 52px;
+  --gap: calc(var(--arrow) + 48px);
+  background: linear-gradient(to right, var(--ink) calc(50% - var(--gap) / 2), transparent 0 calc(50% + var(--gap) / 2), var(--ink) 0) top / 100% 1px no-repeat;
 }
 .software__legend { display: grid; gap: 6px; justify-items: end; margin: 0; }
 .software__legend p { display: flex; align-items: center; gap: 0.6em; margin: 0; font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; white-space: nowrap; }
@@ -84,3 +86,15 @@
 /* Safety net for a long toolchain on short screens: the panel scrolls, and the wheel scrolls it before
    moving to the next panel (canScroll in App.tsx). */
 .software { overflow-y: auto; }
+
+@media (orientation: landscape) and (max-height: 860px) {
+  .stage { gap: 10px; }
+  .stage__head { padding-top: 12px; }
+  .stage__caption { min-height: 0; }
+  .stage__groups { gap: 8px; }
+  .stage__group { margin-bottom: 2px; }
+  .tool { padding: 2px 8px 2px 6px; }
+  .tool__logo { width: 22px; height: 22px; }
+  .platforms { margin-top: 6px; }
+  .hobbies { padding-top: 10px; }
+}
