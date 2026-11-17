@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import gsap from 'gsap'
 import { useGSAP } from '@gsap/react'
 import { profile, projects } from '../data'
@@ -10,6 +10,8 @@ const no = (i: number) => String(i + 1).padStart(2, '0')
 const count = String(projects.length).padStart(2, '0')
 /** The last row is a call to action, not a project. */
 const CTA = projects.length
+/** How long the pointer has to rest on a row before its preview swaps to a screenshot. */
+const SHOT_DELAY_MS = 900
 
 /**
  * Same grammar as Skillset: an ink spine carrying the title, hairline-ruled labels that invert
@@ -20,13 +22,22 @@ export function Projects() {
   const [active, setActive] = useState(0)
   const [open, setOpen] = useState<number | null>(null)
   const preview = useRef<HTMLElement>(null)
+  const [isPointing, setPointing] = useState(false)
+  const [isShotShown, setShotShown] = useState(false)
 
   const rows = [
-    ...projects.map((p, i) => ({ ...t.projects.items[p.id], image: p.image, cover: p.cover ?? i })),
-    { ...t.projects.cta, image: undefined, cover: 'cta' as const },
+    ...projects.map((p, i) => ({ ...t.projects.items[p.id], image: p.image, shot: p.gallery?.[0], cover: p.cover ?? i })),
+    { ...t.projects.cta, image: undefined, shot: undefined, cover: 'cta' as const },
   ]
   const row = rows[active]
   const isCta = active === CTA
+
+  useEffect(() => {
+    setShotShown(false)
+    if (!isPointing || !row.shot) return
+    const timer = window.setTimeout(() => setShotShown(true), SHOT_DELAY_MS)
+    return () => window.clearTimeout(timer)
+  }, [active, isPointing, row.shot])
 
   useGSAP(
     () => {
@@ -55,7 +66,12 @@ export function Projects() {
             <li key={i} data-anim="row">
               <button
                 className={`row ${i === active ? 'is-active' : ''} ${i === CTA ? 'row--cta' : ''}`}
-                onPointerEnter={(e) => e.pointerType === 'mouse' && setActive(i)}
+                onPointerEnter={(e) => {
+                  if (e.pointerType !== 'mouse') return
+                  setActive(i)
+                  setPointing(true)
+                }}
+                onPointerLeave={() => setPointing(false)}
                 onFocus={() => setActive(i)}
                 onClick={() => choose(i)}
               >
@@ -73,6 +89,7 @@ export function Projects() {
       <figure className="pv" ref={preview} data-anim="preview" aria-hidden>
         <div className="pv__frame">
           <Cover className="pv__fade" variant={row.cover} no={isCta ? '?' : no(active)} title={row.title} meta={`${row.tag} · ${row.year}`} image={row.image} />
+          {row.shot && <img className={`pv__shot ${isShotShown ? 'is-shown' : ''}`} src={row.shot} alt="" />}
         </div>
         <figcaption className="pv__cap">
           <span className="pv__tag pv__swap">{row.tag} · {row.year}</span>
