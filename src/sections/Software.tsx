@@ -33,13 +33,12 @@ type Tool = (typeof software)[number]
 
 function ToolButton({ s, traced, onTrace }: { s: Tool; traced: SoftwareId | null; onTrace: (id: SoftwareId) => void }) {
   const t = useT()
-  const state = [s.core && 'is-core', s.adobe && 'is-adobe', traced === s.id && 'is-traced'].filter(Boolean).join(' ')
+  const state = [s.core && 'is-core', traced === s.id && 'is-traced'].filter(Boolean).join(' ')
   return (
     <button className={`tool ${state}`} onPointerEnter={() => onTrace(s.id)} onFocus={() => onTrace(s.id)} onClick={() => onTrace(s.id)}>
       <img className={`tool__logo ${s.wordmark ? 'is-wordmark' : ''}`} src={s.logo} alt="" decoding="async" />
       <span className="tool__name">{t.software.items[s.id]}</span>
       {s.core && <span className="sr-only"> {t.software.dailyDriver}</span>}
-      {s.adobe && <span className="sr-only"> {t.software.adobeNote}</span>}
     </button>
   )
 }
@@ -139,7 +138,6 @@ export function Software() {
           <Trace id={traced} />
           <div className="software__legend">
             <p><span className="dot" aria-hidden /> {t.software.legend}</p>
-            <p><span className="dot dot--ring" aria-hidden /> {t.software.adobeLegend}</p>
           </div>
         </footer>
       </div>

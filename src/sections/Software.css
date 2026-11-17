@@ -35,7 +35,6 @@
 .tool__logo.is-wordmark { object-fit: cover; object-position: left; }
 .tool__name { min-width: 0; font-size: clamp(13px, 0.95vw, 15px); font-weight: 600; line-height: 1.15; }
 .tool.is-core .tool__name { font-weight: 700; }
-.tool.is-adobe::after { content: ''; flex: none; width: 7px; height: 7px; margin-left: auto; border-radius: 50%; border: 1.5px solid currentColor; opacity: 0.6; }
 .tool.is-core::after { content: ''; flex: none; width: 7px; height: 7px; margin-left: auto; border-radius: 50%; background: var(--accent); }
 
 .software__foot {
@@ -52,7 +51,6 @@
 
 .stage__groups { display: grid; gap: 14px; }
 .stage__group { display: block; margin-bottom: 6px; font-size: var(--label); font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; opacity: 0.55; }
-.dot--ring { background: none; border: 1.5px solid currentColor; opacity: 0.6; }
 
 .platforms { margin-top: 10px; }
 .platforms ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px; }

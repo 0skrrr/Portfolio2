@@ -224,8 +224,8 @@ img { display: block; max-width: 100%; }
 .software__kicker { font-size: var(--label); font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; opacity: 0.6; margin-right: -0.22em; }
 .software__title { font-size: min(8.4vw, 11vh); }
 .software__body {
-  flex: 1; min-height: 0; display: flex; flex-direction: column; align-items: center; justify-content: center;
-  gap: clamp(16px, 3.4vh, 40px); padding: clamp(16px, 3vh, 32px) calc(var(--pad) * 3) calc(var(--pad) * 3.2);
+  flex: 1; min-height: 0; display: flex; flex-direction: column; align-items: center; justify-content: safe center;
+  gap: clamp(12px, 2.2vh, 32px); padding: clamp(28px, 4.5vh, 48px) calc(var(--pad) * 3) calc(var(--pad) * 3.2);
 }
 
 /* ---------- Skillset ---------- */

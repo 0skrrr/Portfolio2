@@ -92,26 +92,26 @@ export const softwareStages: SoftwareStage[] = ['plan', 'create', 'build', 'ship
 const L = (f: string) => asset(`logos/${f}`)
 /**
  * `stage` places a tool in the pipeline (`offscreen` = hobby tools, listed under `hobbies` only); order within a stage = order here.
- * `core` marks daily drivers (accent dot), `adobe` marks tools I can use but avoid (ring), `group` splits Build into languages and apps,
+ * `core` marks daily drivers (accent dot), `group` splits Build into languages and apps,
  * `wordmark` crops a wide logo to its mark.
  */
 export type SoftwareGroup = keyof Dict['software']['groups']
-export const software: { id: SoftwareId; logo: string; stage: SoftwareStage | 'offscreen'; group?: SoftwareGroup; core?: boolean; adobe?: boolean; wordmark?: boolean }[] = [
+export const software: { id: SoftwareId; logo: string; stage: SoftwareStage | 'offscreen'; group?: SoftwareGroup; core?: boolean; wordmark?: boolean }[] = [
   { id: 'figjam', logo: L('figma.svg'), stage: 'plan' },
-  { id: 'notion', core: true, logo: L('notion.png'), stage: 'plan' },
-  { id: 'discord', logo: L('discord.png'), stage: 'plan' },
+  { id: 'notion', logo: L('notion.png'), stage: 'plan' },
+  { id: 'discord', core: true, logo: L('discord.png'), stage: 'plan' },
   { id: 'kumu', logo: L('kumu.png'), stage: 'plan' },
   { id: 'graphite', core: true, logo: L('graphite.svg'), stage: 'plan' },
   { id: 'figma', core: true, logo: L('figma.svg'), stage: 'create' },
-  { id: 'affinity', core: true, logo: L('affinity.svg'), stage: 'create' },
+  { id: 'affinity', core: true, logo: L('affinity.png'), stage: 'create' },
   { id: 'blender', logo: L('blender.svg'), stage: 'create' },
   { id: 'fusion', logo: L('fusion.png'), stage: 'create' },
   { id: 'aseprite', logo: L('aseprite.png'), stage: 'create' },
-  { id: 'lightroom', adobe: true, logo: L('lightroom.png'), stage: 'create' },
-  { id: 'photoshop', adobe: true, logo: L('photoshop.png'), stage: 'create' },
-  { id: 'illustrator', adobe: true, logo: L('illustrator.png'), stage: 'create' },
+  { id: 'lightroom', logo: L('lightroom.png'), stage: 'create' },
+  { id: 'photoshop', logo: L('photoshop.png'), stage: 'create' },
+  { id: 'illustrator', logo: L('illustrator.png'), stage: 'create' },
   { id: 'davinci', logo: L('davinci.png'), stage: 'create' },
-  { id: 'javascript', core: true, logo: L('javascript.png'), stage: 'build', group: 'languages' },
+  { id: 'javascript', logo: L('javascript.png'), stage: 'build', group: 'languages' },
   { id: 'typescript', core: true, logo: L('typescript.svg'), stage: 'build', group: 'languages' },
   { id: 'react', core: true, logo: L('react.png'), stage: 'build', group: 'languages' },
   { id: 'scss', logo: L('scss.svg'), stage: 'build', group: 'languages' },
@@ -128,9 +128,9 @@ export const software: { id: SoftwareId; logo: string; stage: SoftwareStage | 'o
   { id: 'pycharm', logo: L('pycharm.png'), stage: 'build', group: 'apps' },
   { id: 'datagrip', logo: L('datagrip.png'), stage: 'build', group: 'apps' },
   { id: 'unity', logo: L('unity.png'), stage: 'build', group: 'apps', wordmark: true },
-  { id: 'github', logo: L('github.png'), stage: 'ship' },
+  { id: 'github', core: true, logo: L('github.png'), stage: 'ship' },
   { id: 'tauri', logo: L('tauri.svg'), stage: 'ship' },
-  { id: 'vivaldi', logo: L('vivaldi.png'), stage: 'ship' },
+  { id: 'vivaldi', core: true, logo: L('vivaldi.png'), stage: 'ship' },
   { id: 'prusaslicer', logo: L('prusaslicer.png'), stage: 'offscreen' },
 ]
 
