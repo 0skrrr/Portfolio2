@@ -86,6 +86,9 @@ export function CaseStudy({ index, onClose, onGo }: { index: number; onClose: ()
           <div><dt>{t.caseStudy.role}</dt><dd>{c.role}</dd></div>
           <div><dt>{t.caseStudy.year}</dt><dd>{c.year}</dd></div>
           <div><dt>{t.caseStudy.tools}</dt><dd>{c.tools.join(', ')}</dd></div>
+          {!!p.team?.length && (
+            <div><dt>{t.caseStudy.team}</dt><dd>{p.team.map((id) => t.education.friends[id].name).join(', ')}</dd></div>
+          )}
           {p.href && (
             <div>
               <dt>{t.caseStudy.link}</dt>
