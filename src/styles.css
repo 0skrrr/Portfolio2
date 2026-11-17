@@ -212,6 +212,10 @@ img { display: block; max-width: 100%; }
 .cover__meta { font-weight: 700; font-size: max(10px, min(3.1cqw, 2.8cqh)); letter-spacing: 0.2em; text-transform: uppercase; }
 .cover__title { font-weight: 700; font-size: min(11cqw, 9cqh); line-height: 0.95; letter-spacing: 0.01em; text-transform: uppercase; overflow-wrap: anywhere; text-wrap: balance; }
 .cover__dot { position: absolute; right: 7cqw; top: 6cqh; width: min(5.5cqw, 5.5cqh); aspect-ratio: 1; border-radius: 50%; background: var(--accent); }
+.cover__shot { position: absolute; left: 46cqw; top: 15cqh; width: 60cqw; height: 49cqh; object-fit: cover; object-position: left top; border: 2px solid var(--ink); box-shadow: 0 0 0 1px var(--cream); }
+@container (aspect-ratio < 1) {
+  .cover__shot { left: 7cqw; top: 39cqh; width: 100cqw; height: 33cqh; }
+}
 .cover--photo img { width: 100%; height: 100%; object-fit: cover; }
 .cover__badge { position: absolute; left: 0; top: 0; background: var(--ink); color: var(--cream); font-weight: 700; font-size: 13px; letter-spacing: 0.12em; padding: 0.45em 0.7em; }
 

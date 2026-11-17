@@ -98,7 +98,7 @@ export function CaseStudy({ index, onClose, onGo }: { index: number; onClose: ()
         </dl>
 
         <figure className="case__cover case__reveal">
-          <Cover variant={p.cover ?? index} no={no(index)} title={c.title} meta={`${c.tag} · ${c.year}`} image={p.image} />
+          <Cover variant={p.cover ?? index} no={no(index)} title={c.title} meta={`${c.tag} · ${c.year}`} image={p.image} shot={p.shot ?? p.gallery?.[0]} />
         </figure>
 
         <div className="case__text">
