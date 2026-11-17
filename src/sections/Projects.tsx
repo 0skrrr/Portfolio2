@@ -26,7 +26,7 @@ export function Projects() {
   const [isShotShown, setShotShown] = useState(false)
 
   const rows = [
-    ...projects.map((p, i) => ({ ...t.projects.items[p.id], image: p.image, shot: p.gallery?.[0], cover: p.cover ?? i })),
+    ...projects.map((p, i) => ({ ...t.projects.items[p.id], image: p.image, shot: p.preview ?? p.gallery?.[0], cover: p.cover ?? i })),
     { ...t.projects.cta, image: undefined, shot: undefined, cover: 'cta' as const },
   ]
   const row = rows[active]

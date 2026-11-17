@@ -60,6 +60,8 @@ export type Project = {
   image?: string
   /** Case-study gallery; only rendered when it has images. */
   gallery?: string[]
+  /** Portrait (4:5) screenshot revealed in the project list's preview; defaults to the first gallery image. */
+  preview?: string
   /** Force a cover composition (0–4). */
   cover?: number
   /** Software used, linked from the Software panel's trace. */
@@ -70,7 +72,7 @@ export type Project = {
 
 export const projects: Project[] = [
   { id: 'hearby', href: 'https://github.com/0skrrr/HearBy', tools: ['figjam', 'typescript', 'tauri', 'figma', 'webstorm', 'github'], gallery: [1, 2, 3].map((n) => asset(`projects/hearby-${n}.jpg`)), team: ['kriztov', 'adris'] },
-  { id: 'predichess', href: 'https://0skrrr.github.io/Predichess/', tools: ['react', 'typescript', 'mysql', 'webstorm', 'github'], gallery: [1, 2, 3].map((n) => asset(`projects/predichess-${n}.jpg`)) },
+  { id: 'predichess', href: 'https://0skrrr.github.io/Predichess/', tools: ['react', 'typescript', 'mysql', 'webstorm', 'github'], gallery: [1, 2, 3].map((n) => asset(`projects/predichess-${n}.jpg`)), preview: asset('projects/predichess-preview.jpg') },
   { id: 'graphite', href: 'https://github.com/0skrrr/graphite-releases', tools: ['graphite', 'react', 'typescript', 'tauri', 'figma', 'webstorm', 'github'], gallery: [1, 2, 3].map((n) => asset(`projects/graphite-${n}.jpg`)) },
   { id: 'portfolio', href: 'https://github.com/0skrrr', tools: ['react', 'typescript', 'figma', 'webstorm', 'github'] },
   { id: 'afterglow', tools: ['davinci', 'lightroom', 'affinity', 'photoshop'] },
