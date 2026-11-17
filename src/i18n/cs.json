@@ -111,8 +111,6 @@
       "tauri": "Tauri",
       "prusaslicer": "PrusaSlicer"
     },
-    "adobeLegend": "Adobe: I can use it, I prefer alternatives",
-    "adobeNote": "(Adobe, I prefer alternatives)",
     "groups": {
       "languages": "Languages & frameworks",
       "apps": "Apps & engines"
