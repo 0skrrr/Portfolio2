@@ -1,4 +1,4 @@
-import { friends, asset } from '../data'
+import { friends, asset, schoolSites } from '../data'
 import { useState } from 'react'
 import { fmt, useT } from '../i18n'
 import { githubUser } from '../components/github'
@@ -75,7 +75,13 @@ export function Education() {
           {t.education.schools.map((e, i) => (
             <li key={i} data-anim="school">
               <span className="education__years">{e.years}</span>
-              <strong>{e.school}</strong>
+              {schoolSites[e.id] ? (
+                <a className="education__school" href={schoolSites[e.id]} target="_blank" rel="noreferrer" data-preview="site" aria-label={fmt(t.education.visitSchool, { name: e.school })}>
+                  <strong>{e.school}</strong>
+                </a>
+              ) : (
+                <strong>{e.school}</strong>
+              )}
               <span>{e.field}</span>
             </li>
           ))}

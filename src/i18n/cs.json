@@ -295,14 +295,16 @@
     "label": "Education, classmates and friends",
     "schools": [
       {
-        "years": "2022 — now",
-        "school": "Secondary school",
-        "field": "Information technology"
+        "id": "chc",
+        "years": "2024 — now",
+        "school": "Creative Hill College (CHC)",
+        "field": "High school"
       },
       {
-        "years": "2013 — 2022",
-        "school": "Primary school",
-        "field": "Where the drawing started"
+        "id": "2ika",
+        "years": "2019 — 2024",
+        "school": "2ika",
+        "field": "Secondary school, 4th to 9th grade"
       }
     ],
     "caption": "The classmates and friends I study and build things with.",
@@ -319,30 +321,31 @@
     "portfolioOf": "{name}’s portfolio",
     "friends": {
       "adris": {
-        "name": "adris",
+        "name": "Adris Han",
         "role": "Web app & game development student"
       },
       "izitaooo": {
-        "name": "Izitaooo",
+        "name": "Alex Petrůj (izitao)",
         "role": "To be filled out"
       },
       "kriztov": {
-        "name": "kriztov",
+        "name": "Kryštof Rolenc",
         "role": "To be filled out"
       },
       "casualNpc": {
-        "name": "the-casual-npc",
+        "name": "Ondřej Puk (casual npc)",
         "role": "To be filled out"
       },
-      "friend5": {
-        "name": "To be filled out",
+      "tomio": {
+        "name": "Matyáš Nagy (tomio)",
         "role": "To be filled out"
       },
       "friend6": {
         "name": "To be filled out",
         "role": "To be filled out"
       }
-    }
+    },
+    "visitSchool": "Visit {name} website"
   },
   "contact": {
     "title": "Contact",

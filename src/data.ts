@@ -80,10 +80,10 @@ export const projects: Project[] = [
  */
 export const friends: { id: FriendId; relation: Relation; github?: string; linkedin?: string; portfolio?: string; portfolioShot?: string; avatar?: string }[] = [
   { id: 'adris', relation: 'classmate', github: 'https://github.com/adris-h', portfolio: 'https://adris.dev', portfolioShot: asset('shots/adris.jpg') },
-  { id: 'izitaooo', relation: 'classmate', github: 'https://github.com/Izitaooo' },
-  { id: 'kriztov', relation: 'classmate', github: 'https://github.com/kriztovv' },
-  { id: 'casualNpc', relation: 'classmate', github: 'https://github.com/the-casual-npc' },
-  { id: 'friend5', relation: 'friend' },
+  { id: 'izitaooo', relation: 'classmate', github: 'https://github.com/Izitaooo', portfolio: 'https://izitaooo.github.io/Portfolio-2025/' },
+  { id: 'kriztov', relation: 'classmate', github: 'https://github.com/kriztovv', portfolio: 'https://kriztovv.github.io/portfolio/' },
+  { id: 'casualNpc', relation: 'classmate', github: 'https://github.com/the-casual-npc', portfolio: 'https://the-casual-npc.github.io/Portfolio/' },
+  { id: 'tomio', relation: 'classmate', github: 'https://github.com/TomioMan', portfolio: 'https://tomioman.github.io/Portfolio/' },
   { id: 'friend6', relation: 'friend' },
 ]
 
@@ -118,3 +118,8 @@ export const software: { id: SoftwareId; logo: string; stage: SoftwareStage; cor
   { id: 'vivaldi', logo: L('vivaldi.png'), stage: 'ship' },
 ]
 export const logoOf = Object.fromEntries(software.map((s) => [s.id, s.logo])) as Record<SoftwareId, string>
+
+export const schoolSites: Record<string, string> = {
+  chc: 'https://creativehill.cz',
+  '2ika': 'https://2ika.edupage.org',
+}
