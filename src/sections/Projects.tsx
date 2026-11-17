@@ -22,8 +22,8 @@ export function Projects() {
   const preview = useRef<HTMLElement>(null)
 
   const rows = [
-    ...projects.map((p, i) => ({ ...t.projects.items[p.id], image: p.image, shot: p.shot ?? p.gallery?.[0], cover: p.cover ?? i })),
-    { ...t.projects.cta, image: undefined, shot: undefined, cover: 'cta' as const },
+    ...projects.map((p, i) => ({ ...t.projects.items[p.id], image: p.image, cover: p.cover ?? i })),
+    { ...t.projects.cta, image: undefined, cover: 'cta' as const },
   ]
   const row = rows[active]
   const isCta = active === CTA
@@ -72,7 +72,7 @@ export function Projects() {
 
       <figure className="pv" ref={preview} data-anim="preview" aria-hidden>
         <div className="pv__frame">
-          <Cover className="pv__fade" variant={row.cover} no={isCta ? '?' : no(active)} title={row.title} meta={`${row.tag} · ${row.year}`} image={row.image} shot={row.shot} />
+          <Cover className="pv__fade" variant={row.cover} no={isCta ? '?' : no(active)} title={row.title} meta={`${row.tag} · ${row.year}`} image={row.image} />
         </div>
         <figcaption className="pv__cap">
           <span className="pv__tag pv__swap">{row.tag} · {row.year}</span>

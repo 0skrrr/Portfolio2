@@ -8,8 +8,6 @@ type Props = {
   meta: string
   /** Real photo: shown instead of the composition, the number badge stays. */
   image?: string
-  /** Screenshot printed into the ink slab as a dim monochrome texture. */
-  shot?: string
   className?: string
 }
 
@@ -18,7 +16,7 @@ type Props = {
  * title in difference blend so they flip colour wherever they cross the slab. Each composition moves the
  * slab, so a list of projects never looks stamped from one template.
  */
-export function Cover({ variant, no, title, meta, image, shot, className = '' }: Props) {
+export function Cover({ variant, no, title, meta, image, className = '' }: Props) {
   const v = variant === 'cta' ? 'cta' : ((variant % COVERS) + COVERS) % COVERS
   if (image) {
     return (
@@ -30,7 +28,7 @@ export function Cover({ variant, no, title, meta, image, shot, className = '' }:
   }
   return (
     <div className={`cover cover--${v} ${className}`}>
-      <span className="cover__slab">{shot && <img className="cover__shot" src={shot} alt="" />}</span>
+      <span className="cover__slab" />
       <span className="cover__dot" />
       <span className="cover__no">{no}</span>
       <span className="cover__foot">
