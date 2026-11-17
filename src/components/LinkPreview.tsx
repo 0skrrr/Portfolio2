@@ -6,7 +6,6 @@ import { useOutbound } from './outbound'
 import { githubUser, loadProfile, type GithubProfile } from './github'
 import './LinkPreview.css'
 
-const CARD_WIDTH = 300
 const GAP = 16
 const EDGE = 12
 const HOVER_MQ = '(hover: hover) and (pointer: fine)'
@@ -15,8 +14,9 @@ const HOVER_MQ = '(hover: hover) and (pointer: fine)'
 function place(anchor: HTMLElement, card: HTMLElement) {
   const a = anchor.getBoundingClientRect()
   const h = card.offsetHeight
+  const w = card.offsetWidth
   const roomRight = window.innerWidth - a.right - GAP - EDGE
-  const left = roomRight >= CARD_WIDTH ? a.right + GAP : Math.max(EDGE, a.left - GAP - CARD_WIDTH)
+  const left = roomRight >= w ? a.right + GAP : Math.max(EDGE, a.left - GAP - w)
   const top = Math.min(Math.max(EDGE, a.top + a.height / 2 - h / 2), window.innerHeight - h - EDGE)
   return { left, top }
 }

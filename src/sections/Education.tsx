@@ -13,10 +13,22 @@ function avatarSrc(f: (typeof friends)[number]): string | null {
   return user ? `https://github.com/${user}.png?size=${AVATAR_SIZE}` : null
 }
 
-/** Classmates sit on an ellipse around the card; at 60° steps none lands on the side arrow at 50% height. */
-const spot = (i: number, n: number) => {
-  const a = (-90 + (360 / n) * i) * (Math.PI / 180)
-  return { x: 50 + 38 * Math.cos(a), y: 50 + 36 * Math.sin(a) }
+const JITTER = 1.6
+
+const SLOTS: { x: number; y: number }[] = [
+  { x: 50, y: 11 }, { x: 83, y: 30 }, { x: 84, y: 72 }, { x: 52, y: 89 }, { x: 15, y: 70 }, { x: 14, y: 31 },
+  { x: 25, y: 14 }, { x: 76, y: 14 }, { x: 77, y: 88 }, { x: 27, y: 87 }, { x: 11, y: 50 },
+]
+
+const wobble = (i: number, salt: number) => {
+  const v = Math.sin((i + 1) * 12.9898 + salt * 78.233) * 43758.5453
+  return (v - Math.floor(v)) * 2 - 1
+}
+
+/** Hand-placed slots around the card, none on the right edge's middle where the Home arrow sits; a seeded wobble keeps them loose but stable between visits. */
+const spot = (i: number) => {
+  const slot = SLOTS[i % SLOTS.length]
+  return { x: slot.x + wobble(i, 1) * JITTER, y: slot.y + wobble(i, 2) * JITTER }
 }
 
 function FriendCard({ f }: { f: (typeof friends)[number] }) {
@@ -69,7 +81,7 @@ function FriendCard({ f }: { f: (typeof friends)[number] }) {
 
 export function Education() {
   const t = useT()
-  const spots = friends.map((_, i) => spot(i, friends.length))
+  const spots = friends.map((_, i) => spot(i))
   return (
     <section className="panel education" aria-label={t.education.label}>
       <svg className="education__lines" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden>
