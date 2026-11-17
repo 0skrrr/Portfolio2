@@ -236,6 +236,34 @@
           }
         ]
       },
+      "graphite": {
+        "title": "Graphite",
+        "tag": "App",
+        "year": "2026",
+        "role": "Design & development",
+        "tools": [
+          "React",
+          "TypeScript",
+          "Tauri",
+          "Rust",
+          "CodeMirror"
+        ],
+        "summary": "My own second-brain note app: a Zettelkasten that keeps every note as a plain Markdown file in a folder you own, and runs on macOS, Windows, Linux and Android from one codebase.",
+        "sections": [
+          {
+            "heading": "The brief",
+            "text": "I wanted the learning setup I'd built in Obsidian without the plugins and the busywork: notes that link to each other, move from capture to processed to kept, and turn into flashcards I actually review. No accounts, no lock-in — just .md files in my own Drive folder."
+          },
+          {
+            "heading": "The process",
+            "text": "A desktop and mobile app built with Tauri, React and CodeMirror, with the heavy lifting — loading the vault, search, stats, scanning music and video — moved into Rust. Wikilinks with backlinks, a graph of every note, version history, GitHub sync, and a design-token theme system where every colour can be edited in Settings."
+          },
+          {
+            "heading": "The outcome",
+            "text": "An app I use every day, shipping updates that install over the old build and keep notes and settings. Flashcards are scheduled with FSRS, and experimental spaces for training, music and video grow on the same notes-and-tags foundation."
+          }
+        ]
+      },
       "portfolio": {
         "title": "This portfolio",
         "tag": "Web",
@@ -260,31 +288,6 @@
           {
             "heading": "The outcome",
             "text": "A fast static site on GitHub Pages that works with a keyboard, a mouse or a thumb, with all of its text kept in one JSON file so a new language is a single file away."
-          }
-        ]
-      },
-      "fieldNotes": {
-        "title": "Field Notes",
-        "tag": "Photo",
-        "year": "2024",
-        "role": "Photography",
-        "tools": [
-          "Lightroom",
-          "Photoshop"
-        ],
-        "summary": "A photo series about ordinary places, shot over a year and edited to one quiet, consistent look.",
-        "sections": [
-          {
-            "heading": "The brief",
-            "text": "A personal project: find something worth looking at in places people walk past every day."
-          },
-          {
-            "heading": "The process",
-            "text": "One camera, one lens and a rule of a single walk per week. The edit was built as a Lightroom preset early on so every frame belongs to the same set."
-          },
-          {
-            "heading": "The outcome",
-            "text": "A tight selection of images out of thousands of frames — and a much better eye for light, timing and what to leave out."
           }
         ]
       },
