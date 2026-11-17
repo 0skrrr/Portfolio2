@@ -379,6 +379,8 @@ img { display: block; max-width: 100%; }
 .education__list li { grid-column: 1 / -1; display: grid; grid-template-columns: subgrid; column-gap: 1.5em; border-top: 1px solid color-mix(in srgb, var(--cream) 35%, transparent); padding-top: 0.6em; }
 .education__list li > :last-child { grid-column: 2; opacity: 0.7; }
 .education__years { grid-row: span 2; font-weight: 600; letter-spacing: 0.08em; }
+.education__school { color: inherit; text-decoration: underline dotted transparent; text-underline-offset: 0.25em; transition: text-decoration-color 0.3s; }
+.education__school:hover, .education__school:focus-visible { text-decoration-color: color-mix(in srgb, currentColor 45%, transparent); }
 .education__caption { font-size: clamp(12px, 0.95vw, 15px); line-height: 1.45; opacity: 0.75; max-width: 34ch; }
 
 .friends li { position: absolute; left: var(--x); top: var(--y); translate: -50% -50%; z-index: 2; }
