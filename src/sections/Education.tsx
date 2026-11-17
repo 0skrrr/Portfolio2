@@ -14,10 +14,12 @@ function avatarSrc(f: (typeof friends)[number]): string | null {
 }
 
 const JITTER = 1.6
+const REACH_BASE = 0.92
+const REACH_SPREAD = 0.12
 
 const SLOTS: { x: number; y: number }[] = [
   { x: 50, y: 11 }, { x: 83, y: 30 }, { x: 84, y: 72 }, { x: 52, y: 89 }, { x: 15, y: 70 }, { x: 14, y: 31 },
-  { x: 25, y: 14 }, { x: 76, y: 14 }, { x: 77, y: 88 }, { x: 27, y: 87 }, { x: 11, y: 50 },
+  { x: 25, y: 14 }, { x: 76, y: 14 }, { x: 80, y: 95 }, { x: 27, y: 87 }, { x: 11, y: 50 },
 ]
 
 const wobble = (i: number, salt: number) => {
@@ -25,10 +27,11 @@ const wobble = (i: number, salt: number) => {
   return (v - Math.floor(v)) * 2 - 1
 }
 
-/** Hand-placed slots around the card, none on the right edge's middle where the Home arrow sits; a seeded wobble keeps them loose but stable between visits. */
+/** Hand-placed slots around the card, none on the right edge's middle where the Home arrow sits; a seeded wobble pulls each one nearer or further from the centre and nudges it sideways, keeping them loose but stable between visits. */
 const spot = (i: number) => {
   const slot = SLOTS[i % SLOTS.length]
-  return { x: slot.x + wobble(i, 1) * JITTER, y: slot.y + wobble(i, 2) * JITTER }
+  const reach = REACH_BASE + wobble(i, 3) * REACH_SPREAD
+  return { x: 50 + (slot.x - 50) * reach + wobble(i, 1) * JITTER, y: 50 + (slot.y - 50) * reach + wobble(i, 2) * JITTER }
 }
 
 function FriendCard({ f }: { f: (typeof friends)[number] }) {
