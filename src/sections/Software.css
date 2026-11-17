@@ -26,7 +26,7 @@
 }
 .tool:hover, .tool:focus-visible, .tool.is-traced { background: var(--ink); color: var(--cream); }
 .tool__logo {
-  flex: none; width: 26px; height: 26px; padding: 2px; object-fit: contain; border-radius: 6px; background: var(--cream);
+  flex: none; width: 26px; height: 26px; padding: 2px; object-fit: contain; border-radius: 6px; background: var(--tile);
   /* Duotone by default — brand colour is the hover reward, so the list doesn't read like a sticker sheet. */
   filter: grayscale(1) contrast(1.1); transition: filter 0.25s;
 }
@@ -35,18 +35,38 @@
 .tool__logo.is-wordmark { object-fit: cover; object-position: left; }
 .tool__name { min-width: 0; font-size: clamp(13px, 0.95vw, 15px); font-weight: 600; line-height: 1.15; }
 .tool.is-core .tool__name { font-weight: 700; }
+.tool.is-adobe::after { content: ''; flex: none; width: 7px; height: 7px; margin-left: auto; border-radius: 50%; border: 1.5px solid currentColor; opacity: 0.6; }
 .tool.is-core::after { content: ''; flex: none; width: 7px; height: 7px; margin-left: auto; border-radius: 50%; background: var(--accent); }
 
 .software__foot {
   width: min(100%, 1320px); display: flex; align-items: center; justify-content: space-between; gap: 12px 24px;
   padding-top: 14px; border-top: 1px solid var(--ink); min-height: 52px;
 }
-.software__legend { display: flex; align-items: center; gap: 0.6em; margin: 0; font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; white-space: nowrap; }
+.software__legend { display: grid; gap: 6px; justify-items: end; margin: 0; }
+.software__legend p { display: flex; align-items: center; gap: 0.6em; margin: 0; font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; white-space: nowrap; }
 .trace { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 22px; margin: 0; font-size: 14px; font-weight: 600; }
 .trace--idle { opacity: 0.55; font-weight: 500; }
 .trace__tool { font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; }
 .trace dd { margin: 0; }
 .trace dd span { margin-right: 0.6em; font-size: var(--label); font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; opacity: 0.55; }
+
+.stage__groups { display: grid; gap: 14px; }
+.stage__group { display: block; margin-bottom: 6px; font-size: var(--label); font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; opacity: 0.55; }
+.dot--ring { background: none; border: 1.5px solid currentColor; opacity: 0.6; }
+
+.platforms { margin-top: 10px; }
+.platforms ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px; }
+.platforms li { padding: 3px 9px; border: 1px solid var(--ink); border-radius: 999px; font-size: 12px; font-weight: 600; }
+
+.hobbies {
+  width: min(100%, 1320px); display: grid; grid-template-columns: minmax(180px, 1fr) 2fr 2fr; gap: 12px clamp(14px, 2vw, 32px);
+  align-items: start; padding-top: 14px; border-top: 1px dashed var(--ink);
+}
+.hobbies__head { display: grid; gap: 4px; }
+.hobby { display: grid; gap: 4px; }
+.hobby strong { font-size: clamp(14px, 1.1vw, 17px); }
+.hobby__caption { font-size: 13px; opacity: 0.65; }
+.hobby .stage__tools { display: flex; flex-wrap: wrap; gap: 0 12px; columns: auto; }
 
 /* Portrait screens: stages stack, each one a row of the pipeline; the panel scrolls (see styles.css). */
 @media (orientation: portrait) {
@@ -59,6 +79,8 @@
   .stage__tools { columns: 140px; }
   .software__foot { flex-direction: column; align-items: flex-start; }
   .stage__caption { min-height: 0; }
+  .hobbies { grid-template-columns: 1fr; }
+  .software__legend { justify-items: start; }
 }
 
 /* Safety net for a long toolchain on short screens: the panel scrolls, and the wheel scrolls it before

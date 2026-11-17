@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024">
+  <rect width="1024" height="1024" fill="#0d0d0d"/>
+  <!-- outer hexagon (pointy top): the graphite lattice cell, drawn as a ring -->
+  <polygon points="512,160 815,336 815,688 512,864 209,688 209,336" fill="#f4f4f2"/>
+  <polygon points="512,224 760,368 760,656 512,800 264,656 264,368" fill="#0d0d0d"/>
+  <!-- inner hexagon: the note -->
+  <polygon points="512,336 663,424 663,600 512,688 361,600 361,424" fill="#f4f4f2"/>
+</svg>

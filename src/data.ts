@@ -40,13 +40,13 @@ export const SCREENSHOT_SERVICE = 'https://image.thum.io/get/width/720/crop/900/
  * asset('skills/video.jpg')) to show a photo in the card instead.
  */
 export const skills: { id: SkillId; side: 'left' | 'right'; top: number; tools: SoftwareId[]; image?: string }[] = [
-  { id: 'appDesign', side: 'left', top: 10, tools: ['figma', 'illustrator'] },
-  { id: 'webDesign', side: 'right', top: 23, tools: ['figma', 'react', 'javascript', 'webstorm'] },
-  { id: 'gameDesign', side: 'left', top: 36, tools: ['unity', 'csharp', 'aseprite'] },
-  { id: 'uiux', side: 'right', top: 49, tools: ['figma', 'illustrator'] },
-  { id: 'backend', side: 'left', top: 62, tools: ['php', 'mysql', 'java', 'csharp', 'datagrip'] },
-  { id: 'branding', side: 'right', top: 75, tools: ['illustrator', 'photoshop'] },
-  { id: 'photoVideo', side: 'left', top: 88, tools: ['lightroom', 'davinci', 'photoshop'] },
+  { id: 'appDesign', side: 'left', top: 10, tools: ['figma', 'figjam', 'affinity'] },
+  { id: 'webDesign', side: 'right', top: 23, tools: ['figma', 'react', 'typescript', 'scss', 'webstorm'] },
+  { id: 'gameDesign', side: 'left', top: 36, tools: ['unity', 'csharp', 'rider', 'aseprite', 'blender'] },
+  { id: 'uiux', side: 'right', top: 49, tools: ['figma', 'figjam', 'kumu'] },
+  { id: 'backend', side: 'left', top: 62, tools: ['php', 'mysql', 'python', 'java', 'phpstorm', 'datagrip'] },
+  { id: 'branding', side: 'right', top: 75, tools: ['affinity', 'figma', 'illustrator'] },
+  { id: 'photoVideo', side: 'left', top: 88, tools: ['davinci', 'lightroom', 'affinity', 'photoshop'] },
 ]
 
 /** Cover compositions (see components/Cover.tsx). Projects pick one by position unless `cover` is set. */
@@ -68,10 +68,10 @@ export type Project = {
 
 export const projects: Project[] = [
   { id: 'hexe', href: 'https://github.com/0skrrr', tools: ['unity', 'csharp', 'aseprite', 'rider'] },
-  { id: 'portfolio', href: 'https://github.com/0skrrr', tools: ['react', 'javascript', 'figma', 'webstorm', 'github'] },
+  { id: 'portfolio', href: 'https://github.com/0skrrr', tools: ['react', 'typescript', 'figma', 'webstorm', 'github'] },
   { id: 'northline', tools: ['figma', 'illustrator', 'notion'] },
   { id: 'fieldNotes', tools: ['react', 'php', 'mysql', 'datagrip', 'figma'] },
-  { id: 'afterglow', tools: ['lightroom', 'davinci', 'photoshop'] },
+  { id: 'afterglow', tools: ['davinci', 'lightroom', 'affinity', 'photoshop'] },
 ]
 
 /**
@@ -90,31 +90,57 @@ export const friends: { id: FriendId; relation: Relation; github?: string; linke
 export const softwareStages: SoftwareStage[] = ['plan', 'create', 'build', 'ship']
 
 const L = (f: string) => asset(`logos/${f}`)
-/** `stage` places a tool in the pipeline; order within a stage = order here. `core: true` marks daily drivers (accent dot); `wordmark: true` crops a wide logo to its mark. */
-export const software: { id: SoftwareId; logo: string; stage: SoftwareStage; core?: boolean; wordmark?: boolean }[] = [
-  { id: 'javascript', core: true, logo: L('javascript.png'), stage: 'build' },
-  { id: 'react', core: true, logo: L('react.png'), stage: 'build' },
-  { id: 'csharp', logo: L('csharp.png'), stage: 'build' },
-  { id: 'java', logo: L('java.png'), stage: 'build' },
-  { id: 'php', logo: L('php.png'), stage: 'build' },
-  { id: 'mysql', logo: L('mysql.png'), stage: 'build' },
-  { id: 'webstorm', core: true, logo: L('webstorm.png'), stage: 'build' },
-  { id: 'intellij', logo: L('intellij.png'), stage: 'build' },
-  { id: 'rider', logo: L('rider.png'), stage: 'build' },
-  { id: 'pycharm', logo: L('pycharm.png'), stage: 'build' },
-  { id: 'datagrip', logo: L('datagrip.png'), stage: 'build' },
-  { id: 'figma', core: true, logo: L('figma.svg'), stage: 'create' },
-  { id: 'photoshop', core: true, logo: L('photoshop.png'), stage: 'create' },
-  { id: 'illustrator', logo: L('illustrator.png'), stage: 'create' },
-  { id: 'aseprite', logo: L('aseprite.png'), stage: 'create' },
-  { id: 'fusion', logo: L('fusion.png'), stage: 'create' },
-  { id: 'lightroom', logo: L('lightroom.png'), stage: 'create' },
-  { id: 'davinci', logo: L('davinci.png'), stage: 'create' },
-  { id: 'unity', logo: L('unity.png'), stage: 'build', wordmark: true },
-  { id: 'github', logo: L('github.png'), stage: 'ship' },
-  { id: 'notion', logo: L('notion.png'), stage: 'plan' },
+/**
+ * `stage` places a tool in the pipeline (`offscreen` = hobby tools, listed under `hobbies` only); order within a stage = order here.
+ * `core` marks daily drivers (accent dot), `adobe` marks tools I can use but avoid (ring), `group` splits Build into languages and apps,
+ * `wordmark` crops a wide logo to its mark.
+ */
+export type SoftwareGroup = keyof Dict['software']['groups']
+export const software: { id: SoftwareId; logo: string; stage: SoftwareStage | 'offscreen'; group?: SoftwareGroup; core?: boolean; adobe?: boolean; wordmark?: boolean }[] = [
+  { id: 'figjam', logo: L('figma.svg'), stage: 'plan' },
+  { id: 'notion', core: true, logo: L('notion.png'), stage: 'plan' },
   { id: 'discord', logo: L('discord.png'), stage: 'plan' },
+  { id: 'kumu', logo: L('kumu.png'), stage: 'plan' },
+  { id: 'graphite', core: true, logo: L('graphite.svg'), stage: 'plan' },
+  { id: 'figma', core: true, logo: L('figma.svg'), stage: 'create' },
+  { id: 'affinity', core: true, logo: L('affinity.svg'), stage: 'create' },
+  { id: 'blender', logo: L('blender.svg'), stage: 'create' },
+  { id: 'fusion', logo: L('fusion.png'), stage: 'create' },
+  { id: 'aseprite', logo: L('aseprite.png'), stage: 'create' },
+  { id: 'lightroom', adobe: true, logo: L('lightroom.png'), stage: 'create' },
+  { id: 'photoshop', adobe: true, logo: L('photoshop.png'), stage: 'create' },
+  { id: 'illustrator', adobe: true, logo: L('illustrator.png'), stage: 'create' },
+  { id: 'davinci', logo: L('davinci.png'), stage: 'create' },
+  { id: 'javascript', core: true, logo: L('javascript.png'), stage: 'build', group: 'languages' },
+  { id: 'typescript', core: true, logo: L('typescript.svg'), stage: 'build', group: 'languages' },
+  { id: 'react', core: true, logo: L('react.png'), stage: 'build', group: 'languages' },
+  { id: 'scss', logo: L('scss.svg'), stage: 'build', group: 'languages' },
+  { id: 'csharp', logo: L('csharp.png'), stage: 'build', group: 'languages' },
+  { id: 'cpp', logo: L('cpp.svg'), stage: 'build', group: 'languages' },
+  { id: 'java', logo: L('java.png'), stage: 'build', group: 'languages' },
+  { id: 'php', logo: L('php.png'), stage: 'build', group: 'languages' },
+  { id: 'python', logo: L('python.svg'), stage: 'build', group: 'languages' },
+  { id: 'mysql', logo: L('mysql.png'), stage: 'build', group: 'languages' },
+  { id: 'webstorm', core: true, logo: L('webstorm.png'), stage: 'build', group: 'apps' },
+  { id: 'phpstorm', logo: L('phpstorm.svg'), stage: 'build', group: 'apps' },
+  { id: 'intellij', logo: L('intellij.png'), stage: 'build', group: 'apps' },
+  { id: 'rider', logo: L('rider.png'), stage: 'build', group: 'apps' },
+  { id: 'pycharm', logo: L('pycharm.png'), stage: 'build', group: 'apps' },
+  { id: 'datagrip', logo: L('datagrip.png'), stage: 'build', group: 'apps' },
+  { id: 'unity', logo: L('unity.png'), stage: 'build', group: 'apps', wordmark: true },
+  { id: 'github', logo: L('github.png'), stage: 'ship' },
+  { id: 'tauri', logo: L('tauri.svg'), stage: 'ship' },
   { id: 'vivaldi', logo: L('vivaldi.png'), stage: 'ship' },
+  { id: 'prusaslicer', logo: L('prusaslicer.png'), stage: 'offscreen' },
+]
+
+export type PlatformId = keyof Dict['software']['platforms']['items']
+export const platforms: PlatformId[] = ['web', 'windows', 'macos', 'linux', 'android', 'ios']
+
+export type HobbyId = keyof Dict['software']['hobbies']['items']
+export const hobbies: { id: HobbyId; tools: SoftwareId[] }[] = [
+  { id: 'printing', tools: ['fusion', 'prusaslicer'] },
+  { id: 'fpv', tools: [] },
 ]
 export const logoOf = Object.fromEntries(software.map((s) => [s.id, s.logo])) as Record<SoftwareId, string>
 
