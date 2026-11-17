@@ -33,7 +33,7 @@ function FriendCard({ f }: { f: (typeof friends)[number] }) {
         <span className="friend__relation">{t.education.relations[f.relation]}</span>
         <strong>{name}</strong>
         <span className="friend__role">{role}</span>
-        {(f.github || f.linkedin || f.portfolio) && (
+        {(f.github || f.linkedin || f.instagram || f.spotify || f.portfolio) && (
           <span className="friend__links">
             {f.github && (
               <a href={f.github} target="_blank" rel="noreferrer" data-preview="github" aria-label={fmt(t.education.onGithub, { name })}>
@@ -43,6 +43,16 @@ function FriendCard({ f }: { f: (typeof friends)[number] }) {
             {f.linkedin && (
               <a href={f.linkedin} target="_blank" rel="noreferrer" aria-label={fmt(t.education.onLinkedin, { name })}>
                 <img src={asset('social2.svg')} alt="" /> {t.education.linkedin}
+              </a>
+            )}
+            {f.instagram && (
+              <a href={f.instagram} target="_blank" rel="noreferrer" aria-label={fmt(t.education.onInstagram, { name })}>
+                <img src={asset('instagram.svg')} alt="" /> {t.education.instagram}
+              </a>
+            )}
+            {f.spotify && (
+              <a href={f.spotify} target="_blank" rel="noreferrer" data-preview="spotify" aria-label={fmt(t.education.onSpotify, { name })}>
+                {t.education.spotify} <span aria-hidden>↗</span>
               </a>
             )}
             {f.portfolio && (

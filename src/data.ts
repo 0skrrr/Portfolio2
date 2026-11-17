@@ -30,7 +30,7 @@ export const socials: { id: SocialId; href: string; icon: string; handle?: strin
 ]
 
 /** Hover previews for outgoing links: a GitHub profile card, or a screenshot of any other site. */
-export type Preview = 'github' | 'site'
+export type Preview = 'github' | 'site' | 'spotify'
 /** Screenshot service for `site` previews; the page URL is appended. */
 export const SCREENSHOT_SERVICE = 'https://image.thum.io/get/width/720/crop/900/noanimate/'
 
@@ -76,14 +76,20 @@ export const projects: Project[] = [
 
 /**
  * Classmates & friends orbiting the Education card. `avatar` falls back to the GitHub profile picture, then to an initials badge.
- * Links are optional: `github` gets a profile card on hover, `linkedin` a plain link, `portfolio` a screenshot of the site (`portfolioShot` replaces it with a stored image).
+ * Links are optional: `github` gets a profile card on hover, `linkedin` and `instagram` plain links, `spotify` an embedded player, `portfolio` a screenshot of the site (`portfolioShot` replaces it with a stored image).
  */
-export const friends: { id: FriendId; relation: Relation; github?: string; linkedin?: string; portfolio?: string; portfolioShot?: string; avatar?: string }[] = [
+export const friends: { id: FriendId; relation: Relation; github?: string; linkedin?: string; instagram?: string; spotify?: string; portfolio?: string; portfolioShot?: string; avatar?: string }[] = [
   { id: 'adris', relation: 'classmate', github: 'https://github.com/adris-h', portfolio: 'https://adris.dev', portfolioShot: asset('shots/adris.jpg') },
   { id: 'izitaooo', relation: 'classmate', github: 'https://github.com/Izitaooo', portfolio: 'https://izitaooo.github.io/Portfolio-2025/', portfolioShot: asset('shots/izitaooo.jpg') },
   { id: 'kriztov', relation: 'classmate', github: 'https://github.com/kriztovv', portfolio: 'https://kriztovv.github.io/portfolio/', portfolioShot: asset('shots/kriztov.jpg') },
   { id: 'casualNpc', relation: 'classmate', github: 'https://github.com/the-casual-npc', portfolio: 'https://the-casual-npc.github.io/Portfolio/', portfolioShot: asset('shots/casualNpc.jpg') },
   { id: 'tomio', relation: 'classmate', github: 'https://github.com/TomioMan', portfolio: 'https://tomioman.github.io/Portfolio/', portfolioShot: asset('shots/tomio.jpg') },
+  { id: 'justPurple', relation: 'friend', github: 'https://github.com/JustPurpleCZ', portfolio: 'https://justpurplecz.github.io/justpurple/' },
+  { id: 'davidHrb', relation: 'friend', github: 'https://github.com/David-Hrb', portfolio: 'https://www.davidhrbacek.dev/en' },
+  { id: 'dravlix', relation: 'friend', github: 'https://github.com/Dravlix', portfolio: 'https://tomecek.dev' },
+  { id: 'maxikbe', relation: 'friend', github: 'https://github.com/maxikbe', portfolio: 'https://belunekmax.me' },
+  { id: 'vojtaucz', relation: 'friend', github: 'https://github.com/vojtaucz', portfolio: 'https://vojtaucz.github.io/Portfolio/' },
+  { id: 'asphinals', relation: 'friend', instagram: 'https://www.instagram.com/asphinals/', spotify: 'https://open.spotify.com/artist/6gclKPlpzyCCAzYaGDkgBX' },
 ]
 
 /** The Software panel reads left to right as the way work moves: plan → design & media → build → ship. */

@@ -77,12 +77,36 @@ function SiteShot({ href, shot }: { href: string; shot?: string }) {
   )
 }
 
+const SPOTIFY_EMBED = 'https://open.spotify.com/embed/'
+const SPOTIFY_PATH = /^\/(artist|album|track|playlist)\/[A-Za-z0-9]+$/
+
+function spotifyEmbed(href: string) {
+  const url = new URL(href)
+  if (url.hostname !== 'open.spotify.com' || !SPOTIFY_PATH.test(url.pathname)) return null
+  return SPOTIFY_EMBED + url.pathname.slice(1)
+}
+
+function SpotifyCard({ href }: { href: string }) {
+  const t = useT()
+  const src = spotifyEmbed(href)
+  if (!src) return <p className="lp__status">{t.preview.unavailable}</p>
+  return <iframe className="lp-sp" src={src} title={t.preview.spotify} loading="lazy" allow="encrypted-media" />
+}
+
+function PreviewBody({ kind, href, shot }: { kind: Preview; href: string; shot?: string }) {
+  if (kind === 'github') return <GithubCard href={href} />
+  if (kind === 'spotify') return <SpotifyCard href={href} />
+  return <SiteShot href={href} shot={shot} />
+}
+
+const PREVIEW_KINDS: Preview[] = ['github', 'site', 'spotify']
+
 /** Floating preview of where an outgoing link with `data-preview` goes. Pointer devices only: on touch a tap just follows the link. */
 export function LinkPreview() {
   const out = useOutbound()
   const card = useRef<HTMLDivElement>(null)
   const kind = out?.anchor.dataset.preview as Preview | undefined
-  const show = !!out && (kind === 'github' || kind === 'site') && window.matchMedia(HOVER_MQ).matches
+  const show = !!out && !!kind && PREVIEW_KINDS.includes(kind) && window.matchMedia(HOVER_MQ).matches
 
   useLayoutEffect(() => {
     const el = card.current
@@ -101,7 +125,7 @@ export function LinkPreview() {
     <div className="lp" ref={card} aria-hidden>
       <div className="lp__card">
         <span className="lp__host">{out.host} <span aria-hidden>↗</span></span>
-        {kind === 'github' ? <GithubCard href={out.href} /> : <SiteShot href={out.href} shot={out.anchor.dataset.shot} />}
+        <PreviewBody kind={kind} href={out.href} shot={out.anchor.dataset.shot} />
       </div>
     </div>
   )

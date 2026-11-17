@@ -359,6 +359,10 @@
     "onGithub": "{name} on GitHub",
     "linkedin": "LinkedIn",
     "onLinkedin": "{name} on LinkedIn",
+    "instagram": "Instagram",
+    "spotify": "Spotify",
+    "onSpotify": "{name} na Spotify",
+    "onInstagram": "{name} na Instagramu",
     "portfolioOf": "{name}’s portfolio",
     "friends": {
       "adris": {
@@ -380,6 +384,30 @@
       "tomio": {
         "name": "Matyáš Nagy",
         "role": ""
+      },
+      "justPurple": {
+        "name": "Adam Záhoř",
+        "role": "The Hesitant"
+      },
+      "davidHrb": {
+        "name": "David Hrbáček",
+        "role": ""
+      },
+      "dravlix": {
+        "name": "Dominik Tomeček",
+        "role": ""
+      },
+      "maxikbe": {
+        "name": "Max Bělunek",
+        "role": ""
+      },
+      "vojtaucz": {
+        "name": "Vojtěch Úšela",
+        "role": ""
+      },
+      "asphinals": {
+        "name": "Jáchyym",
+        "role": "The Musician"
       }
     },
     "visitSchool": "Visit {name} website"
@@ -399,6 +427,7 @@
     "repos": "{count} repositories",
     "followers": "{count} followers",
     "recent": "Recently pushed",
+    "spotify": "Spotify player",
     "unavailable": "Preview unavailable"
   }
 }
