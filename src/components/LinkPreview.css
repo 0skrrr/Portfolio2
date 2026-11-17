@@ -1,14 +1,15 @@
 /* Hover preview for outgoing links: floating media, so it gets the hard ink shadow. */
 .lp { position: fixed; z-index: 50; width: 300px; pointer-events: none; }
 .lp:has(.lp-gh) { width: 360px; }
-.lp-sp { display: block; width: 100%; height: 352px; border: 1px solid var(--ink); }
+.lp:has(.lp-sp) { width: 360px; }
+.lp-sp { display: block; width: 100%; height: 152px; border: 0; border-radius: 12px; }
 .lp__card {
   display: grid; gap: 12px; padding: 14px; background: var(--cream); color: var(--ink);
   border: 1px solid var(--ink); box-shadow: 10px 10px 0 var(--ink);
 }
 .lp__host {
   justify-self: start; background: var(--ink); color: var(--cream); margin: -14px 0 0 -14px; padding: 0.5em 0.75em;
-  font-size: var(--label); font-weight: 700; letter-spacing: 0.14em; text-transform: lowercase;
+  font-size: var(--label); font-weight: 700; letter-spacing: 0.14em; text-transform: lowercase; overflow-wrap: anywhere;
 }
 .lp__label { font-size: var(--label); font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; opacity: 0.6; }
 .lp__status { margin: 0; padding: 18px 0; font-size: 13px; font-weight: 600; opacity: 0.6; text-align: center; }

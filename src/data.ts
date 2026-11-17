@@ -89,7 +89,7 @@ export const friends: { id: FriendId; relation: Relation; github?: string; linke
   { id: 'dravlix', relation: 'friend', github: 'https://github.com/Dravlix', portfolio: 'https://tomecek.dev' },
   { id: 'maxikbe', relation: 'friend', github: 'https://github.com/maxikbe', portfolio: 'https://belunekmax.me' },
   { id: 'vojtaucz', relation: 'friend', github: 'https://github.com/vojtaucz', portfolio: 'https://vojtaucz.github.io/Portfolio/' },
-  { id: 'asphinals', relation: 'friend', instagram: 'https://www.instagram.com/asphinals/', spotify: 'https://open.spotify.com/artist/6gclKPlpzyCCAzYaGDkgBX' },
+  { id: 'asphinals', relation: 'friend', instagram: 'https://www.instagram.com/asphinals/', spotify: 'https://open.spotify.com/artist/6gclKPlpzyCCAzYaGDkgBX', avatar: 'https://image-cdn-ak.spotifycdn.com/image/ab67616100005174e0a3fff80adf3cbe7977c7f2' },
 ]
 
 /** The Software panel reads left to right as the way work moves: plan → design & media → build → ship. */
