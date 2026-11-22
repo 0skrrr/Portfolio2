@@ -436,7 +436,8 @@
     "copied": "Copied",
     "copyLabel": "Copy {name}",
     "open": "Open {name}",
-    "close": "Close"
+    "close": "Close",
+    "photoAlt": "Oskar nasvícený červeným světlem na černém pozadí"
   },
   "preview": {
     "loading": "Loading preview…",

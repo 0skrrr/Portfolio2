@@ -9,9 +9,9 @@
 
 ## Hero variants (one switch)
 `heroVariant` in `src/data.ts`:
-- `'head'`: big ink head, no slab (the Figma frame). Default.
+- `'head'`: big ink head, no slab (the Figma frame).
 - `'both'`: slab plus head. The head is painted in `--blend` with `mix-blend-mode: difference`, so it reads dark on cream and light on the slab, like the name.
-- `'text'`: the original text-only hero (name split by the slab).
+- `'text'`: the original text-only hero (name split by the slab). Default since 2026-11-22.
 The intro adapts: when a slab exists it shrinks into the slab and fades from red to the slab colour; otherwise it wipes up.
 
 ## Accent red
@@ -25,3 +25,7 @@ The red intro types `intro.nickname` ("Oskrrr") and morphs into `profile.name`. 
 
 ## Phone layout notes
 Below 760px the up arrow drops under the header row (Contact / theme / language) so it never covers those toggles. Long panels scroll with ~96px bottom padding, so their content clears the bottom arrows once scrolled.
+
+## Contact portrait
+`public/assets/photos/portrait.jpg` (`portraitPhoto` in data.ts) is shown in the contact drawer with a red offset shadow. Swap the file to change the photo.
+It's exported through a browser canvas (orientation applied, 1000px long side, JPEG 80%) so **no EXIF/XMP metadata** — camera, lens, timestamps, GPS — ships with it. Re-export any replacement the same way rather than copying the camera file.
