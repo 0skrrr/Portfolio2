@@ -33,6 +33,10 @@
 .drawer__actions a { font-size: 18px; padding: 0; }
 .drawer__actions button:hover, .drawer__actions a:hover { background: var(--cream); color: var(--ink); }
 
-.drawer__photo { flex: none; margin: 0 10px 10px 0; border: 1px solid var(--cream); box-shadow: 10px 10px 0 var(--accent); overflow: hidden; }
-.drawer__photo img { display: block; width: 100%; height: auto; }
+.drawer__photo { position: relative; flex: none; margin: 0 10px 10px 0; border: 1px solid var(--cream); box-shadow: 10px 10px 0 var(--accent); overflow: hidden; background: var(--accent); }
+.drawer__photo img { display: block; width: 100%; height: auto; filter: grayscale(1) contrast(1.25) blur(0.6px); mix-blend-mode: multiply; transition: filter 0.5s ease, mix-blend-mode 0s 0.25s; }
+.drawer__photo::after { content: ''; position: absolute; inset: 0; pointer-events: none; background: radial-gradient(circle, rgb(19 9 24 / 0.35) 0.7px, transparent 1.1px) 0 0 / 4px 4px; transition: opacity 0.5s ease; }
+.drawer__photo:hover img, .drawer__photo:active img { filter: none; mix-blend-mode: normal; transition: filter 0.5s ease; }
+.drawer__photo:hover::after, .drawer__photo:active::after { opacity: 0; }
+@media (prefers-reduced-motion: reduce) { .drawer__photo img, .drawer__photo::after { transition: none; } }
 .drawer__fullname { margin: 0; font-size: clamp(18px, 1.6vw, 22px); font-weight: 600; }
