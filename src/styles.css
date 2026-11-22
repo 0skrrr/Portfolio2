@@ -14,6 +14,7 @@
   --accent: #b84a39;
   /* cream + ink per channel: with mix-blend-mode:difference this renders exactly ink on cream and cream on ink */
   --blend: #feece8;
+  --dot-through-blend: #339997;
   --pad: clamp(16px, 2.5vw, 48px);
   --display: clamp(40px, 5.6vw, 96px);
   --arrow: clamp(32px, 3.6vw, 56px);
@@ -25,7 +26,7 @@
   -webkit-font-smoothing: antialiased;
 }
 /* Dark mode is a straight inversion: cream and ink trade places. --blend is their sum, so it stays valid. */
-:root[data-theme='dark'] { --cream: #130918; --ink: #ebe3d0; color-scheme: dark; }
+:root[data-theme='dark'] { --cream: #130918; --ink: #ebe3d0; --dot-through-blend: #cb5351; color-scheme: dark; }
 :root[data-theme='dark'] .panel::after { mix-blend-mode: screen; }
 :root[data-theme='dark'] .skill-card__tools img { filter: grayscale(1) invert(1) contrast(1.1); mix-blend-mode: screen; }
 :root[data-theme='dark'] .friend__links img { filter: brightness(0) invert(0.92); }
@@ -139,6 +140,7 @@ img { display: block; max-width: 100%; }
 }
 .home__word { display: flex; }
 .home__char { display: inline-block; }
+.home__dot { align-self: flex-end; flex: none; width: 0.13em; height: 0.13em; margin: 0 0 0.02em -0.04em; border-radius: 50%; background: var(--dot-through-blend); }
 .home__slab { position: absolute; top: 0; bottom: 0; left: -10vw; width: calc(var(--split) + 10vw); background: var(--ink); will-change: transform; }
 .home--text .home__role, .home--both .home__role { color: var(--cream); }
 .home--both .figure { mix-blend-mode: difference; }

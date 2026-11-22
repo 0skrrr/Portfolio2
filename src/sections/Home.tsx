@@ -42,6 +42,7 @@ export function Home() {
           {[...t.profile.name].map((c, i) => (
             <span key={i} className="home__char">{c}</span>
           ))}
+          <span className="home__dot" />
         </span>
       </h1>
       <p className="home__role">
