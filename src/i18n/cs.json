@@ -3,45 +3,45 @@
     "lang": "cs",
     "label": "Čeština",
     "short": "CZ",
-    "title": "Oskar — Portfolio",
-    "sectionTitle": "{section} — Oskar",
-    "description": "Oskar Kopčil — designer and developer. Websites, interfaces, branding, photography and video."
+    "title": "Oskar – portfolio",
+    "sectionTitle": "{section} – Oskar",
+    "description": "Oskar Kopčil – designér a vývojář. Weby, rozhraní, branding, fotografie a video."
   },
   "profile": {
     "name": "Oskar",
     "fullName": "Oskar Kopčil",
-    "role": "Developer, and kinda a designer?",
-    "status": "Open to new projects!"
+    "role": "Vývojář a tak trochu designér?",
+    "status": "Otevřený novým projektům!"
   },
   "nav": {
     "sections": {
-      "home": "Home",
+      "home": "Domů",
       "software": "Software",
-      "skillset": "Skillset",
-      "projects": "Projects",
-      "education": "Education"
+      "skillset": "Dovednosti",
+      "projects": "Projekty",
+      "education": "Vzdělání"
     },
-    "goTo": "Go to {name}",
-    "siteMap": "Site map",
+    "goTo": "Přejít na {name}",
+    "siteMap": "Mapa webu",
     "pointing": "→ {name}",
-    "contact": "Contact",
-    "language": "Language",
-    "leaving": "Leaving to {host}",
-    "outside": "Outside this site",
+    "contact": "Kontakt",
+    "language": "Jazyk",
+    "leaving": "Odcházíte na {host}",
+    "outside": "Mimo tento web",
     "theme": {
-      "toDark": "Switch to dark mode",
-      "toLight": "Switch to light mode",
-      "dark": "Dark",
-      "light": "Light"
+      "toDark": "Přepnout na tmavý režim",
+      "toLight": "Přepnout na světlý režim",
+      "dark": "Tmavý",
+      "light": "Světlý"
     }
   },
   "home": {
-    "statement": "I try to make cool digital stuff",
-    "hint": "Swipe to explore",
-    "socialsLabel": "Elsewhere",
+    "statement": "Snažím se tvořit parádní digitální věci",
+    "hint": "Přejeďte prstem a prozkoumejte",
+    "socialsLabel": "Najdete mě i jinde",
     "socials": {
       "discord": "Discord",
-      "email": "Email",
+      "email": "E-mail",
       "linkedin": "LinkedIn",
       "github": "GitHub"
     },
@@ -53,32 +53,32 @@
     }
   },
   "software": {
-    "kicker": "What I work with",
-    "legend": "Daily drivers",
-    "dailyDriver": "(daily driver)",
-    "pipelineLabel": "My toolchain, from first note to shipped work",
+    "kicker": "S čím pracuji",
+    "legend": "Používám denně",
+    "dailyDriver": "(používám denně)",
+    "pipelineLabel": "Moje nástroje od prvního nápadu po hotovou práci",
     "stages": {
       "plan": {
-        "name": "Plan",
-        "caption": "Notes, maps, flows and talking it through"
+        "name": "Plán",
+        "caption": "Poznámky, mapy, schémata a společné probírání"
       },
       "create": {
-        "name": "Design & media",
-        "caption": "Interfaces, identities, pixels, photos and film"
+        "name": "Design a média",
+        "caption": "Rozhraní, identity, pixely, fotky a video"
       },
       "build": {
-        "name": "Build",
-        "caption": "Code, data and game engines"
+        "name": "Vývoj",
+        "caption": "Kód, data a herní enginy"
       },
       "ship": {
-        "name": "Ship",
-        "caption": "Versioned, packaged and shipped to every platform"
+        "name": "Vydání",
+        "caption": "Verzované, zabalené a vydané na každou platformu"
       }
     },
     "trace": {
-      "hint": "Point at a tool to see where it shows up",
-      "skills": "Skills",
-      "projects": "Projects",
+      "hint": "Najeďte na nástroj a uvidíte, kde ho používám",
+      "skills": "Dovednosti",
+      "projects": "Projekty",
       "none": "—"
     },
     "items": {
@@ -120,11 +120,11 @@
       "corridorkey": "CorridorKey 2.0"
     },
     "groups": {
-      "languages": "Languages & frameworks",
-      "apps": "Apps & engines"
+      "languages": "Jazyky a frameworky",
+      "apps": "Aplikace a enginy"
     },
     "platforms": {
-      "label": "Ships to",
+      "label": "Vydávám pro",
       "items": {
         "web": "Web",
         "windows": "Windows",
@@ -135,64 +135,64 @@
       }
     },
     "hobbies": {
-      "title": "Off-screen",
-      "caption": "What I do when I step away from the desk",
+      "title": "Mimo obrazovku",
+      "caption": "Čemu se věnuji, když odejdu od stolu",
       "items": {
         "printing": {
-          "name": "3D printing",
-          "caption": "Modelled in Fusion, sliced in PrusaSlicer"
+          "name": "3D tisk",
+          "caption": "Modely z Fusion, slicované v PrusaSliceru"
         },
         "fpv": {
-          "name": "FPV drone flying",
-          "caption": "Building and flying first-person-view quads"
+          "name": "Létání s FPV drony",
+          "caption": "Stavím a létám s drony z pohledu první osoby"
         }
       }
     }
   },
   "skillset": {
     "number": "{n} / {total}",
-    "toolsLabel": "Tools",
+    "toolsLabel": "Nástroje",
     "items": {
       "appDesign": {
-        "name": "App Design",
-        "blurb": "Mobile and desktop apps, from the first screen flow to a clickable prototype that feels real."
+        "name": "Design aplikací",
+        "blurb": "Mobilní a desktopové aplikace od prvního návrhu obrazovek po interaktivní prototyp."
       },
       "webDesign": {
-        "name": "Web Design",
-        "blurb": "Responsive sites and landing pages, designed in Figma and built by hand."
+        "name": "Webdesign",
+        "blurb": "Responzivní weby a landing pages navržené ve Figmě a postavené ručně."
       },
       "gameDesign": {
-        "name": "Game Design",
-        "blurb": "Mechanics, levels and pixel art — small games built to be played, not just shown."
+        "name": "Herní design",
+        "blurb": "Mechaniky, levely a pixel art – malé hry, které se mají hrát, ne jen ukazovat."
       },
       "uiux": {
         "name": "UI / UX",
-        "blurb": "User flows, wireframes and interfaces that feel obvious the first time you use them."
+        "blurb": "Uživatelské toky, wireframy a rozhraní, která dávají smysl hned napoprvé."
       },
       "backend": {
         "name": "Backend",
-        "blurb": "APIs, databases and the logic behind the interface — the part nobody sees until it breaks."
+        "blurb": "API, databáze a logika za rozhraním – část, kterou nikdo nevidí, dokud se nerozbije."
       },
       "branding": {
         "name": "Branding",
-        "blurb": "Logos, type and colour systems that hold together on a screen, a sign or a sticker."
+        "blurb": "Loga, písmo a barevné systémy, které drží pohromadě na obrazovce, ceduli i samolepce."
       },
       "photoVideo": {
-        "name": "Photo & Video",
-        "blurb": "Photos and films edited to one consistent look — portraits, places, reels and promo cuts."
+        "name": "Foto a video",
+        "blurb": "Fotky a videa sjednocené do jednoho stylu – portréty, místa, reels a promo střihy."
       }
     }
   },
   "projects": {
-    "kicker": "Selected work",
-    "count": "{count} projects",
-    "openCase": "Open the case study",
+    "kicker": "Vybraná práce",
+    "count": "Projekty: {count}",
+    "openCase": "Otevřít případovou studii",
     "items": {
       "hearby": {
         "title": "HearBy",
-        "tag": "App",
+        "tag": "Aplikace",
         "year": "2026",
-        "role": "Design & development",
+        "role": "Design a vývoj",
         "tools": [
           "FigJam",
           "TypeScript",
@@ -200,19 +200,19 @@
           "Capacitor",
           "Web Audio"
         ],
-        "summary": "An app that turns sound into visuals, so deaf and hard-of-hearing people can see what words alone don't carry: tone, emotion, pitch, rhythm and the sound around them. Built by team Detrio at the AT&T Hackathon Junior 2026.",
+        "summary": "Aplikace, která převádí zvuk na obraz, aby neslyšící a nedoslýchaví lidé viděli to, co samotná slova nepředají: tón, emoce, výšku, rytmus a zvuky kolem sebe. Vytvořil ji tým Detrio na AT&T Hackathonu Junior 2026.",
         "sections": [
           {
-            "heading": "The brief",
-            "text": "Subtitles show what was said, not how. We wanted to show the rest — whether a voice rises or falls, speeds up, gets louder or goes quiet — for deaf people, for people who struggle to read tone, and for anyone training their own voice."
+            "heading": "Zadání",
+            "text": "Titulky ukazují, co kdo řekl, ale ne jak. Chtěli jsme ukázat i zbytek – jestli hlas stoupá, nebo klesá, zrychluje, sílí, nebo tichne – pro neslyšící, pro lidi, kterým dělá potíže rozpoznat tón, a pro každého, kdo trénuje vlastní hlas."
           },
           {
-            "heading": "The process",
-            "text": "We brainstormed and mapped the idea out in FigJam, then built a sound engine that breaks any audio into the eight elements of music: pitch, rhythm, dynamics, timbre, harmony, articulation, texture and form. It also tells speech from music and noise, and is ready for several microphones to find where a sound comes from. A debug page showing the live numbers came first; the app was designed around it — intro, legend, customisation, a camera overlay and live subtitles."
+            "heading": "Postup",
+            "text": "Nápad jsme vymysleli a rozkreslili ve FigJamu a pak postavili zvukový engine, který rozloží jakýkoli zvuk na osm prvků hudby: výšku, rytmus, dynamiku, barvu, harmonii, artikulaci, texturu a formu. Rozezná také řeč od hudby a hluku a je připravený na víc mikrofonů, aby určil, odkud zvuk přichází. Nejdřív vznikla ladicí stránka s živými hodnotami; aplikaci jsme navrhli kolem ní – úvod, legendu, přizpůsobení, překryv kamery a živé titulky."
           },
           {
-            "heading": "The outcome",
-            "text": "HearBy runs as a native macOS app and an Android app from one codebase, analysing 20 seconds of audio in about one second. Voice becomes a live line you can read at a glance, with subtitles underneath and the option to record it."
+            "heading": "Výsledek",
+            "text": "HearBy běží jako nativní aplikace pro macOS i Android z jednoho kódu a 20 sekund zvuku zanalyzuje zhruba za sekundu. Z hlasu se stane živá křivka, kterou přečtete na první pohled, s titulky pod ní a možností nahrávání."
           }
         ]
       },
@@ -220,7 +220,7 @@
         "title": "Predichess",
         "tag": "Web",
         "year": "2026",
-        "role": "Design & development",
+        "role": "Design a vývoj",
         "tools": [
           "React",
           "TypeScript",
@@ -228,27 +228,27 @@
           "Express",
           "Prisma"
         ],
-        "summary": "A web app for building and playing interactive chess lessons. Authors put lessons together from board positions, text and questions; players work through them and earn XP and Elo.",
+        "summary": "Webová aplikace pro tvorbu a hraní interaktivních šachových lekcí. Autoři skládají lekce z pozic na šachovnici, textu a otázek; hráči je procházejí a získávají XP a Elo.",
         "sections": [
           {
-            "heading": "The brief",
-            "text": "Chess lessons online are mostly videos you watch, not something you do. Predichess makes every lesson a sequence of positions and questions, so the player has to think through each move instead of just following along."
+            "heading": "Zadání",
+            "text": "Šachové lekce na internetu jsou většinou videa, na která se jen díváte. Predichess dělá z každé lekce sled pozic a otázek, takže hráč musí každý tah promyslet, místo aby jen sledoval."
           },
           {
-            "heading": "The process",
-            "text": "Three parts: Learn, to browse community lessons and step through them; an Editor, to build lessons from tasks and steps, save drafts and publish them with a difficulty; and Home, with your profile, Elo, XP and where you left off. It first ran on an Express server with Prisma and MariaDB."
+            "heading": "Postup",
+            "text": "Tři části: Učení, kde procházíte lekce od komunity krok za krokem; Editor, kde skládáte lekce z úkolů a kroků, ukládáte koncepty a zveřejňujete je s obtížností; a Domů s vaším profilem, Elem, XP a místem, kde jste skončili. Původně běžel na serveru Express s Prismou a MariaDB."
           },
           {
-            "heading": "The outcome",
-            "text": "A live demo on GitHub Pages that runs entirely in the browser: a small built-in backend answers the same API routes as the original server and keeps accounts, lessons and progress in local storage. Every push is tested, built and published automatically."
+            "heading": "Výsledek",
+            "text": "Živé demo na GitHub Pages, které běží celé v prohlížeči: malý vestavěný backend odpovídá na stejné API cesty jako původní server a účty, lekce i postup ukládá do local storage. Každý push se automaticky otestuje, sestaví a zveřejní."
           }
         ]
       },
       "graphite": {
         "title": "Graphite",
-        "tag": "App",
+        "tag": "Aplikace",
         "year": "2026",
-        "role": "Design & development",
+        "role": "Design a vývoj",
         "tools": [
           "React",
           "TypeScript",
@@ -256,84 +256,84 @@
           "Rust",
           "CodeMirror"
         ],
-        "summary": "My own second-brain note app: a Zettelkasten that keeps every note as a plain Markdown file in a folder you own, and runs on macOS, Windows, Linux and Android from one codebase.",
+        "summary": "Moje vlastní aplikace na poznámky jako „druhý mozek“: Zettelkasten, který ukládá každou poznámku jako obyčejný soubor Markdown ve složce, kterou máte pod kontrolou, a z jednoho kódu běží na macOS, Windows, Linuxu i Androidu.",
         "sections": [
           {
-            "heading": "The brief",
-            "text": "I wanted the learning setup I'd built in Obsidian without the plugins and the busywork: notes that link to each other, move from capture to processed to kept, and turn into flashcards I actually review. No accounts, no lock-in — just .md files in my own Drive folder."
+            "heading": "Zadání",
+            "text": "Chtěl jsem systém na učení, který jsem si postavil v Obsidianu, ale bez pluginů a zbytečné práce: poznámky, které na sebe odkazují, putují od zachycení přes zpracování k uchování a mění se v kartičky, které si opravdu opakuji. Žádné účty, žádná závislost na službě – jen soubory .md v mé vlastní složce na Disku."
           },
           {
-            "heading": "The process",
-            "text": "A desktop and mobile app built with Tauri, React and CodeMirror, with the heavy lifting — loading the vault, search, stats, scanning music and video — moved into Rust. Wikilinks with backlinks, a graph of every note, version history, GitHub sync, and a design-token theme system where every colour can be edited in Settings."
+            "heading": "Postup",
+            "text": "Desktopová a mobilní aplikace postavená na Tauri, Reactu a CodeMirroru; to nejnáročnější – načítání trezoru, vyhledávání, statistiky, procházení hudby a videa – běží v Rustu. Wikiodkazy se zpětnými odkazy, graf všech poznámek, historie verzí, synchronizace přes GitHub a systém motivů z design tokenů, kde jde každou barvu upravit v Nastavení."
           },
           {
-            "heading": "The outcome",
-            "text": "An app I use every day, shipping updates that install over the old build and keep notes and settings. Flashcards are scheduled with FSRS, and experimental spaces for training, music and video grow on the same notes-and-tags foundation."
+            "heading": "Výsledek",
+            "text": "Aplikace, kterou používám každý den a jejíž aktualizace se instalují přes starou verzi a zachovají poznámky i nastavení. Kartičky se plánují podle FSRS a na stejném základu poznámek a štítků rostou experimentální prostory pro trénink, hudbu a video."
           }
         ]
       }
     },
     "cta": {
-      "title": "Your project?",
-      "tag": "Let’s talk",
-      "year": "Now",
-      "summary": "Have an idea? Get in touch and let’s build it together.",
-      "action": "Write to me"
+      "title": "Váš projekt?",
+      "tag": "Pojďme to probrat",
+      "year": "Teď",
+      "summary": "Máte nápad? Ozvěte se a postavíme ho spolu.",
+      "action": "Napište mi"
     }
   },
   "caseStudy": {
-    "crumb": "Projects",
-    "navLabel": "Case studies",
-    "prev": "Prev",
-    "prevLabel": "Previous: {title}",
-    "next": "Next",
-    "nextLabel": "Next: {title}",
-    "close": "Close",
+    "crumb": "Projekty",
+    "navLabel": "Případové studie",
+    "prev": "Předchozí",
+    "prevLabel": "Předchozí: {title}",
+    "next": "Další",
+    "nextLabel": "Další: {title}",
+    "close": "Zavřít",
     "role": "Role",
-    "year": "Year",
-    "tools": "Tools",
-    "team": "Team",
-    "link": "Link",
-    "visit": "Visit",
-    "nextProject": "Next project"
+    "year": "Rok",
+    "tools": "Nástroje",
+    "team": "Tým",
+    "link": "Odkaz",
+    "visit": "Navštívit",
+    "nextProject": "Další projekt"
   },
   "education": {
-    "kicker": "Where I study",
-    "label": "Education, classmates and friends",
+    "kicker": "Kde studuji",
+    "label": "Vzdělání, spolužáci a přátelé",
     "schools": [
       {
         "id": "chc",
-        "years": "2024 — now",
+        "years": "2024 – dosud",
         "school": "Creative Hill College",
-        "field": "High school"
+        "field": "Střední škola"
       },
       {
         "id": "2ika",
-        "years": "2019 — 2024",
+        "years": "2019 – 2024",
         "school": "2ika",
-        "field": "Secondary school"
+        "field": "Základní škola"
       }
     ],
-    "caption": "The classmates and friends I study and build things with.",
-    "friendsLabel": "Classmates and friends",
+    "caption": "Spolužáci a přátelé, se kterými studuji a tvořím.",
+    "friendsLabel": "Spolužáci a přátelé",
     "relations": {
-      "classmate": "Classmate",
-      "friend": "Friend"
+      "classmate": "Spolužák",
+      "friend": "Kamarád"
     },
     "github": "GitHub",
     "portfolio": "Portfolio",
-    "onGithub": "{name} on GitHub",
+    "onGithub": "{name} na GitHubu",
     "linkedin": "LinkedIn",
-    "onLinkedin": "{name} on LinkedIn",
+    "onLinkedin": "{name} na LinkedInu",
     "instagram": "Instagram",
     "spotify": "Spotify",
     "onSpotify": "{name} na Spotify",
     "onInstagram": "{name} na Instagramu",
-    "portfolioOf": "{name}’s portfolio",
+    "portfolioOf": "Portfolio: {name}",
     "friends": {
       "adris": {
         "name": "Adris Han",
-        "role": "Web designer"
+        "role": "Webdesignér"
       },
       "izitaooo": {
         "name": "Alex Petrůj",
@@ -345,7 +345,7 @@
       },
       "casualNpc": {
         "name": "Ondřej Puk",
-        "role": "Crazy backend guy"
+        "role": "Šílenec do backendu"
       },
       "tomio": {
         "name": "Matyáš Nagy",
@@ -353,7 +353,7 @@
       },
       "justPurple": {
         "name": "Adam Záhoř",
-        "role": "The Hesitant"
+        "role": "Ten váhavý"
       },
       "davidHrb": {
         "name": "David Hrbáček",
@@ -373,29 +373,29 @@
       },
       "asphinals": {
         "name": "Jáchyym",
-        "role": "The Musician"
+        "role": "Muzikant"
       }
     },
-    "visitSchool": "Visit {name} website"
+    "visitSchool": "Navštívit web školy {name}"
   },
   "contact": {
-    "title": "Contact",
-    "kicker": "Get in touch",
-    "note": "Copy an address, or open it straight away.",
-    "copy": "Copy",
-    "copied": "Copied",
-    "copyLabel": "Copy {name}",
-    "open": "Open {name}",
-    "close": "Close",
-    "photoAlt": "Oskar nasvícený z boku červeným světlem na šedém pozadí"
+    "title": "Kontakt",
+    "kicker": "Ozvěte se",
+    "note": "Zkopírujte si adresu, nebo ji rovnou otevřete.",
+    "copy": "Kopírovat",
+    "copied": "Zkopírováno",
+    "copyLabel": "Kopírovat: {name}",
+    "open": "Otevřít: {name}",
+    "close": "Zavřít",
+    "photoAlt": "Oskar nasvícený z boku červeným světlem na šedém pozadí"
   },
   "preview": {
-    "loading": "Loading preview…",
-    "repos": "{count} repositories",
-    "followers": "{count} followers",
-    "recent": "Recently pushed",
-    "spotify": "Spotify player",
-    "unavailable": "Preview unavailable"
+    "loading": "Načítám náhled…",
+    "repos": "Repozitáře: {count}",
+    "followers": "Sledující: {count}",
+    "recent": "Naposledy aktualizováno",
+    "spotify": "Přehrávač Spotify",
+    "unavailable": "Náhled není k dispozici"
   },
   "intro": {
     "nickname": "Oskrrr"

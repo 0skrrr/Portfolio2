@@ -75,7 +75,7 @@ export function Skillset() {
       </div>
 
       <div className="skillset__band">
-        <h2 className="skillset__title display" data-anim="title">{t.nav.sections.skillset}</h2>
+        <h2 className="skillset__title display" data-anim="title" style={{ '--letters': [...t.nav.sections.skillset].length } as React.CSSProperties}>{t.nav.sections.skillset}</h2>
       </div>
       <ul className="skillset__list">
         {skills.map((s, i) => (
