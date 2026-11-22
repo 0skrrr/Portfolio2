@@ -82,8 +82,6 @@ export const projects: Project[] = [
   { id: 'hearby', href: 'https://github.com/0skrrr/HearBy', tools: ['figjam', 'typescript', 'tauri', 'figma', 'webstorm', 'github'], gallery: [1, 2, 3].map((n) => asset(`projects/hearby-${n}.jpg`)), preview: asset('projects/hearby-preview.jpg'), team: ['kriztov', 'adris'] },
   { id: 'predichess', href: 'https://0skrrr.github.io/Predichess/', tools: ['react', 'typescript', 'mysql', 'webstorm', 'github'], gallery: [1, 2, 3].map((n) => asset(`projects/predichess-${n}.jpg`)), preview: asset('projects/predichess-preview.jpg') },
   { id: 'graphite', href: 'https://github.com/0skrrr/graphite-releases', tools: ['graphite', 'react', 'typescript', 'tauri', 'figma', 'webstorm', 'github'], gallery: [1, 2, 3].map((n) => asset(`projects/graphite-${n}.jpg`)), preview: asset('projects/graphite-preview.jpg') },
-  { id: 'portfolio', href: 'https://github.com/0skrrr', tools: ['react', 'typescript', 'figma', 'webstorm', 'github'] },
-  { id: 'afterglow', tools: ['davinci', 'lightroom', 'affinity', 'photoshop'] },
 ]
 
 /**

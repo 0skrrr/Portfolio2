@@ -271,57 +271,6 @@
             "text": "An app I use every day, shipping updates that install over the old build and keep notes and settings. Flashcards are scheduled with FSRS, and experimental spaces for training, music and video grow on the same notes-and-tags foundation."
           }
         ]
-      },
-      "portfolio": {
-        "title": "This portfolio",
-        "tag": "Web",
-        "year": "2026",
-        "role": "Design & development",
-        "tools": [
-          "React",
-          "TypeScript",
-          "GSAP",
-          "Figma"
-        ],
-        "summary": "A portfolio you move through like a map — five panels around a hub, one strict visual system, and every word ready for translation.",
-        "sections": [
-          {
-            "heading": "The brief",
-            "text": "Show a wide mix of work — code, design, photo and video — without it turning into one long, generic scroll."
-          },
-          {
-            "heading": "The process",
-            "text": "Designed in Figma first. The panels sit on a grid and are reached with arrows, keys, the wheel or a swipe; GSAP handles the pans, the reveals and the intro. One set of rules — ink bands, hairlines and a single accent colour — keeps every panel related."
-          },
-          {
-            "heading": "The outcome",
-            "text": "A fast static site on GitHub Pages that works with a keyboard, a mouse or a thumb, with all of its text kept in one JSON file so a new language is a single file away."
-          }
-        ]
-      },
-      "afterglow": {
-        "title": "Afterglow",
-        "tag": "Video",
-        "year": "2023",
-        "role": "Edit & colour grade",
-        "tools": [
-          "DaVinci Resolve"
-        ],
-        "summary": "A short film edit — pacing, sound and a colour grade built around late evening light.",
-        "sections": [
-          {
-            "heading": "The brief",
-            "text": "Turn a few hours of loosely shot footage into a short piece with a clear mood and rhythm."
-          },
-          {
-            "heading": "The process",
-            "text": "A rough cut to music, then a tighter cut to picture. The grade was matched shot by shot in DaVinci Resolve to hold the same warm evening tone."
-          },
-          {
-            "heading": "The outcome",
-            "text": "A short, finished film with consistent colour and pacing — and a reusable grading setup for the next one."
-          }
-        ]
       }
     },
     "cta": {
