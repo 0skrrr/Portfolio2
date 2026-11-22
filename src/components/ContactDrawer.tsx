@@ -62,6 +62,7 @@ export function ContactDrawer({ open, onClose }: { open: boolean; onClose: () =>
         <header className="drawer__head">
           <p className="drawer__kicker">{t.contact.kicker}</p>
           <h2 id="drawer-title" className="drawer__title display">{t.contact.title}</h2>
+          <p className="drawer__fullname">{t.profile.fullName}</p>
           <button className="drawer__close" onClick={onClose} aria-label={t.contact.close}>×</button>
         </header>
         <p className="drawer__note">{t.contact.note}</p>
