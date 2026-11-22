@@ -5,6 +5,7 @@ import './Cursor.css'
 const FINE_POINTER = '(hover: hover) and (pointer: fine)'
 const REDUCED_MOTION = '(prefers-reduced-motion: reduce)'
 const INTERACTIVE = 'a, button, [role="button"], label, select'
+const ACCENT_ON_HOVER = '.row, .skill button'
 const FOLLOW_SECONDS = 0.08
 const STRETCH_SECONDS = 0.25
 const SPEED_PER_STRETCH = 60
@@ -86,6 +87,7 @@ export function Cursor() {
   const blob = useRef<HTMLSpanElement>(null)
   const trail = useRef<HTMLDivElement>(null)
   const [isHovering, setIsHovering] = useState(false)
+  const [isOnAccent, setIsOnAccent] = useState(false)
   const [isPressed, setIsPressed] = useState(false)
   const [isInside, setIsInside] = useState(true)
 
@@ -99,6 +101,7 @@ export function Cursor() {
     const onTarget = (target: EventTarget | null) => {
       setIsInside(true)
       setIsHovering(target instanceof Element && !!target.closest(INTERACTIVE))
+      setIsOnAccent(target instanceof Element && !!target.closest(ACCENT_ON_HOVER))
     }
     const stopFollowing = followPointer(cursor.current, blob.current, [...trail.current.children] as HTMLElement[], onTarget)
     const onDown = () => setIsPressed(true)
@@ -121,7 +124,7 @@ export function Cursor() {
       <div ref={trail} className="cursor-trail" aria-hidden>
         {Array.from({ length: TRAIL_SIZE }, (_, i) => <span key={i} className="cursor-trail__particle" />)}
       </div>
-      <div ref={cursor} className="cursor" data-hover={isHovering} data-pressed={isPressed} data-inside={isInside} aria-hidden>
+      <div ref={cursor} className="cursor" data-hover={isHovering} data-accent={isOnAccent} data-pressed={isPressed} data-inside={isInside} aria-hidden>
         <span className="cursor__mark">
           <span ref={blob} className="cursor__blob" />
         </span>
