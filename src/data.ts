@@ -18,7 +18,7 @@ export type Relation = keyof Dict['education']['relations']
 
 export const profile = { email: 'kopcil.oskar@gmail.com' }
 
-export const heroSilhouette = { head: asset('hero/head.svg'), body: asset('hero/body.svg') }
+export const heroSilhouette = { head: asset('hero/head.svg') }
 export const photoCredit = { photographer: '', photographerHref: '', cutoutTool: 'CorridorKey 2.0', cutoutHref: 'https://github.com/nikopueringer/CorridorKey' }
 
 /**

@@ -1,6 +1,6 @@
 /*
   System (Skillset is the base):
-  - Ink spine: every section title lives in a solid ink band. The hero's name crosses an ink slab.
+  - Ink spine: every section title lives in a solid ink band. The hero's name crosses an ink head silhouette.
   - Hairline labels: 1px ink rules and boxes; active = inverted to ink.
   - Floating media (previews, cards, covers) is the only thing that gets the hard 10px ink shadow.
   - Accent (#B84A39) is a signal, not a fill: dots, active rules, index numbers, focus. Only on large text,
@@ -47,7 +47,7 @@ img { display: block; max-width: 100%; }
 /* ---------- Intro ---------- */
 .intro {
   position: fixed; inset: 0; z-index: 50; display: grid; place-items: center;
-  background: var(--ink); color: var(--cream); clip-path: inset(0 0 0 0);
+  background: var(--accent); color: var(--cream); clip-path: inset(0 0 0 0);
 }
 .intro__word { display: flex; font-weight: 700; font-size: clamp(64px, 17vw, 300px); letter-spacing: 0.1em; line-height: 1; text-transform: uppercase; }
 .intro__mask { display: inline-block; overflow: hidden; }
@@ -122,7 +122,7 @@ img { display: block; max-width: 100%; }
 .lang button:hover { opacity: 0.85; }
 .lang button[aria-pressed='true'] { opacity: 1; border-bottom-color: currentColor; }
 
-/* ---------- Home: the name split across an ink slab ---------- */
+/* ---------- Home: the name crossing the ink head ---------- */
 .home {
   --name: clamp(64px, 17.4vw, 300px);
   /* at rest the edge sits in the gap between A and R (and clear of the centred arrow labels); the lean sweeps it across them */
@@ -130,8 +130,6 @@ img { display: block; max-width: 100%; }
   /* how far below the panel's middle the name's box ends (it's nudged up 46%) */
   --under: calc(var(--name) * 0.58);
 }
-/* Bleeds past the left edge so the pointer lean (±4vw) never opens a gap. */
-.home__slab { position: absolute; top: 0; bottom: 0; left: -10vw; width: calc(var(--split) + 10vw); background: var(--ink); will-change: transform; }
 .home__title {
   /* starts just past the left arrow + its label, so the name never collides with navigation */
   /* arrow centre + half the widest label ("EDUCATION" ≈ 80px) + breathing room */
@@ -142,19 +140,18 @@ img { display: block; max-width: 100%; }
 .home__word { display: flex; }
 .home__char { display: inline-block; }
 .figure {
-  position: absolute; bottom: 0; left: calc(var(--split) - 2vw); right: 0; height: min(92%, 1000px);
+  position: absolute; top: 4%; right: 3vw; height: 100%; aspect-ratio: 756 / 850;
   pointer-events: none;
 }
 .figure__part, .figure__head { position: absolute; inset: 0; }
-.figure__head { inset: 3px 0 -3px; }
 .figure__part {
   display: block; background: var(--ink);
   mask-size: contain; mask-repeat: no-repeat; mask-position: center bottom;
   -webkit-mask-size: contain; -webkit-mask-repeat: no-repeat; -webkit-mask-position: center bottom;
 }
-.figure__tilt { transform-origin: 50% 80%; }
+.figure__tilt { transform-origin: 50% 100%; }
 .figure__credit {
-  position: absolute; left: 5vw; bottom: calc(var(--pad) + 4px); pointer-events: auto;
+  position: absolute; left: 0; bottom: calc(var(--pad) + 8%); pointer-events: auto;
   width: 26px; height: 26px; border: 1px solid var(--ink); border-radius: 50%;
   font-size: 12px; line-height: 1; color: var(--ink); background: var(--cream);
 }
@@ -171,10 +168,10 @@ img { display: block; max-width: 100%; }
 /* Who you are, in one quiet line on the ink — the name gets attention, this gives it meaning. */
 .home__role {
   position: absolute; left: calc(var(--pad) * 2.2); bottom: var(--pad); z-index: 2;
-  display: grid; gap: 0.55em; font-size: clamp(13px, 1.05vw, 17px); line-height: 1.1; color: var(--cream);
+  display: grid; gap: 0.55em; font-size: clamp(13px, 1.05vw, 17px); line-height: 1.1; color: var(--ink);
 }
 .home__role-line { font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; }
-.home__status { display: flex; align-items: center; gap: 0.6em; font-weight: 500; color: color-mix(in srgb, var(--cream) 72%, transparent); }
+.home__status { display: flex; align-items: center; gap: 0.6em; font-weight: 500; color: color-mix(in srgb, var(--ink) 72%, transparent); }
 .home__status .dot { box-shadow: 0 0 0 0 rgb(184 74 57 / 0.5); animation: pulse 2.4s ease-out infinite; }
 @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgb(184 74 57 / 0.55); } 70%, 100% { box-shadow: 0 0 0 0.7em rgb(184 74 57 / 0); } }
 /* One sentence under the name, on the cream side. Blended, because the leaning slab can slide under its first words. */
@@ -209,11 +206,9 @@ img { display: block; max-width: 100%; }
 /* Portrait: the split turns horizontal and the name sits on the seam, role above it, sentence below. */
 @media (orientation: portrait) {
   .home { --name: 20vw; --split: 50%; }
-  .home__slab { left: 0; right: 0; width: auto; bottom: auto; height: var(--split); }
-  .figure { left: 0; bottom: auto; top: 0; height: var(--split); }
+  .figure { left: 0; right: 0; aspect-ratio: auto; top: 60px; height: calc(var(--split) - var(--name) * 0.5 - 128px); }
   .figure__credit { left: auto; right: calc(var(--pad) * 1.5); bottom: calc(var(--name) * 0.5 + 18px); }
   .figure__popover { left: auto; right: var(--pad); bottom: auto; top: 30%; }
-  .figure__part { background: color-mix(in srgb, var(--cream) 16%, var(--ink)); }
   /* padding-left balances the trailing letter-spacing so the centred word is optically centred */
   .home__title { left: 50%; top: var(--split); translate: -50% -46%; padding-left: 0.1em; }
   .home__role {
@@ -279,7 +274,7 @@ img { display: block; max-width: 100%; }
   font-size: clamp(20px, 3.8vw, 64px); font-weight: 600; letter-spacing: 0.08em; padding: 0.1em 0.35em;
   transition: background 0.3s, color 0.3s;
 }
-.skill:hover button, .skill.is-active button { background: var(--ink); color: var(--cream); }
+.skill:hover button, .skill.is-active button { background: var(--accent); border-color: var(--accent); color: var(--cream); }
 
 /* The card's wrapper is placed with CSS (translate); GSAP only moves the card inside it. */
 .skill-preview { position: absolute; top: 50%; translate: 0 -50%; z-index: 2; width: clamp(250px, 27vw, 440px); pointer-events: none; }
@@ -341,7 +336,8 @@ img { display: block; max-width: 100%; }
 .row__tag, .row__year { font-size: clamp(11px, 0.8vw, 13px); font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; opacity: 0.65; white-space: nowrap; }
 .row__year { text-align: right; }
 .row__go { justify-self: end; font-size: clamp(16px, 1.5vw, 26px); transition: translate 0.3s; }
-.row.is-active { background: var(--ink); color: var(--cream); }
+.row.is-active { background: var(--accent); color: var(--cream); }
+.row.is-active .row__no { color: inherit; }
 .row.is-active .row__go { translate: 6px 0; }
 .row--cta .row__title { font-style: italic; font-weight: 500; }
 
