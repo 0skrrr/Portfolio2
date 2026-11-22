@@ -12,8 +12,11 @@ It only works because the dot always sits on the panel background (right of the 
 ## Cursor over red
 Rows and skill labels fill red on hover. The difference-blend cursor would turn teal there, so `ACCENT_ON_HOVER` switches it to a plain cream ring.
 
-## Favicon
-`public/favicon.svg`: the "O." monogram (cream O, red dot on ink), square corners like the rest of the site.
+## Icons (main logo)
+The main logo is the **unsmoothed** silhouette with OSKAR. centred (original-edge / v2 in the design folder).
+- `public/icons/icon-light.png` (cream bg, ink silhouette) and `icon-dark.png` (ink bg, cream silhouette), 192px.
+- Both are in index.html with `media="(prefers-color-scheme: …)"` so the right one shows before JS runs; `applyTheme` (src/theme.ts) then flips their `media` to `all` / `not all`, so the tab icon follows the site's own theme toggle.
+- `apple-touch-icon.png` (180px, light version).
 
-## Still to do
-- `og:image` share card: needs an absolute site URL at build time (deploy config), not added yet.
+## Share card
+`public/og.png`: 1200×630, the light logo centred on cream. Share cards need an absolute URL, so the `siteUrl` Vite plugin fills `%SITE_URL%` from the `SITE_URL` env var (set in `.github/workflows/deploy.yml`). Without it (local builds) the og:image tags are removed rather than shipped broken.

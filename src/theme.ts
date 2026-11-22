@@ -21,6 +21,9 @@ export const applyTheme = (theme: Theme) => {
   document.documentElement.dataset.theme = theme
   const ink = getComputedStyle(document.documentElement).getPropertyValue('--ink').trim()
   document.querySelector('meta[name="theme-color"]')?.setAttribute('content', ink)
+  document.querySelectorAll<HTMLLinkElement>('link[data-theme-icon]').forEach((icon) => {
+    icon.media = icon.dataset.themeIcon === theme ? 'all' : 'not all'
+  })
 }
 
 export function useTheme() {
