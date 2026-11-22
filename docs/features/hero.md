@@ -4,8 +4,15 @@
 - Follows the original Figma frame: no slab, a large ink head on cream, and the name in difference blend so it flips wherever it crosses the face.
 - `public/assets/hero/head.svg` has its viewBox cropped to the head's bounds (298 300 756 850), so CSS can size it with `aspect-ratio: 756 / 850`. The torso is intentionally not used.
 - Painted through a CSS mask (same trick as the social icons) so the fill follows the theme.
-- The whole head leans ±4vw with the pointer (Home.tsx) and tilts ±5° around the neck (HeroFigure.tsx). They're on different elements so the GSAP transforms don't fight.
+- The slab (or the head, when there's no slab) leans ±4vw with the pointer (Home.tsx) and tilts ±5° around the neck (HeroFigure.tsx). They're on different elements so the GSAP transforms don't fight.
 - Source photos live in the git-ignored `assets-src/`.
+
+## Hero variants (one switch)
+`heroVariant` in `src/data.ts`:
+- `'head'`: big ink head, no slab (the Figma frame). Default.
+- `'both'`: slab plus head. The head is painted in `--blend` with `mix-blend-mode: difference`, so it reads dark on cream and light on the slab, like the name.
+- `'text'`: the original text-only hero (name split by the slab).
+The intro adapts: when a slab exists it shrinks into the slab and fades from red to the slab colour; otherwise it wipes up.
 
 ## Accent red
 The intro is red and wipes up off the hero. Project rows and skill labels fill red on hover instead of ink.

@@ -1,7 +1,7 @@
 import { useRef } from 'react'
 import gsap from 'gsap'
 import { useGSAP } from '@gsap/react'
-import { socials } from '../data'
+import { heroVariant, socials } from '../data'
 import { useT } from '../i18n'
 import { HeroFigure } from '../components/HeroFigure'
 
@@ -14,7 +14,7 @@ export function Home() {
 
   useGSAP(
     () => {
-      const figure = root.current!.querySelector<HTMLElement>('.figure')!
+      const figure = root.current!.querySelector<HTMLElement>('.home__slab, .figure')!
       const mq = window.matchMedia(LEAN_MQ)
       const toX = gsap.quickTo(figure, 'x', { duration: 1.4, ease: 'power3' })
       const onMove = (e: PointerEvent) => {
@@ -33,8 +33,9 @@ export function Home() {
   )
 
   return (
-    <section className="panel home" aria-label={t.nav.sections.home} ref={root}>
-      <HeroFigure />
+    <section className={`panel home home--${heroVariant}`} aria-label={t.nav.sections.home} ref={root}>
+      {heroVariant !== 'head' && <div className="home__slab" aria-hidden />}
+      {heroVariant !== 'text' && <HeroFigure />}
       {/* Letters are split for the intro handoff; the label keeps it one word for screen readers. */}
       <h1 className="home__title" aria-label={t.profile.name}>
         <span className="home__word" data-anim="title" aria-hidden>

@@ -139,8 +139,14 @@ img { display: block; max-width: 100%; }
 }
 .home__word { display: flex; }
 .home__char { display: inline-block; }
+.home__slab { position: absolute; top: 0; bottom: 0; left: -10vw; width: calc(var(--split) + 10vw); background: var(--ink); will-change: transform; }
+.home--text .home__role, .home--both .home__role { color: var(--cream); }
+.home--both .figure { mix-blend-mode: difference; }
+.home--both .figure__part { background: var(--blend); }
+.home--both .figure__credit { background: transparent; color: var(--blend); border-color: var(--blend); }
+.home--text .home__status, .home--both .home__status { color: color-mix(in srgb, var(--cream) 72%, transparent); }
 .figure {
-  position: absolute; top: 4%; right: 3vw; height: 100%; aspect-ratio: 756 / 850;
+  position: absolute; top: -12%; right: -14vw; height: 140%; aspect-ratio: 756 / 850;
   pointer-events: none;
 }
 .figure__part, .figure__head { position: absolute; inset: 0; }
@@ -151,7 +157,7 @@ img { display: block; max-width: 100%; }
 }
 .figure__tilt { transform-origin: 50% 100%; }
 .figure__credit {
-  position: absolute; left: 0; bottom: calc(var(--pad) + 8%); pointer-events: auto;
+  position: absolute; left: auto; right: calc(14vw + var(--pad) * 2.2 + 2px); bottom: 27%; pointer-events: auto;
   width: 26px; height: 26px; border: 1px solid var(--ink); border-radius: 50%;
   font-size: 12px; line-height: 1; color: var(--ink); background: var(--cream);
 }
@@ -206,6 +212,7 @@ img { display: block; max-width: 100%; }
 /* Portrait: the split turns horizontal and the name sits on the seam, role above it, sentence below. */
 @media (orientation: portrait) {
   .home { --name: 20vw; --split: 50%; }
+  .home__slab { left: 0; right: 0; width: auto; bottom: auto; height: var(--split); }
   .figure { left: 0; right: 0; aspect-ratio: auto; top: 60px; height: calc(var(--split) - var(--name) * 0.5 - 128px); }
   .figure__credit { left: auto; right: calc(var(--pad) * 1.5); bottom: calc(var(--name) * 0.5 + 18px); }
   .figure__popover { left: auto; right: var(--pad); bottom: auto; top: 30%; }
@@ -418,14 +425,14 @@ img { display: block; max-width: 100%; }
 .friends li { position: absolute; left: var(--x); top: var(--y); translate: -50% -50%; z-index: 2; width: max-content; }
 .friend {
   display: flex; align-items: center; gap: 0.8em; padding: 0.6em 1.3em 0.6em 0.6em; background: var(--cream);
-  border: 1px solid var(--ink); border-radius: 999px; font-size: clamp(12px, 0.95vw, 16px);
+  border: 1px solid var(--ink); font-size: clamp(12px, 0.95vw, 16px);
   transition: background 0.25s, color 0.25s, scale 0.25s;
 }
 .friend:hover { background: var(--ink); color: var(--cream); scale: 1.04; }
 .friend__avatar {
-  flex: none; width: clamp(44px, 4.2vw, 68px); aspect-ratio: 1; border-radius: 50%; overflow: hidden;
+  flex: none; width: clamp(44px, 4.2vw, 68px); aspect-ratio: 1; overflow: hidden;
   display: grid; place-items: center; background: var(--ink); color: var(--cream); font-weight: 700; letter-spacing: 0.05em;
-  outline: 1.5px dashed var(--ink); outline-offset: 3px; transition: outline-color 0.25s, rotate 0.4s;
+  outline: 1px solid var(--ink); outline-offset: 3px; transition: outline-color 0.25s, rotate 0.4s;
 }
 .friend:hover .friend__avatar { outline-color: var(--accent); rotate: -8deg; }
 .friend__avatar img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(1) contrast(1.1); transition: filter 0.25s; }
@@ -479,7 +486,6 @@ img { display: block; max-width: 100%; }
   .education__title { font-size: 9vw; }
   .friends { display: grid; gap: 10px; }
   .friends li { position: static; translate: none; }
-  .friend { border-radius: 18px; }
   .arrow--left, .arrow--right { top: auto; bottom: calc(var(--pad) * 0.8); translate: none; }
   .arrow--up { top: calc(var(--pad) + 40px); }
   .friends li { width: auto; }
