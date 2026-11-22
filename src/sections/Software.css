@@ -56,11 +56,11 @@
 
 .platforms { margin-top: 10px; }
 .platforms ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px; }
-.platforms li { padding: 3px 9px; border: 1px solid var(--ink); border-radius: 999px; font-size: 12px; font-weight: 600; }
+.platforms li { padding: 3px 9px; border: 1px solid var(--ink); font-size: 12px; font-weight: 600; }
 
 .hobbies {
   width: min(100%, 1320px); display: grid; grid-template-columns: minmax(180px, 1fr) 2fr 2fr; gap: 12px clamp(14px, 2vw, 32px);
-  align-items: start; padding-top: 14px; border-top: 1px dashed var(--ink);
+  align-items: start; padding-top: 14px; border-top: 1px solid var(--ink);
 }
 .hobbies__head { display: grid; gap: 4px; }
 .hobby { display: grid; gap: 4px; }

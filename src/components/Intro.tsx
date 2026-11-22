@@ -13,6 +13,12 @@ type Props = {
 }
 
 /** Wait for the display weight so letters never swap fonts mid-animation (capped so a slow CDN can't stall the site). */
+const insetTo = (el: Element) => {
+  const r = el.getBoundingClientRect()
+  const px = (n: number) => `${Math.max(0, Math.round(n))}px`
+  return `inset(${px(r.top)} ${px(window.innerWidth - r.right)} ${px(window.innerHeight - r.bottom)} ${px(r.left)})`
+}
+
 const fontsReady = () =>
   Promise.race([document.fonts?.load('700 100px Urbanist') ?? Promise.resolve(), new Promise((r) => setTimeout(r, 1800))])
 
@@ -26,6 +32,7 @@ export function Intro({ handoff, onReveal, onDone }: Props) {
       const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
       const word = root.current!.querySelector<HTMLElement>('.intro__word')!
       const hero = document.querySelector<HTMLElement>('.home__title')
+      const slab = document.querySelector<HTMLElement>('.home__slab')
       const target = handoff && hero && !reduce ? hero : null
 
       // Typeset the intro word exactly like the hero title so the handoff is pixel-identical.
@@ -61,7 +68,12 @@ export function Intro({ handoff, onReveal, onDone }: Props) {
             root.current!.querySelector('.intro__mask')!.getBoundingClientRect()[axis]
           tl.to(word, { x: delta('left'), y: delta('top'), duration: 0.75, ease: 'expo.inOut' }, '+=0.1')
             .call(onReveal, undefined, '-=0.1')
-            .fromTo(root.current, { clipPath: full }, { clipPath: 'inset(0px 0px 100% 0px)', duration: 0.95, ease: 'expo.inOut' }, '<')
+          if (slab) {
+            tl.fromTo(root.current, { clipPath: full }, { clipPath: () => insetTo(slab), duration: 0.95, ease: 'expo.inOut' }, '<')
+              .to(root.current, { backgroundColor: () => getComputedStyle(slab).backgroundColor, duration: 0.95, ease: 'expo.inOut' }, '<')
+          } else {
+            tl.fromTo(root.current, { clipPath: full }, { clipPath: 'inset(0px 0px 100% 0px)', duration: 0.95, ease: 'expo.inOut' }, '<')
+          }
         } else {
           tl.call(onReveal, undefined, '+=0.15')
             .fromTo(root.current, { clipPath: full }, { clipPath: 'inset(0px 0px 100% 0px)', duration: 0.8, ease: 'expo.inOut' }, '<')
