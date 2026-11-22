@@ -3,6 +3,7 @@ import gsap from 'gsap'
 import { useGSAP } from '@gsap/react'
 import { socials } from '../data'
 import { useT } from '../i18n'
+import { HeroFigure } from '../components/HeroFigure'
 
 /** Landscape split = vertical edge; portrait = horizontal. The lean only makes sense with a real pointer. */
 const LEAN_MQ = '(orientation: landscape) and (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)'
@@ -36,6 +37,7 @@ export function Home() {
   return (
     <section className="panel home" aria-label={t.nav.sections.home} ref={root}>
       <div className="home__slab" aria-hidden />
+      <HeroFigure />
       {/* Letters are split for the intro handoff; the label keeps it one word for screen readers. */}
       <h1 className="home__title" aria-label={t.profile.name}>
         <span className="home__word" data-anim="title" aria-hidden>

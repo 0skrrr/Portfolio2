@@ -18,6 +18,9 @@ export type Relation = keyof Dict['education']['relations']
 
 export const profile = { email: 'kopcil.oskar@gmail.com' }
 
+export const heroSilhouette = { head: asset('hero/head.svg'), body: asset('hero/body.svg') }
+export const photoCredit = { photographer: '', photographerHref: '', cutoutTool: 'CorridorKey 2.0', cutoutHref: 'https://github.com/nikopueringer/CorridorKey' }
+
 /**
  * `handle` is what the contact drawer shows and copies; a social without one stays out of the drawer
  * (set it once the link is real). `preview: 'github'` shows a GitHub card on hover.
@@ -121,6 +124,7 @@ export const software: { id: SoftwareId; logo: string; stage: SoftwareStage | 'o
   { id: 'photoshop', logo: L('photoshop.png'), stage: 'create' },
   { id: 'illustrator', logo: L('illustrator.png'), stage: 'create' },
   { id: 'davinci', logo: L('davinci.png'), stage: 'create' },
+  { id: 'corridorkey', logo: L('corridorkey.svg'), stage: 'create' },
   { id: 'javascript', logo: L('javascript.png'), stage: 'build', group: 'languages' },
   { id: 'typescript', core: true, logo: L('typescript.svg'), stage: 'build', group: 'languages' },
   { id: 'react', core: true, logo: L('react.png'), stage: 'build', group: 'languages' },
