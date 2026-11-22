@@ -27,5 +27,5 @@ The red intro types `intro.nickname` ("Oskrrr") and morphs into `profile.name`. 
 Below 760px the up arrow drops under the header row (Contact / theme / language) so it never covers those toggles. Long panels scroll with ~96px bottom padding, so their content clears the bottom arrows once scrolled.
 
 ## Contact portrait
-`public/assets/photos/portrait.jpg` (`portraitPhoto` in data.ts) is shown in the contact drawer with a red offset shadow. Swap the file to change the photo.
+`public/assets/photos/portrait.jpg` (`portraitPhoto` in data.ts) is shown under the contact rows with a red offset shadow (currently IMG_0084). Swap the file to change it, and adjust `object-position` in ContactDrawer.css so the face lands in the middle of the 4:3 frame.
 It's exported through a browser canvas (orientation applied, 1000px long side, JPEG 80%) so **no EXIF/XMP metadata** — camera, lens, timestamps, GPS — ships with it. Re-export any replacement the same way rather than copying the camera file.
