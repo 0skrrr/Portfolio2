@@ -51,7 +51,8 @@ img { display: block; max-width: 100%; }
 }
 .intro__word { display: flex; font-weight: 700; font-size: clamp(64px, 17vw, 300px); letter-spacing: 0.1em; line-height: 1; text-transform: uppercase; }
 .intro__mask { display: inline-block; overflow: hidden; }
-.intro__char { display: inline-block; }
+.intro__char { display: inline-block; position: relative; }
+.intro__next { position: absolute; left: 0; top: 100%; }
 
 /* ---------- World / panels ---------- */
 /* Opaque backdrop: the fixed chrome blends (difference) against this stacking context, so it must never be transparent. */
@@ -140,6 +141,33 @@ img { display: block; max-width: 100%; }
 }
 .home__word { display: flex; }
 .home__char { display: inline-block; }
+.figure {
+  position: absolute; bottom: 0; left: calc(var(--split) - 2vw); right: 0; height: min(92%, 1000px);
+  pointer-events: none;
+}
+.figure__part, .figure__head { position: absolute; inset: 0; }
+.figure__head { inset: 3px 0 -3px; }
+.figure__part {
+  display: block; background: var(--ink);
+  mask-size: contain; mask-repeat: no-repeat; mask-position: center bottom;
+  -webkit-mask-size: contain; -webkit-mask-repeat: no-repeat; -webkit-mask-position: center bottom;
+}
+.figure__tilt { transform-origin: 50% 80%; }
+.figure__credit {
+  position: absolute; left: 5vw; bottom: calc(var(--pad) + 4px); pointer-events: auto;
+  width: 26px; height: 26px; border: 1px solid var(--ink); border-radius: 50%;
+  font-size: 12px; line-height: 1; color: var(--ink); background: var(--cream);
+}
+.figure__credit:hover, .figure__credit:focus-visible { background: var(--ink); color: var(--cream); }
+.figure__popover {
+  position: fixed; inset: auto; bottom: calc(var(--pad) + 44px); left: calc(var(--split) + 1vw); margin: 0;
+  padding: 14px 18px; border: 1px solid var(--ink); background: var(--cream); color: var(--ink);
+  box-shadow: 10px 10px 0 var(--ink); font-size: 13px;
+}
+.figure__popover dl { display: grid; grid-template-columns: auto auto; gap: 6px 16px; margin: 0; }
+.figure__popover dt { font-size: var(--label); letter-spacing: 0.16em; text-transform: uppercase; opacity: 0.6; }
+.figure__popover dd { margin: 0; font-weight: 600; }
+.figure__popover a { color: inherit; text-decoration-color: var(--accent); text-underline-offset: 3px; }
 /* Who you are, in one quiet line on the ink — the name gets attention, this gives it meaning. */
 .home__role {
   position: absolute; left: calc(var(--pad) * 2.2); bottom: var(--pad); z-index: 2;
@@ -182,6 +210,10 @@ img { display: block; max-width: 100%; }
 @media (orientation: portrait) {
   .home { --name: 20vw; --split: 50%; }
   .home__slab { left: 0; right: 0; width: auto; bottom: auto; height: var(--split); }
+  .figure { left: 0; bottom: auto; top: 0; height: var(--split); }
+  .figure__credit { left: auto; right: calc(var(--pad) * 1.5); bottom: calc(var(--name) * 0.5 + 18px); }
+  .figure__popover { left: auto; right: var(--pad); bottom: auto; top: 30%; }
+  .figure__part { background: color-mix(in srgb, var(--cream) 16%, var(--ink)); }
   /* padding-left balances the trailing letter-spacing so the centred word is optically centred */
   .home__title { left: 50%; top: var(--split); translate: -50% -46%; padding-left: 0.1em; }
   .home__role {

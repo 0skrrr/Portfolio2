@@ -2,6 +2,7 @@ import { useRef } from 'react'
 import gsap from 'gsap'
 import { useGSAP } from '@gsap/react'
 import { useT } from '../i18n'
+import { morphGlyphs } from './morph'
 
 type Props = {
   /** Landing on home: the intro word glides onto the hero title and the ink shrinks into the hero's slab. */
@@ -25,7 +26,8 @@ const insetTo = (el: Element) => {
 /** Intro from the first Figma frames: O → OK → OSKAR on ink, then the ink retracts into the hero (or wipes away elsewhere). */
 export function Intro({ handoff, onReveal, onDone }: Props) {
   const root = useRef<HTMLDivElement>(null)
-  const name = useT().profile.name
+  const t = useT()
+  const glyphs = morphGlyphs(t.intro.nickname, t.profile.name)
   useGSAP(
     () => {
       const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
@@ -48,6 +50,18 @@ export function Intro({ handoff, onReveal, onDone }: Props) {
       } else {
         tl.from('.intro__char', { yPercent: 110, duration: 0.55, ease: 'expo.out', stagger: 0.07 })
           .from(word, { letterSpacing: '0.5em', duration: 0.9, ease: 'expo.out' }, 0)
+        const rolling = gsap.utils.toArray<HTMLElement>('.intro__mask--roll')
+        const leaving = gsap.utils.toArray<HTMLElement>('.intro__mask--out')
+        if (rolling.length || leaving.length) {
+          tl.addLabel('morph', '+=0.35')
+          rolling.forEach((mask) => {
+            const next = mask.querySelector<HTMLElement>('.intro__next')!
+            tl.to(mask.querySelector('.intro__char'), { yPercent: -100, duration: 0.5, ease: 'expo.inOut' }, 'morph')
+              .to(mask, { width: () => next.offsetWidth, duration: 0.5, ease: 'expo.inOut' }, 'morph')
+          })
+          tl.to(leaving, { width: 0, duration: 0.5, ease: 'expo.inOut' }, 'morph')
+            .to(leaving.map((m) => m.firstElementChild), { yPercent: -110, duration: 0.35, ease: 'expo.in' }, 'morph')
+        }
         if (target) {
           // Measured at tween start (fonts are loaded by then): first intro glyph → first hero glyph.
           const delta = (axis: 'left' | 'top') => () =>
@@ -82,11 +96,17 @@ export function Intro({ handoff, onReveal, onDone }: Props) {
   return (
     <div className="intro" ref={root} aria-hidden>
       <div className="intro__word">
-        {[...name].map((c, i) => (
-          <span className="intro__mask" key={i}>
-            <span className="intro__char">{c}</span>
-          </span>
-        ))}
+        {glyphs.map((g, i) => {
+          const variant = g.becomes === null ? ' intro__mask--out' : g.becomes !== g.shown ? ' intro__mask--roll' : ''
+          return (
+            <span className={`intro__mask${variant}`} key={i}>
+              <span className="intro__char">
+                {g.shown}
+                {variant === ' intro__mask--roll' && <span className="intro__next">{g.becomes}</span>}
+              </span>
+            </span>
+          )
+        })}
       </div>
     </div>
   )

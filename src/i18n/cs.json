@@ -43,6 +43,12 @@
       "email": "Email",
       "linkedin": "LinkedIn",
       "github": "GitHub"
+    },
+    "credit": {
+      "open": "Autoři fotky",
+      "photo": "Foto",
+      "cutout": "Ořez",
+      "unknown": "Jméno doplním"
     }
   },
   "software": {
@@ -109,7 +115,8 @@
       "affinity": "Affinity",
       "blender": "Blender",
       "tauri": "Tauri",
-      "prusaslicer": "PrusaSlicer"
+      "prusaslicer": "PrusaSlicer",
+      "corridorkey": "CorridorKey 2.0"
     },
     "groups": {
       "languages": "Languages & frameworks",
@@ -438,5 +445,8 @@
     "recent": "Recently pushed",
     "spotify": "Spotify player",
     "unavailable": "Preview unavailable"
+  },
+  "intro": {
+    "nickname": "Oskrrr"
   }
 }
