@@ -531,3 +531,8 @@ img { display: block; max-width: 100%; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { transition-duration: 0.01ms !important; animation: none !important; }
 }
+
+.contact, .friend__links a { transition: border-color 0.2s; }
+.contact:hover, .contact:focus-visible,
+.friend__links a:hover, .friend__links a:focus-visible { border-bottom-color: var(--accent); }
+.education__school:hover, .education__school:focus-visible { text-decoration-style: solid; text-decoration-color: var(--accent); }
