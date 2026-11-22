@@ -25,6 +25,16 @@ function siteUrl(): Plugin {
   const url = process.env.SITE_URL?.trim()
   return {
     name: 'site-url',
+    generateBundle() {
+      if (!url) return
+      const base = url.endsWith('/') ? url : `${url}/`
+      this.emitFile({ type: 'asset', fileName: 'robots.txt', source: `User-agent: *\nAllow: /\n\nSitemap: ${base}sitemap.xml\n` })
+      this.emitFile({
+        type: 'asset',
+        fileName: 'sitemap.xml',
+        source: `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url><loc>${base}</loc></url></urlset>\n`,
+      })
+    },
     transformIndexHtml: (html) =>
       url ? html.replaceAll('%SITE_URL%', url.endsWith('/') ? url : `${url}/`) : html.replace(/^.*%SITE_URL%.*\n/gm, ''),
   }

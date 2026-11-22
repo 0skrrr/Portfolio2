@@ -33,7 +33,7 @@ export const photoCredit = { photographer: '', photographerHref: '', cutoutTool:
 export const socials: { id: SocialId; href: string; icon: string; handle?: string; preview?: Preview }[] = [
   { id: 'discord', href: 'https://discord.com/users/783236003066019882', icon: asset('social1.svg') },
   { id: 'email', href: `mailto:${profile.email}`, icon: asset('social3.svg'), handle: profile.email },
-  { id: 'linkedin', href: 'www.linkedin.com/in/oskar-kopčil-b68aa0368', icon: asset('social2.svg') },
+  { id: 'linkedin', href: 'https://www.linkedin.com/in/oskar-kop%C4%8Dil-b68aa0368', icon: asset('social2.svg') },
   { id: 'github', href: 'https://github.com/0skrrr', icon: asset('github.svg'), handle: 'github.com/0skrrr', preview: 'github' },
 ]
 
