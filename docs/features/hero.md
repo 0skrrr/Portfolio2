@@ -12,3 +12,6 @@ The © button opens a native `popover` (light-dismiss and Esc for free). Fill `p
 
 ## Intro nickname
 The intro types `intro.nickname` ("Oskrrr") and morphs into `profile.name`. `morphGlyphs` (src/components/morph.ts) keeps the shared prefix and suffix; middle glyphs roll into the new letter, and leftovers collapse to zero width before the handoff measures positions.
+
+## Phone layout notes
+Below 760px the up arrow drops under the header row (Contact / theme / language) so it never covers those toggles. Long panels scroll with ~96px bottom padding, so their content clears the bottom arrows once scrolled.

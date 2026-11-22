@@ -485,6 +485,9 @@ img { display: block; max-width: 100%; }
   .friends li { position: static; translate: none; }
   .friend { border-radius: 18px; }
   .arrow--left, .arrow--right { top: auto; bottom: calc(var(--pad) * 0.8); translate: none; }
+  .arrow--up { top: calc(var(--pad) + 40px); }
+  .friends li { width: auto; }
+  .friend { width: 100%; }
 
   .skillset__band { width: 26vw; }
   .skillset__title { font-size: 34px; }
