@@ -34,4 +34,4 @@
 .drawer__actions button:hover, .drawer__actions a:hover { background: var(--cream); color: var(--ink); }
 
 .drawer__photo { flex: none; margin: 0 10px 10px 0; aspect-ratio: 4 / 3; border: 1px solid var(--cream); box-shadow: 10px 10px 0 var(--accent); overflow: hidden; }
-.drawer__photo img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; }
+.drawer__photo img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 56% 50%; }

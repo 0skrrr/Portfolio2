@@ -64,9 +64,6 @@ export function ContactDrawer({ open, onClose }: { open: boolean; onClose: () =>
           <h2 id="drawer-title" className="drawer__title display">{t.contact.title}</h2>
           <button className="drawer__close" onClick={onClose} aria-label={t.contact.close}>×</button>
         </header>
-        <figure className="drawer__photo">
-          <img src={portraitPhoto} alt={t.contact.photoAlt} loading="lazy" />
-        </figure>
         <p className="drawer__note">{t.contact.note}</p>
         <ul className="drawer__list">
           {reachable.map((s) => {
@@ -85,6 +82,9 @@ export function ContactDrawer({ open, onClose }: { open: boolean; onClose: () =>
             )
           })}
         </ul>
+        <figure className="drawer__photo">
+          <img src={portraitPhoto} alt={t.contact.photoAlt} loading="lazy" />
+        </figure>
         <p className="sr-only" aria-live="polite">{copied ? t.contact.copied : ''}</p>
       </aside>
     </div>
