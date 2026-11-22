@@ -35,7 +35,6 @@ export function HeroFigure() {
 
   return (
     <div className="figure" ref={root} data-anim="figure">
-      <span className="figure__part figure__body" style={mask(heroSilhouette.body)} aria-hidden />
       <span className="figure__head" aria-hidden>
         <span className="figure__part figure__tilt" style={mask(heroSilhouette.head)} />
       </span>
