@@ -20,5 +20,15 @@ function htmlText(): Plugin {
   }
 }
 
+/** Writes absolute share-image URLs from SITE_URL (set in the deploy workflow); without it, the og:image tags are dropped. */
+function siteUrl(): Plugin {
+  const url = process.env.SITE_URL?.trim()
+  return {
+    name: 'site-url',
+    transformIndexHtml: (html) =>
+      url ? html.replaceAll('%SITE_URL%', url.endsWith('/') ? url : `${url}/`) : html.replace(/^.*%SITE_URL%.*\n/gm, ''),
+  }
+}
+
 // Relative base: the build works at any GitHub Pages path (user site or /<repo>/).
-export default defineConfig({ base: './', plugins: [htmlText(), react()] })
+export default defineConfig({ base: './', plugins: [htmlText(), siteUrl(), react()] })
