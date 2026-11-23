@@ -94,6 +94,7 @@ export const friends: { id: FriendId; relation: Relation; github?: string; linke
   { id: 'kriztov', relation: 'classmate', github: 'https://github.com/kriztovv', portfolio: 'https://kriztovv.github.io/portfolio/', portfolioShot: asset('shots/kriztov.jpg') },
   { id: 'casualNpc', relation: 'classmate', github: 'https://github.com/the-casual-npc', portfolio: 'https://the-casual-npc.github.io/Portfolio/', portfolioShot: asset('shots/casualNpc.jpg') },
   { id: 'tomio', relation: 'classmate', github: 'https://github.com/TomioMan', portfolio: 'https://tomioman.github.io/Portfolio/', portfolioShot: asset('shots/tomio.jpg') },
+  { id: 'vilem', relation: 'classmate', github: 'https://github.com/Vilem23', portfolio: 'https://vilemcastka.cz' },
   { id: 'justPurple', relation: 'friend', github: 'https://github.com/JustPurpleCZ', portfolio: 'https://justpurplecz.github.io/justpurple/' },
   { id: 'davidHrb', relation: 'friend', github: 'https://github.com/David-Hrb', portfolio: 'https://www.davidhrbacek.dev/en' },
   { id: 'dravlix', relation: 'friend', github: 'https://github.com/Dravlix', portfolio: 'https://tomecek.dev' },
