@@ -20,6 +20,7 @@ const REACH_SPREAD = 0.12
 const SLOTS: { x: number; y: number }[] = [
   { x: 50, y: 11 }, { x: 83, y: 30 }, { x: 84, y: 72 }, { x: 52, y: 89 }, { x: 15, y: 70 }, { x: 14, y: 31 },
   { x: 25, y: 14 }, { x: 76, y: 14 }, { x: 80, y: 95 }, { x: 27, y: 87 }, { x: 11, y: 50 },
+  { x: 8, y: 12 },
 ]
 
 const wobble = (i: number, salt: number) => {
