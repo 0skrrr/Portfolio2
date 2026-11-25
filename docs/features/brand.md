@@ -15,7 +15,9 @@ Rows and skill labels fill red on hover. The difference-blend cursor would turn 
 ## Icons (main logo)
 The main logo is the **unsmoothed** silhouette with OSKAR. centred (original-edge / v2 in the design folder).
 - `public/icons/icon-light.png` (cream bg, ink silhouette) and `icon-dark.png` (ink bg, cream silhouette), 192px.
-- Both are in index.html with `media="(prefers-color-scheme: …)"` so the right one shows before JS runs; `applyTheme` (src/theme.ts) then flips their `media` to `all` / `not all`, so the tab icon follows the site's own theme toggle.
+- In index.html the light icon has **no** `media` attribute and the dark one comes after it with `media="(prefers-color-scheme: dark)"`. Browsers use the last matching icon, so dark-scheme visitors still get the dark icon before JS runs. `applyTheme` (src/theme.ts) then flips both `media` to `all` / `not all`, so the tab icon follows the site's own theme toggle.
+- Why the light one has no `media`: Google Search only shows a site icon if it finds a plain `rel="icon"` whose size is a multiple of 48px (192 = 4×48). With both links behind media queries, results showed the generic globe.
+- `public/favicon.ico` (48/32/16, light version) is a root fallback for crawlers and old clients that request `/favicon.ico` directly. It is deliberately **not** linked in the head: browsers prefer its exact 16/32 sizes, which would break the theme-following tab icon.
 - `apple-touch-icon.png` (180px, light version).
 
 ## Share card
